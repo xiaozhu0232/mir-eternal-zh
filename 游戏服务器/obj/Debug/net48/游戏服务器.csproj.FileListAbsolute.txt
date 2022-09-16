@@ -1,0 +1,14 @@
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\bin\Debug\net48\游戏服务器.exe.config
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\bin\Debug\net48\游戏服务器.exe
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\bin\Debug\net48\游戏服务器.pdb
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\bin\Debug\net48\Newtonsoft.Json.dll
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\bin\Debug\net48\SharpZipLib.dll
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\obj\Debug\net48\游戏服务器.csproj.AssemblyReference.cache
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\obj\Debug\net48\游戏服务器.csproj.SuggestedBindingRedirects.cache
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\obj\Debug\net48\游戏服务器.主窗口.resources
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\obj\Debug\net48\游戏服务器.csproj.GenerateResource.cache
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\obj\Debug\net48\游戏服务器.GeneratedMSBuildEditorConfig.editorconfig
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\obj\Debug\net48\游戏服务器.csproj.CoreCompileInputs.cache
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\obj\Debug\net48\游戏服务器.csproj.CopyComplete
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\obj\Debug\net48\游戏服务器.exe
+D:\cqyh\CQYH源码20220824\CQYH源码\游戏服务器\obj\Debug\net48\游戏服务器.pdb

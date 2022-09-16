@@ -1,0 +1,11 @@
+namespace LumiSoft.Net.DNS;
+
+public enum DNS_RCode
+{
+	NO_ERROR,
+	FORMAT_ERRROR,
+	SERVER_FAILURE,
+	NAME_ERROR,
+	NOT_IMPLEMENTED,
+	REFUSED
+}
