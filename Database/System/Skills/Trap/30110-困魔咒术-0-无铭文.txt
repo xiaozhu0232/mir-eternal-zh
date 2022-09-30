@@ -1,0 +1,19 @@
+{
+  "Name": "困魔咒术-0-无铭文",
+  "Id": 30110,
+  "GroupId": 3011,
+  "Size": "Solid3x3",
+  "BindingLevel": 3011,
+  "Duration": 10000,
+  "ExtendedDuration": true,
+  "SkillLevelDelay": true,
+  "ExtendedTimePerLevel": 5000,
+  "BoundPlayerStat": "MaxSC",
+  "LimitMoveSteps": 255,
+  "PassiveTriggerSkill": "困魔咒术-0-无铭文-被动触发",
+  "PassiveObjectType": "Player, Pet",
+  "PassiveType": "ItSelf, Friendly, Hostility",
+  "ActivelyTriggerSkills": "困魔咒术-0-无铭文-主体技能",
+  "ActivelyTriggerInterval": 2000,
+  "ActivelyTriggerDelay": 50
+}

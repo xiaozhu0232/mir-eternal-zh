@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6663,
+  "FromMapId": 88,
+  "FromMapName": "UnknownDarkHall2nd",
+  "FromCoords": "1000, 213",
+  "Direction": "右上",
+  "RegionName": "UnknownDarkHall2nd-Medicine Elder(1000,213)"
+}

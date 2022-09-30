@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6350,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "860, 571",
+  "Direction": "左下",
+  "RegionName": "AlliedProvince-Starshift(860,571)"
+}

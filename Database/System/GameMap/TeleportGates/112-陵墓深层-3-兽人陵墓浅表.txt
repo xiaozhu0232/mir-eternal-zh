@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 3,
+  "FromMapId": 112,
+  "ToMapId": 111,
+  "TeleportGateName": "Orcs Surface Of The Tomb",
+  "FromMapName": "DeepInTheTomb",
+  "ToMapName": "SurfaceOfTheTomb",
+  "FromMapFile": "MirDg23_2",
+  "ToMapFile": "MirDg23_1",
+  "FromCoords": "1028, 100",
+  "ToCoords": "1149, 296"
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6664,
+  "FromMapId": 224,
+  "FromMapName": "SeaGhost2nd",
+  "FromCoords": "1084, 416",
+  "Direction": "下方",
+  "RegionName": "SeaGhost2nd-Drunken Master(1084,416)"
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6665,
+  "FromMapId": 50,
+  "FromMapName": "PaleMoonIsland",
+  "FromCoords": "1203, 445",
+  "Direction": "右下",
+  "RegionName": "PaleMoonIsland-Aggie(1203,445)"
+}

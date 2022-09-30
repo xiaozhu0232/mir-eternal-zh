@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6705,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "927, 542",
+  "Direction": "左下",
+  "RegionName": "AlliedProvince-Seventh(927,542)"
+}

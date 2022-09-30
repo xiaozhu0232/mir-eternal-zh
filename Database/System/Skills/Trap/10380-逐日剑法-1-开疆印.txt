@@ -1,0 +1,15 @@
+{
+  "Name": "逐日剑法-1-开疆印",
+  "Id": 10380,
+  "GroupId": 1038,
+  "BindingLevel": 1038,
+  "Duration": 2500,
+  "LimitMoveSteps": 255,
+  "AllowStacking": true,
+  "PassiveTriggerSkill": "逐日剑法-1-开疆印-被动伤害",
+  "PassiveObjectType": "Player, Pet, Monster, NPC",
+  "PassiveType": "Hostility",
+  "ActivelyTriggerSkills": "逐日剑法-1-开疆印-主动伤害",
+  "ActivelyTriggerInterval": 800,
+  "ActivelyTriggerDelay": 650
+}

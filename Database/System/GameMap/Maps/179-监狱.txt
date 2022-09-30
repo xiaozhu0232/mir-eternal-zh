@@ -1,0 +1,8 @@
+{
+  "MapId": 179,
+  "MapName": "Prison",
+  "MapFile": "MirDg09",
+  "TerrainFile": "0179-监狱",
+  "LimitPlayers": 9999,
+  "LimitInstances": 1
+}

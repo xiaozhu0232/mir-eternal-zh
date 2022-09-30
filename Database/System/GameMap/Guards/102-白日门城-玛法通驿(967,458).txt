@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 7119,
+  "FromMapId": 102,
+  "FromMapName": "WhiteSunGateTown",
+  "FromCoords": "967, 458",
+  "Direction": "右下",
+  "RegionName": "WhiteSunGateTown-Maffatone Post(967,458)"
+}

@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 55,
+  "ToMapId": 54,
+  "TeleportGateName": "BoneDemonCave4th",
+  "FromMapName": "BoneDemonCave5th",
+  "ToMapName": "BoneDemonCave4th",
+  "FromMapFile": "MirDg13_5",
+  "ToMapFile": "MirDg13_4",
+  "FromCoords": "1090, 237",
+  "ToCoords": "910, 334"
+}

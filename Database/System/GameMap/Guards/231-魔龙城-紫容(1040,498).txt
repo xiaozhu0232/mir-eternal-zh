@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6714,
+  "FromMapId": 231,
+  "FromMapName": "MagicDragonCity",
+  "FromCoords": "1040,498",
+  "Direction": "右下",
+  "RegionName": "MagicDragonCity-Purple Face(1040,498)"
+}

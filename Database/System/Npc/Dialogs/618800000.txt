@@ -1,0 +1,4 @@
+{
+  "Id": 618800000,
+  "Content": "Need me to do something for you?<#UI:WeaponSkillSwitch>Inscription Switch<#UI/><#UI:WeaponSkillNhrt>Double Inscription<#UI/>"
+}

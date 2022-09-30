@@ -1,0 +1,34 @@
+{
+  "SkillName": "精准打击-0-全铭文-触发判定",
+  "Race": "弓手",
+  "SkillType": "SubSkills",
+  "OwnSkillId": 2042,
+  "BindingLevelId": 2042,
+  "CalculateTriggerProbability": 1,
+  "NeedConsumeMagic": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "Nodes": {
+    "0": {
+      "$type": "C_01_CalculateHitTarget, Assembly-CSharp",
+      "技能锁定方式": "锁定目标",
+      "HitsLimit": 1,
+      "LimitedTargetType": "Player, Pet, Monster, NPC",
+      "LimitedTargetRelationship": "Hostility",
+      "GainSkillExp": true,
+      "ExpSkillId": 2042,
+      "清除状态列表": []
+    },
+    "1": {
+      "$type": "A_01_TriggerObjectBuff, Assembly-CSharp",
+      "触发Id": 20423,
+      "Buff触发概率": 0.2,
+      "验证铭文技能": true,
+      "所需Id": 20421,
+      "所需Buff层数": 1
+    }
+  }
+}

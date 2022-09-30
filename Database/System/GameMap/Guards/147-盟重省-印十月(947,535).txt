@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6194,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "947, 535",
+  "Direction": "右下",
+  "RegionName": "AlliedProvince-Ind October(947,535)"
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6734,
+  "FromMapId": 142,
+  "FromMapName": "BorderVillage",
+  "FromCoords": "942, 497",
+  "Direction": "左上",
+  "RegionName": "BorderVillage-Greatsword Guard(942,497)"
+}

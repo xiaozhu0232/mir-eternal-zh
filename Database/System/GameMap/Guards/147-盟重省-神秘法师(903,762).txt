@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6114,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "903, 762",
+  "Direction": "左下",
+  "RegionName": "AlliedProvince-Mystic Mage(903,762)"
+}

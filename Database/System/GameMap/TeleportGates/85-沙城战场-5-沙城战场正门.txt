@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 5,
+  "FromMapId": 85,
+  "ToMapId": 85,
+  "TeleportGateName": "SandCity Battlefield Main entrance",
+  "FromMapName": "SandCity Battlefield ",
+  "ToMapName": "SandCity Battlefield ",
+  "FromMapFile": "MirAct21",
+  "ToMapFile": "MirAct21",
+  "FromCoords": "283, 1241",
+  "ToCoords": "1026, 512"
+}

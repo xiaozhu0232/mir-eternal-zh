@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 210,
+  "ToMapId": 158,
+  "TeleportGateName": "DeathCanyon5th",
+  "FromMapName": "CaveOfWorms",
+  "ToMapName": "DeathCanyon5th",
+  "FromMapFile": "MirDg01_8",
+  "ToMapFile": "MirDg01_2",
+  "FromCoords": "1144, 314",
+  "ToCoords": "1298, 648"
+}

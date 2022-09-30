@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 3,
+  "FromMapId": 163,
+  "ToMapId": 164,
+  "TeleportGateName": "RainbowDemonTemple",
+  "FromMapName": "Stone Tomb Entrance",
+  "ToMapName": "RainbowDemonTemple",
+  "FromMapFile": "Mir_Dg02_5",
+  "ToMapFile": "Mir_Dg02_6",
+  "FromCoords": "1031, 105",
+  "ToCoords": "1081, 294"
+}

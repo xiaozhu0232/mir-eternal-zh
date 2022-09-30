@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 215,
+  "ToMapId": 214,
+  "TeleportGateName": "ShadowPassage2nd",
+  "FromMapName": "ShadowPassage4th",
+  "ToMapName": "ShadowPassage3rd",
+  "FromMapFile": "Mir_Dg05_7",
+  "ToMapFile": "Mir_Dg05_6",
+  "FromCoords": "1021, 118",
+  "ToCoords": "990, 141"
+}

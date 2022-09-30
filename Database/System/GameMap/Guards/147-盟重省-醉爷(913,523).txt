@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6664,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "913, 523",
+  "Direction": "右下",
+  "RegionName": "AlliedProvince-Drunken Master(913,523)"
+}

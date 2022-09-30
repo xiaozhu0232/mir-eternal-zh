@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 234,
+  "ToMapId": 232,
+  "TeleportGateName": "To MagicDragonEasternSuburb",
+  "FromMapName": "EastWoodlandResort",
+  "ToMapName": "MagicDragonEasternSuburb",
+  "FromMapFile": "MirDg12_3",
+  "ToMapFile": "MirDg12_1",
+  "FromCoords": "1133, 274",
+  "ToCoords": "953, 315"
+}

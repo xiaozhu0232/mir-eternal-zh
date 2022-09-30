@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 131,
+  "ToMapId": 111,
+  "TeleportGateName": "Orcs Surface Of The Tomb",
+  "FromMapName": "IshiharaMineCave",
+  "ToMapName": "SurfaceOfTheTomb",
+  "FromMapFile": "MirDg22_1",
+  "ToMapFile": "MirDg23_1",
+  "FromCoords": "1157, 294",
+  "ToCoords": "1056, 175"
+}

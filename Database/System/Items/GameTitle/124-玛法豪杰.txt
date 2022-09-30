@@ -1,0 +1,16 @@
+{
+  "Name": "玛法豪杰",
+  "Id": 124,
+  "Combat": 50,
+  "EffectiveTime": 2592000,
+  "Attributes": {
+    "MaxDC": 1,
+    "MaxMC": 1,
+    "MaxSC": 1,
+    "MaxNC": 1,
+    "MaxBC": 1,
+    "MaxHP": 10,
+    "MaxDef": 1,
+    "MaxMCDef": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6663,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1105, 570",
+  "Direction": "右下",
+  "RegionName": "BichyProvince-Medicine Elder(1105,570)"
+}

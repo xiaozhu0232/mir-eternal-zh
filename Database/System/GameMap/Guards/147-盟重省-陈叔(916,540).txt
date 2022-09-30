@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6771,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "916, 540",
+  "Direction": "右下",
+  "RegionName": "AlliedProvince-Mr Chen(916,540)"
+}

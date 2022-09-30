@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6680,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "616, 821",
+  "Direction": "右下",
+  "RegionName": "AlliedProvince-Jade Lady(616,821)"
+}

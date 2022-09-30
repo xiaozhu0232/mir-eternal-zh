@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6664,
+  "FromMapId": 171,
+  "FromMapName": "ZumaGallery",
+  "FromCoords": "1017, 70",
+  "Direction": "右方",
+  "RegionName": "ZumaGallery-Drunken Master(1017,70)"
+}

@@ -1,0 +1,9 @@
+{
+  "MapId": 194,
+  "MapName": "RightCloister",
+  "MapFile": "MirDg11_6",
+  "TerrainFile": "0194-右回廊",
+  "LimitPlayers": 9999,
+  "MinLevel": 40,
+  "LimitInstances": 1
+}

@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 131,
+  "ToMapId": 133,
+  "TeleportGateName": "BehemothHall",
+  "FromMapName": "IshiharaMineCave",
+  "ToMapName": "BehemothHall",
+  "FromMapFile": "MirDg22_1",
+  "ToMapFile": "MirDg22_3",
+  "FromCoords": "1127, 322",
+  "ToCoords": "1000, 121"
+}

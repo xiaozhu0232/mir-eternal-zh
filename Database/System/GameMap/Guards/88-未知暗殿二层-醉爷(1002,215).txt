@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6664,
+  "FromMapId": 88,
+  "FromMapName": "UnknownDarkHall2nd",
+  "FromCoords": "1002, 215",
+  "Direction": "右上",
+  "RegionName": "UnknownDarkHall2nd-Drunken Master(1002,215)"
+}

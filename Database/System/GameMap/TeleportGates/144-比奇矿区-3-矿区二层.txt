@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 3,
+  "FromMapId": 144,
+  "ToMapId": 153,
+  "TeleportGateName": "矿区 1st Floor",
+  "FromMapName": "BeechMines",
+  "ToMapName": "BeechMines 1st Floor",
+  "FromMapFile": "Mir_Dg03",
+  "ToMapFile": "Mir_Dg03_1",
+  "FromCoords": "1022, 276",
+  "ToCoords": "1014, 219"
+}

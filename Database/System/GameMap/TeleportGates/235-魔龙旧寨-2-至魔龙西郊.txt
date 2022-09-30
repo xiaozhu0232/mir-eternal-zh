@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 235,
+  "ToMapId": 233,
+  "TeleportGateName": "To WesternSuburbofMagicDragon",
+  "FromMapName": "TheOldFortressoftheMagicDragon",
+  "ToMapName": "WesternSuburbofMagicDragon",
+  "FromMapFile": "MirDg12_4",
+  "ToMapFile": "MirDg12_2",
+  "FromCoords": "999, 226",
+  "ToCoords": "890, 598"
+}

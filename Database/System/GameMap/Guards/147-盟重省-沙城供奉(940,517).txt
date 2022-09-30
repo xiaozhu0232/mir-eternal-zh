@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6274,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "940, 517",
+  "Direction": "右上",
+  "RegionName": "AlliedProvince-Sand City Offering(940,517)"
+}

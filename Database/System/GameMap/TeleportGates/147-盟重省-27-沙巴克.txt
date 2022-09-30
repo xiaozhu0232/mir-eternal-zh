@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 27,
+  "FromMapId": 147,
+  "ToMapId": 152,
+  "TeleportGateName": "Shabak",
+  "FromMapName": "AlliedProvince",
+  "ToMapName": "Shabak",
+  "FromMapFile": "MirPb01",
+  "ToMapFile": "MirCt01",
+  "FromCoords": "771, 463",
+  "ToCoords": "1164, 436"
+}

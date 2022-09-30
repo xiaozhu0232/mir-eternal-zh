@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6126,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1087, 550",
+  "Direction": "左下",
+  "RegionName": "BichyProvince-金家Blacksmith(1087,550)"
+}

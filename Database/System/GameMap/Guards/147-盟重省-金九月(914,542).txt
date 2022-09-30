@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6188,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "914, 542",
+  "Direction": "右下",
+  "RegionName": "AlliedProvince-Golden Sept(914,542)"
+}

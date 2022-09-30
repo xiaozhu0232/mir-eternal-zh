@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 114,
+  "ToMapId": 125,
+  "TeleportGateName": "To Black Rock Foothills",
+  "FromMapName": "BlackRockPeak",
+  "ToMapName": "MysteriousVeins",
+  "FromMapFile": "MirDg26_1",
+  "ToMapFile": "MirDg27_5",
+  "FromCoords": "982, 528",
+  "ToCoords": "1020, 213"
+}

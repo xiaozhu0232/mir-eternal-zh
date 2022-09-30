@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6663,
+  "FromMapId": 50,
+  "FromMapName": "PaleMoonIsland",
+  "FromCoords": "1161, 457",
+  "Direction": "左下",
+  "RegionName": "PaleMoonIsland-Medicine Elder(1161,457)"
+}

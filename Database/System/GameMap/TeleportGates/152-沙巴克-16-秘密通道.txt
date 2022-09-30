@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 16,
+  "FromMapId": 152,
+  "ToMapId": 178,
+  "TeleportGateName": "SecretPassage",
+  "FromMapName": "Shabak",
+  "ToMapName": "SecretPassage",
+  "FromMapFile": "MirCt01",
+  "ToMapFile": "MirDg08",
+  "FromCoords": "1137, 554",
+  "ToCoords": "1139, 366"
+}

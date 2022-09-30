@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 162,
+  "ToMapId": 161,
+  "TeleportGateName": "StoneTomb4th",
+  "FromMapName": "StoneTomb5th",
+  "ToMapName": "StoneTomb4th",
+  "FromMapFile": "Mir_Dg02_4",
+  "ToMapFile": "Mir_Dg02_3",
+  "FromCoords": "961, 589",
+  "ToCoords": "948, 328"
+}

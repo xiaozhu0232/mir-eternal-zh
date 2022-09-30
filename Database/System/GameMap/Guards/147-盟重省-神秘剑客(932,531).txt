@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 4795,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "932, 531",
+  "Direction": "左下",
+  "RegionName": "AlliedProvince-Mystic Swordsman(932,531)"
+}

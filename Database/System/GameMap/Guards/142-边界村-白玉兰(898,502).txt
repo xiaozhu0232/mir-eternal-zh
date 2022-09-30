@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6662,
+  "FromMapId": 142,
+  "FromMapName": "BorderVillage",
+  "FromCoords": "898, 502",
+  "Direction": "右下",
+  "RegionName": "BorderVillage-White Magnolia(898,502)"
+}

@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 148,
+  "ToMapId": 147,
+  "TeleportGateName": "AlliedProvince",
+  "FromMapName": "DeathCanyon1st",
+  "ToMapName": "AlliedProvince",
+  "FromMapFile": "MirDg01",
+  "ToMapFile": "MirPb01",
+  "FromCoords": "1315, 553",
+  "ToCoords": "1208, 722"
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6663,
+  "FromMapId": 145,
+  "FromMapName": "WoomaForest",
+  "FromCoords": "898, 487",
+  "Direction": "右下",
+  "RegionName": "WoomaForest-Medicine Elder(898,487)"
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6719,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "808, 260",
+  "Direction": "右下",
+  "RegionName": "BichyProvince-Red Rum(808,260)"
+}

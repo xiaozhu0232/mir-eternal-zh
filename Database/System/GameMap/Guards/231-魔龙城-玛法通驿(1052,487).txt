@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 7119,
+  "FromMapId": 231,
+  "FromMapName": "MagicDragonCity",
+  "FromCoords": "1052, 487",
+  "Direction": "右下",
+  "RegionName": "MagicDragonCity-Maffatone Post(1052, 487)"
+}

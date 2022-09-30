@@ -1,0 +1,34 @@
+{
+  "SkillName": "困魔咒术-1-邪咒印-主动触发",
+  "Race": "道士",
+  "SkillType": "SubSkills",
+  "OwnSkillId": 3011,
+  "BindingLevelId": 3011,
+  "CalculateTriggerProbability": 1,
+  "NeedConsumeMagic": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "Nodes": {
+    "0": {
+      "$type": "C_01_CalculateHitTarget, Assembly-CSharp",
+      "技能能否穿墙": true,
+      "技能锁定方式": "锁定锚点坐标",
+      "技能范围类型": "Solid3x3",
+      "放空结束技能": true,
+      "HitsLimit": 9,
+      "QualifySpecificType": "LowLevelMonster",
+      "LimitedTargetType": "Monster",
+      "LimitedTargetRelationship": "Hostility",
+      "清除状态列表": []
+    },
+    "1": {
+      "$type": "A_01_TriggerObjectBuff, Assembly-CSharp",
+      "触发Id": 30111,
+      "Buff触发概率": 1,
+      "所需Buff层数": 1
+    }
+  }
+}

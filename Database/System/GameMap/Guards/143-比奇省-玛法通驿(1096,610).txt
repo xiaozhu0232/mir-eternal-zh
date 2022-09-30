@@ -1,0 +1,7 @@
+{
+  "GuardNumber": 7119,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1096, 610",
+  "RegionName": "BichyProvince-Maffatone Post(1096,610)"
+}

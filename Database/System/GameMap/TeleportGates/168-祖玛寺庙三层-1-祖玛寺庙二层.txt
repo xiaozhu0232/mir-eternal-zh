@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 168,
+  "ToMapId": 167,
+  "TeleportGateName": "ZumaTemple1st",
+  "FromMapName": "祖玛寺庙 3rd Floor",
+  "ToMapName": "ZumaTemple1st",
+  "FromMapFile": "MirDg07_3",
+  "ToMapFile": "MirDg07_2",
+  "FromCoords": "1059, 286",
+  "ToCoords": "1118, 191"
+}

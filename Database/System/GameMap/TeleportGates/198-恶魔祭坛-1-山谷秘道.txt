@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 198,
+  "ToMapId": 196,
+  "TeleportGateName": "SecretValleyRoad",
+  "FromMapName": "The Devil's Altar",
+  "ToMapName": "SecretValleyRoad",
+  "FromMapFile": "MirDg11_10",
+  "ToMapFile": "MirDg11_8",
+  "FromCoords": "1041, 134",
+  "ToCoords": "1035, 266"
+}

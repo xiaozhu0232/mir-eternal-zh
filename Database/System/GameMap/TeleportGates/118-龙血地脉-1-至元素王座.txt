@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 118,
+  "ToMapId": 119,
+  "TeleportGateName": "To ElementalThrone",
+  "FromMapName": "Dragon'sBloodEarthVein",
+  "ToMapName": "ElementalThrone",
+  "FromMapFile": "MirDg27_3",
+  "ToMapFile": "MirDg27_4",
+  "FromCoords": "1007, 199",
+  "ToCoords": "1027, 254"
+}

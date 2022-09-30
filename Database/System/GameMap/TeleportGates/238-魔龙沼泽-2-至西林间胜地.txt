@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 238,
+  "ToMapId": 237,
+  "TeleportGateName": "To WestWoodsResort",
+  "FromMapName": "MagicDragonSwamp",
+  "ToMapName": "WestWoodsResort",
+  "FromMapFile": "MirDg12_7",
+  "ToMapFile": "MirDg12_6",
+  "FromCoords": "1181, 312",
+  "ToCoords": "844, 413"
+}

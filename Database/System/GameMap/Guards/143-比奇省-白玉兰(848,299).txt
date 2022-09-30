@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6662,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "848, 299",
+  "Direction": "右下",
+  "RegionName": "BichyProvince-White Magnolia(848,299)"
+}

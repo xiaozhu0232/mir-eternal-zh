@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6994,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1116, 609",
+  "Direction": "右方",
+  "RegionName": "BichyProvince-Merchant Of Valour(1116,609)"
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6724,
+  "FromMapId": 142,
+  "FromMapName": "BorderVillage",
+  "FromCoords": "906, 416",
+  "Direction": "右下",
+  "RegionName": "BorderVillage-Arrow And Bow Guard(906,416)"
+}

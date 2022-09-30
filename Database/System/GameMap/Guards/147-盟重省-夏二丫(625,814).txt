@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 8463,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "625, 814",
+  "Direction": "右下",
+  "RegionName": "AlliedProvince-Erma Summer(625,814)"
+}

@@ -1,0 +1,65 @@
+{
+  "Name": "乌木剑",
+  "Id": 99900003,
+  "MaxDura": 7,
+  "Weight": 8,
+  "Level": 7,
+  "NeedLevel": 1,
+  "SalePrice": 2000,
+  "CanDrop": true,
+  "CanSold": true,
+  "Type": "武器",
+  "NeedRace": "通用",
+  "PersistType": "装备",
+  "StoreType": "武器",
+  "BasicPowerCombat": 42,
+  "MinDC": 4,
+  "MaxDC": 8,
+  "MaxMC": 1,
+  "MinNC": 4,
+  "MaxNC": 6,
+  "CanRepair": true,
+  "RepairCost": 1200,
+  "SpecialRepairCost": 6000,
+  "灵魂绑点": 9,
+  "圣伤上限": 20,
+  "铭文职业": "通用",
+  "打孔职业": "通用",
+  "物品掉落列表": [
+    {
+      "Name": "乌木剑",
+      "MonsterName": "稻草人",
+      "Probability": 500,
+      "最小数量": 1,
+      "最大数量": 1
+    },
+    {
+      "Name": "乌木剑",
+      "MonsterName": "海蟹",
+      "Probability": 500,
+      "最小数量": 1,
+      "最大数量": 1
+    },
+    {
+      "Name": "乌木剑",
+      "MonsterName": "鹿",
+      "Probability": 500,
+      "最小数量": 1,
+      "最大数量": 1
+    },
+    {
+      "Name": "乌木剑",
+      "MonsterName": "钉耙猫",
+      "Probability": 500,
+      "最小数量": 1,
+      "最大数量": 1
+    },
+    {
+      "Name": "乌木剑",
+      "MonsterName": "羊",
+      "Probability": 500,
+      "最小数量": 1,
+      "最大数量": 1
+    }
+  ]
+}

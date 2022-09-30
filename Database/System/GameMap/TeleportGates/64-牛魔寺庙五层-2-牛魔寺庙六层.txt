@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 64,
+  "ToMapId": 65,
+  "TeleportGateName": "BullDemonTemple6th",
+  "FromMapName": "BullDemonTemple5th",
+  "ToMapName": "BullDemonTemple6th",
+  "FromMapFile": "MirDg15_5",
+  "ToMapFile": "MirDg15_6",
+  "FromCoords": "1155, 483",
+  "ToCoords": "1032, 424"
+}

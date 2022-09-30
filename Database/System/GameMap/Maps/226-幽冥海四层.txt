@@ -1,0 +1,11 @@
+{
+  "MapId": 226,
+  "MapName": "SeaOfGhost4th",
+  "MapFile": "MirAct05_4",
+  "TerrainFile": "0226-幽冥海四层",
+  "LimitPlayers": 9999,
+  "MinLevel": 39,
+  "LimitInstances": 1,
+  "NoReconnect": true,
+  "NoReconnectMapId": 147
+}

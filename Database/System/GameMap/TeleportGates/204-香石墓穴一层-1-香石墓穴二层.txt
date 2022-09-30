@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 204,
+  "ToMapId": 205,
+  "TeleportGateName": "FragantStoneCrypt2nd",
+  "FromMapName": "FragantStoneCrypt1st",
+  "ToMapName": "FragantStoneCrypt2nd",
+  "FromMapFile": "MirDg08_1",
+  "ToMapFile": "MirDg08_2",
+  "FromCoords": "1230, 415",
+  "ToCoords": "950, 508"
+}

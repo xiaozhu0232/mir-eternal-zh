@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6693,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1121, 642",
+  "Direction": "左下",
+  "RegionName": "BichyProvince-Qi Yun Gong(1121,642)"
+}

@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 23,
+  "FromMapId": 147,
+  "ToMapId": 147,
+  "TeleportGateName": "AlliedProvince",
+  "FromMapName": "AlliedProvince",
+  "ToMapName": "AlliedProvince",
+  "FromMapFile": "MirPb01",
+  "ToMapFile": "MirPb01",
+  "FromCoords": "612, 817",
+  "ToCoords": "965, 569"
+}

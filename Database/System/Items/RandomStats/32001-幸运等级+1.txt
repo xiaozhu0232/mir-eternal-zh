@@ -1,0 +1,7 @@
+{
+  "Stat": "Luck",
+  "Value": 1,
+  "StatId": 32001,
+  "CombatBonus": 40,
+  "StatDescription": "Luck+1"
+}

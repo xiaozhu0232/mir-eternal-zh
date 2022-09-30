@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 48,
+  "FromMapId": 143,
+  "ToMapId": 142,
+  "TeleportGateName": "BorderVillage",
+  "FromMapName": "BichProvince",
+  "ToMapName": "BorderVillage",
+  "FromMapFile": "Mir_Pb02",
+  "ToMapFile": "Mir_Pb03",
+  "FromCoords": "1198, 520",
+  "ToCoords": "1087, 837"
+}

@@ -1,0 +1,108 @@
+{
+  "SkillName": "致残毒药-0-全铭文-触发判定",
+  "Race": "刺客",
+  "SkillType": "SubSkills",
+  "OwnSkillId": 1533,
+  "BindingLevelId": 1533,
+  "CalculateTriggerProbability": 1,
+  "NeedConsumeMagic": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "Nodes": {
+    "0": {
+      "$type": "C_01_CalculateHitTarget, Assembly-CSharp",
+      "技能能否穿墙": true,
+      "技能锁定方式": "锁定目标",
+      "放空结束技能": true,
+      "HitsLimit": 1,
+      "LimitedTargetType": "Player, Pet, Monster, NPC",
+      "LimitedTargetRelationship": "Hostility",
+      "清除状态列表": []
+    },
+    "1": {
+      "$type": "A_01_TriggerObjectBuff, Assembly-CSharp",
+      "触发Id": 15331,
+      "Buff触发概率": 0.25,
+      "验证ItSelfBuff": true,
+      "Id": 15330,
+      "所需Buff层数": 1,
+      "GainSkillExp": true,
+      "ExpSkillId": 1533
+    },
+    "2": {
+      "$type": "A_01_TriggerObjectBuff, Assembly-CSharp",
+      "触发Id": 15331,
+      "伴生Id": 15333,
+      "Buff触发概率": 0.25,
+      "验证ItSelfBuff": true,
+      "Id": 15332,
+      "所需Buff层数": 1,
+      "GainSkillExp": true,
+      "ExpSkillId": 1533
+    },
+    "3": {
+      "$type": "A_01_TriggerObjectBuff, Assembly-CSharp",
+      "触发Id": 15331,
+      "Buff触发概率": 0.25,
+      "验证ItSelfBuff": true,
+      "Id": 15334,
+      "所需Buff层数": 1,
+      "GainSkillExp": true,
+      "ExpSkillId": 1533
+    },
+    "4": {
+      "$type": "A_01_TriggerObjectBuff, Assembly-CSharp",
+      "触发Id": 15331,
+      "Buff触发概率": 0.25,
+      "验证ItSelfBuff": true,
+      "Id": 15335,
+      "所需Buff层数": 1,
+      "GainSkillExp": true,
+      "ExpSkillId": 1533
+    },
+    "5": {
+      "$type": "A_01_TriggerObjectBuff, Assembly-CSharp",
+      "触发Id": 15336,
+      "Buff触发概率": 1,
+      "验证ItSelfBuff": true,
+      "Id": 15335,
+      "所需Buff层数": 1,
+      "ExpSkillId": 1533
+    },
+    "6": {
+      "$type": "A_01_TriggerObjectBuff, Assembly-CSharp",
+      "触发Id": 15331,
+      "伴生Id": 15339,
+      "Buff触发概率": 0.25,
+      "验证ItSelfBuff": true,
+      "Id": 15338,
+      "所需Buff层数": 1,
+      "GainSkillExp": true,
+      "ExpSkillId": 1533
+    },
+    "7": {
+      "$type": "A_01_TriggerObjectBuff, Assembly-CSharp",
+      "触发Id": 15331,
+      "Buff触发概率": 0.25,
+      "验证ItSelfBuff": true,
+      "Id": 15300,
+      "所需Buff层数": 1,
+      "GainSkillExp": true,
+      "ExpSkillId": 1533
+    },
+    "8": {
+      "$type": "A_00_触发子类技能, Assembly-CSharp",
+      "技能触发方式": "MonsterHitDefinitely",
+      "触发SkillName": "致残毒药-5-星裂印-爆裂伤害",
+      "CalculateTriggerProbability": true,
+      "CalculateLuckyProbability": true,
+      "验证ItSelfBuff": true,
+      "Id": 15300,
+      "验证铭文技能": true,
+      "所需Id": 15335
+    }
+  }
+}

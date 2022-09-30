@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6662,
+  "FromMapId": 231,
+  "FromMapName": "MagicDragonCity",
+  "FromCoords": "1068, 486",
+  "Direction": "右下",
+  "RegionName": "MagicDragonCity-White Magnolia(1068,486)"
+}

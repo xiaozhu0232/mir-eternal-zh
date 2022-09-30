@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 212,
+  "ToMapId": 211,
+  "TeleportGateName": "WoomaCloister",
+  "FromMapName": "ShadowPassage1st",
+  "ToMapName": "WoomaCloister",
+  "FromMapFile": "Mir_Dg05_4",
+  "ToMapFile": "Mir_Dg05_3",
+  "FromCoords": "1031, 118",
+  "ToCoords": "872, 351"
+}

@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 157,
+  "ToMapId": 201,
+  "TeleportGateName": "DeathCanyon2nd",
+  "FromMapName": "DeathCanyon3rd",
+  "ToMapName": "DeathCanyon2nd",
+  "FromMapFile": "MirDg01_1",
+  "ToMapFile": "MirDg01_3",
+  "FromCoords": "1350, 536",
+  "ToCoords": "681, 481"
+}

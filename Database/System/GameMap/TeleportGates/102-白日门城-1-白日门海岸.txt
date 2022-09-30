@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 102,
+  "ToMapId": 93,
+  "TeleportGateName": "BaijimonCoast",
+  "FromMapName": "WhiteSunCity",
+  "ToMapName": "BaijimonCoast",
+  "FromMapFile": "MirPb05",
+  "ToMapFile": "MirDg19",
+  "FromCoords": "825, 470",
+  "ToCoords": "1057, 442"
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6664,
+  "FromMapId": 162,
+  "FromMapName": "StoneTomb5th",
+  "FromCoords": "989, 278",
+  "Direction": "右上",
+  "RegionName": "StoneTomb5th-Drunken Master(989,278)"
+}

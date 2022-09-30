@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6663,
+  "FromMapId": 225,
+  "FromMapName": "SeaGhost3rd",
+  "FromCoords": "902, 554",
+  "Direction": "左下",
+  "RegionName": "SeaGhost3rd-Medicine Elder(902,554)"
+}

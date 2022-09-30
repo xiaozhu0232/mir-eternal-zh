@@ -1,0 +1,50 @@
+{
+  "SkillName": "炎龙啸波-2-龙霄印-范围伤害",
+  "Race": "刺客",
+  "SkillType": "SubSkills",
+  "OwnSkillId": 19311,
+  "BindingLevelId": 1535,
+  "CalculateTriggerProbability": 1,
+  "NeedConsumeMagic": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "Nodes": {
+    "0": {
+      "$type": "B_01_SkillReleaseNotification, Assembly-CSharp",
+      "发送释放通知": true
+    },
+    "1": {
+      "$type": "C_01_CalculateHitTarget, Assembly-CSharp",
+      "技能锁定方式": "锁定目标坐标",
+      "SkillEvasion": "CanBePhsyicallyEvaded",
+      "SkillHitFeedback": "后仰",
+      "技能范围类型": "Hollow3x3",
+      "技能扩展通知": true,
+      "HitsLimit": 8,
+      "LimitedTargetType": "Player, Pet, Monster, NPC",
+      "LimitedTargetRelationship": "Hostility",
+      "清除状态列表": []
+    },
+    "2": {
+      "$type": "C_02_CalculateTargetDamage, Assembly-CSharp",
+      "点爆需要层数": 1,
+      "技能伤害类型": "Needle",
+      "技能伤害基数": [],
+      "技能伤害系数": [
+        1.4,
+        1.6,
+        1.8,
+        2
+      ],
+      "目标硬直时间": 500,
+      "清除状态列表": []
+    },
+    "5": {
+      "$type": "B_03_FrontShakeEndNotification, Assembly-CSharp",
+      "发送结束通知": true
+    }
+  }
+}

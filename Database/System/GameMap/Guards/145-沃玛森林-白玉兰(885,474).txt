@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6662,
+  "FromMapId": 145,
+  "FromMapName": "WoomaForest",
+  "FromCoords": "885, 474",
+  "Direction": "左上",
+  "RegionName": "WoomaForest-White Magnolia(885,474)"
+}

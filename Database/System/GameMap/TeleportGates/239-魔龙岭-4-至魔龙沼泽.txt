@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 4,
+  "FromMapId": 239,
+  "ToMapId": 238,
+  "TeleportGateName": "To MagicDragonSwamp",
+  "FromMapName": "MagicDragonRidge",
+  "ToMapName": "MagicDragonSwamp",
+  "FromMapFile": "MirDg12_8",
+  "ToMapFile": "MirDg12_7",
+  "FromCoords": "915, 273",
+  "ToCoords": "932, 549"
+}

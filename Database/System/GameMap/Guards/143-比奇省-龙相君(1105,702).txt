@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6692,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1105, 702",
+  "Direction": "左下",
+  "RegionName": "BichyProvince-Longsangun(1105,702)"
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6663,
+  "FromMapId": 195,
+  "FromMapName": "ChoicePlace",
+  "FromCoords": "1027, 256",
+  "Direction": "下方",
+  "RegionName": "ChoicePlace-Medicine Elder(1027,256)"
+}

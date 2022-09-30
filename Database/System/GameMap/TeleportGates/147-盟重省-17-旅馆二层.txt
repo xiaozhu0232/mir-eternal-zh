@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 17,
+  "FromMapId": 147,
+  "ToMapId": 147,
+  "TeleportGateName": "旅馆 1st Floor",
+  "FromMapName": "AlliedProvince",
+  "ToMapName": "AlliedProvince",
+  "FromMapFile": "MirPb01",
+  "ToMapFile": "MirPb01",
+  "FromCoords": "719, 1002",
+  "ToCoords": "681, 1034"
+}

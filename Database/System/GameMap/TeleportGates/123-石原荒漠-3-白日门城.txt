@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 3,
+  "FromMapId": 123,
+  "ToMapId": 102,
+  "TeleportGateName": "WhiteSunCity",
+  "FromMapName": "IshiharaDesert",
+  "ToMapName": "WhiteSunCity",
+  "FromMapFile": "MirDg24_1",
+  "ToMapFile": "MirPb05",
+  "FromCoords": "1186, 209",
+  "ToCoords": "1176, 532"
+}

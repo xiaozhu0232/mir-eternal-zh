@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 10,
+  "FromMapId": 172,
+  "ToMapId": 172,
+  "TeleportGateName": "Zuma Lobby西",
+  "FromMapName": "Zuma Lobby",
+  "ToMapName": "Zuma Lobby",
+  "FromMapFile": "MirDg07_7",
+  "ToMapFile": "MirDg07_7",
+  "FromCoords": "520, 778",
+  "ToCoords": "623, 668"
+}

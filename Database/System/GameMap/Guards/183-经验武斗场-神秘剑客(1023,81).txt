@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 4796,
+  "FromMapId": 183,
+  "FromMapName": "MartialArtsArena",
+  "FromCoords": "1023, 81",
+  "Direction": "左下",
+  "RegionName": "MartialArtsArena-Mystic Swordsman(1023,81)"
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6724,
+  "FromMapId": 80,
+  "FromMapName": "DemonSlayerHall",
+  "FromCoords": "1005, 273",
+  "Direction": "左下",
+  "RegionName": "DemonSlayerHall-Arrow And Bow Guard(1005,273)"
+}

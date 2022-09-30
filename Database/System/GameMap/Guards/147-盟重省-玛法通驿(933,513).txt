@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 7119,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "933, 513",
+  "Direction": "左上",
+  "RegionName": "AlliedProvince-Maffatone Post(933,513)"
+}

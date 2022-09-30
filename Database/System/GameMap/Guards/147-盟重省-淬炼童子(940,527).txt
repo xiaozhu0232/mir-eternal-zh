@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6426,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "940, 527",
+  "Direction": "右下",
+  "RegionName": "AlliedProvince-Hardened Child(940,527)"
+}

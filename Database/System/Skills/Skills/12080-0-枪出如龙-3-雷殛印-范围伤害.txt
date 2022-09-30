@@ -1,0 +1,61 @@
+{
+  "SkillName": "枪出如龙-3-雷殛印-范围伤害",
+  "Race": "龙枪",
+  "SkillType": "SubSkills",
+  "OwnSkillId": 12080,
+  "BindingLevelId": 1208,
+  "CalculateTriggerProbability": 1,
+  "NeedConsumeMagic": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "Nodes": {
+    "0": {
+      "$type": "B_01_SkillReleaseNotification, Assembly-CSharp",
+      "发送释放通知": true
+    },
+    "1": {
+      "$type": "C_01_CalculateHitTarget, Assembly-CSharp",
+      "技能能否穿墙": true,
+      "技能锁定方式": "锁定目标坐标",
+      "SkillEvasion": "CanBePhsyicallyEvaded",
+      "SkillHitFeedback": "后仰",
+      "技能范围类型": "Solid3x3",
+      "放空结束技能": true,
+      "技能扩展通知": true,
+      "HitsLimit": 8,
+      "LimitedTargetType": "Player, Pet, Monster, NPC",
+      "LimitedTargetRelationship": "Hostility",
+      "清除状态列表": []
+    },
+    "2": {
+      "$type": "C_02_CalculateTargetDamage, Assembly-CSharp",
+      "点爆需要层数": 1,
+      "技能伤害基数": [],
+      "技能伤害系数": [
+        1.5,
+        1.6,
+        1.7,
+        1.8
+      ],
+      "数量衰减伤害": true,
+      "伤害衰减系数": 0.05,
+      "命中减少冷却": true,
+      "冷却减少类型": "AllMonsters",
+      "冷却减少技能": 1208,
+      "冷却减少分组": 4,
+      "冷却减少时间": 2500,
+      "扣除武器持久": true,
+      "GainSkillExp": true,
+      "ExpSkillId": 1208,
+      "目标硬直时间": 500,
+      "清除状态列表": []
+    },
+    "3": {
+      "$type": "B_03_FrontShakeEndNotification, Assembly-CSharp",
+      "发送结束通知": true
+    }
+  }
+}

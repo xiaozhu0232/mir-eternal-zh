@@ -1,0 +1,4 @@
+{
+  "Id": 711900002,
+  "Content": "You do not have enough Gold.[`~]."
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6664,
+  "FromMapId": 195,
+  "FromMapName": "ChoicePlace",
+  "FromCoords": "1030, 256",
+  "Direction": "下方",
+  "RegionName": "ChoicePlace-Drunken Master(1030,256)"
+}

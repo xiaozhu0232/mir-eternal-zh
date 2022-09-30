@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 239,
+  "ToMapId": 240,
+  "TeleportGateName": "To WestDevil'sDragonPass",
+  "FromMapName": "MagicDragonRidge",
+  "ToMapName": "WestDevil'sDragonPass",
+  "FromMapFile": "MirDg12_8",
+  "ToMapFile": "MirDg12_9",
+  "FromCoords": "1166, 621",
+  "ToCoords": "1044, 397"
+}

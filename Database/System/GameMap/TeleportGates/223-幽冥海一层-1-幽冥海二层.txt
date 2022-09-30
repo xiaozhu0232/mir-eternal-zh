@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 223,
+  "ToMapId": 224,
+  "TeleportGateName": "SeaOfGhosts2nd",
+  "FromMapName": "SeaOfGhosts1st",
+  "ToMapName": "SeaOfGhosts2nd",
+  "FromMapFile": "MirAct05_1",
+  "ToMapFile": "MirAct05_2",
+  "FromCoords": "844, 424",
+  "ToCoords": "986, 400"
+}

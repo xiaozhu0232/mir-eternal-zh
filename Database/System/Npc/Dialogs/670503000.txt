@@ -1,0 +1,4 @@
+{
+  "Id": 670503000,
+  "Content": "Go away, go away, there are no weapons for you here!"
+}

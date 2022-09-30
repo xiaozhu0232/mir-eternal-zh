@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6361,
+  "FromMapId": 87,
+  "FromMapName": "UnknownDarkHall1st",
+  "FromCoords": "1157, 342",
+  "Direction": "左上",
+  "RegionName": "UnknownDarkHall1st-Sound Of Music(1157,342)"
+}

@@ -1,0 +1,7 @@
+{
+  "Stat": "MaxMC",
+  "Value": 1,
+  "StatId": 4001,
+  "CombatBonus": 10,
+  "StatDescription": "MaxMC+1"
+}

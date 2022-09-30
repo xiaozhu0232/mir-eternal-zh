@@ -1,0 +1,7 @@
+{
+  "GuardNumber": 6121,
+  "FromMapId": 183,
+  "FromMapName": "MartialArtsArena",
+  "FromCoords": "1031, 73",
+  "RegionName": "MartialArtsArena-High exp points(1031,73)"
+}

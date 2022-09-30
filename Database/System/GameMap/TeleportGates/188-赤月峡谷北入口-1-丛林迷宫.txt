@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 188,
+  "ToMapId": 187,
+  "TeleportGateName": "JungleMaze",
+  "FromMapName": "RedMoonCanyonNorthEntrance",
+  "ToMapName": "JungleMaze",
+  "FromMapFile": "MirDg11",
+  "ToMapFile": "MirDg10",
+  "FromCoords": "899, 236",
+  "ToCoords": "1307, 740"
+}

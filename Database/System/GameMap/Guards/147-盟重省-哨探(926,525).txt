@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6242,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "926, 525",
+  "Direction": "左下",
+  "RegionName": "AlliedProvince-Sentinel(926,525)"
+}

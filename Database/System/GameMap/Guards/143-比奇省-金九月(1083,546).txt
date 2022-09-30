@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6188,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1083, 546",
+  "Direction": "左下",
+  "RegionName": "BichyProvince-Golden Sept(1083,546)"
+}

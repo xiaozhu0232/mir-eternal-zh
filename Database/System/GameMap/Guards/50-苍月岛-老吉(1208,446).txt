@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6804,
+  "FromMapId": 50,
+  "FromMapName": "PaleMoonIsland",
+  "FromCoords": "1208, 446",
+  "Direction": "右下",
+  "RegionName": "PaleMoonIsland-Old Kat(1208,446)"
+}

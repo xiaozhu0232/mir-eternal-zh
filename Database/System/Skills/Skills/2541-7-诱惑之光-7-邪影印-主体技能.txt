@@ -1,0 +1,71 @@
+{
+  "SkillName": "诱惑之光-7-邪影印-主体技能",
+  "Race": "法师",
+  "OwnSkillId": 2541,
+  "Id": 7,
+  "GroupId": 1,
+  "BindingLevelId": 2541,
+  "CalculateTriggerProbability": 1,
+  "CheckBusyGreen": true,
+  "CheckStiff": true,
+  "NeedConsumeMagic": [
+    4,
+    5,
+    5,
+    6
+  ],
+  "Nodes": {
+    "0": {
+      "$type": "B_01_SkillReleaseNotification, Assembly-CSharp",
+      "发送释放通知": true,
+      "调整角色朝向": true,
+      "ItSelfCooldown": 1375,
+      "分组Cooldown": 1000,
+      "角色忙绿时间": 625
+    },
+    "125": {
+      "$type": "C_00_CalculateSkillAnchor, Assembly-CSharp",
+      "MaxDistance": 8
+    },
+    "126": {
+      "$type": "C_01_CalculateHitTarget, Assembly-CSharp",
+      "技能能否穿墙": true,
+      "技能锁定方式": "锁定目标",
+      "SkillHitFeedback": "特效",
+      "HitsLimit": 1,
+      "LimitedTargetType": "Pet, Monster",
+      "LimitedTargetRelationship": "Hostility",
+      "GainSkillExp": true,
+      "ExpSkillId": 2541,
+      "清除状态列表": []
+    },
+    "127": {
+      "$type": "C_04_CalculateTargetTemptation, Assembly-CSharp",
+      "检查铭文技能": true,
+      "检查Id": 25417,
+      "瘫痪状态编号": 25410,
+      "狂暴状态编号": 25411,
+      "基础诱惑数量": "AQIDBQ==",
+      "初始宠物等级": "AAAAAA==",
+      "特定诱惑列表": [
+        "钢牙蜘蛛"
+      ],
+      "特定诱惑概率": 0.2
+    },
+    "128": {
+      "$type": "A_00_触发子类技能, Assembly-CSharp",
+      "技能触发方式": "AnchorAbsolutePosition",
+      "触发SkillName": "诱惑之光-0-无铭文-蓝色特效"
+    },
+    "625": {
+      "$type": "B_03_FrontShakeEndNotification, Assembly-CSharp",
+      "发送结束通知": true,
+      "角色硬直时间": 725,
+      "禁止行走时间": 650,
+      "禁止奔跑时间": 650
+    },
+    "725": {
+      "$type": "B_04_PostShakeEndNotification, Assembly-CSharp"
+    }
+  }
+}

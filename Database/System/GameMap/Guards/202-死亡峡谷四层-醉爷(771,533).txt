@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6664,
+  "FromMapId": 202,
+  "FromMapName": "DeathCanyon4th",
+  "FromCoords": "771, 533",
+  "Direction": "左上",
+  "RegionName": "DeathCanyon4th-Drunken Master(771,533)"
+}

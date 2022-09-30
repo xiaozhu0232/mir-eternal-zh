@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 3,
+  "FromMapId": 187,
+  "ToMapId": 190,
+  "TeleportGateName": "赤月峡谷东",
+  "FromMapName": "JungleMaze",
+  "ToMapName": "RedMoonCanyonEastEntrance",
+  "FromMapFile": "MirDg10",
+  "ToMapFile": "MirDg11_2",
+  "FromCoords": "800, 893",
+  "ToCoords": "953, 290"
+}

@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 6,
+  "FromMapId": 85,
+  "ToMapId": 85,
+  "TeleportGateName": "SandCity Battlefield Westgate",
+  "FromMapName": "SandCity Battlefield ",
+  "ToMapName": "SandCity Battlefield ",
+  "FromMapFile": "MirAct21",
+  "ToMapFile": "MirAct21",
+  "FromCoords": "295, 1234",
+  "ToCoords": "1098, 512"
+}

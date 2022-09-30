@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 38,
+  "FromMapId": 143,
+  "ToMapId": 143,
+  "TeleportGateName": "BichProvince",
+  "FromMapName": "BichProvince",
+  "ToMapName": "BichProvince",
+  "FromMapFile": "Mir_Pb02",
+  "ToMapFile": "Mir_Pb02",
+  "FromCoords": "814, 239",
+  "ToCoords": "1153, 582"
+}

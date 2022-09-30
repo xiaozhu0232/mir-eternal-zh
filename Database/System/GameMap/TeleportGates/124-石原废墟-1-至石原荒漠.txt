@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 124,
+  "ToMapId": 123,
+  "TeleportGateName": "To IshiharaDesert",
+  "FromMapName": "IshiharaRuins",
+  "ToMapName": "IshiharaDesert",
+  "FromMapFile": "MirDg24_2",
+  "ToMapFile": "MirDg24_1",
+  "FromCoords": "1007, 369",
+  "ToCoords": "937, 270"
+}

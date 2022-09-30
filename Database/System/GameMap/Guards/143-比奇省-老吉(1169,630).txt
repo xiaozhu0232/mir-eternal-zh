@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6804,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1169, 630",
+  "Direction": "左下",
+  "RegionName": "BichyProvince-Old Kat(1169,630)"
+}

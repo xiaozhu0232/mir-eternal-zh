@@ -1,0 +1,7 @@
+{
+  "GuardNumber": 6664,
+  "FromMapId": 65,
+  "FromMapName": "DemonBullTemple6th",
+  "FromCoords": "855, 254",
+  "RegionName": "DemonBullTemple6th-Drunken Master(855,254)"
+}

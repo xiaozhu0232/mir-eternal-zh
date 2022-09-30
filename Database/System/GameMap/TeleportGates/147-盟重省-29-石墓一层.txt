@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 29,
+  "FromMapId": 147,
+  "ToMapId": 149,
+  "TeleportGateName": "StoneTomb1st",
+  "FromMapName": "AlliedProvince",
+  "ToMapName": "StoneTomb1st",
+  "FromMapFile": "MirPb01",
+  "ToMapFile": "Mir_Dg02",
+  "FromCoords": "963, 530",
+  "ToCoords": "1227, 420"
+}

@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 191,
+  "ToMapId": 193,
+  "TeleportGateName": "LeftCloister",
+  "FromMapName": "RedMoonCanyonPlaza",
+  "ToMapName": "LeftCloister",
+  "FromMapFile": "MirDg11_3",
+  "ToMapFile": "MirDg11_5",
+  "FromCoords": "1113, 154",
+  "ToCoords": "985, 406"
+}

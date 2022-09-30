@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 87,
+  "ToMapId": 87,
+  "TeleportGateName": "To Atrium",
+  "FromMapName": "UnknownDarkHall1st",
+  "ToMapName": "UnknownDarkHall1st",
+  "FromMapFile": "MirAct25",
+  "ToMapFile": "MirAct25",
+  "FromCoords": "1046, 344",
+  "ToCoords": "1038, 335"
+}

@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 7,
+  "FromMapId": 171,
+  "ToMapId": 171,
+  "TeleportGateName": "Zuma Gallery",
+  "FromMapName": "Zuma Gallery",
+  "ToMapName": "Zuma Gallery",
+  "FromMapFile": "MirDg07_6",
+  "ToMapFile": "MirDg07_6",
+  "FromCoords": "941, 171",
+  "ToCoords": "1056, 137"
+}

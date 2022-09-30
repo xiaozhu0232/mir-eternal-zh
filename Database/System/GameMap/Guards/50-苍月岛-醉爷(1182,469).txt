@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6664,
+  "FromMapId": 50,
+  "FromMapName": "PaleMoonIsland",
+  "FromCoords": "1182, 469",
+  "Direction": "右下",
+  "RegionName": "PaleMoonIsland-Drunken Master(1182,469)"
+}

@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 152,
+  "ToMapId": 152,
+  "TeleportGateName": "Shabak仓库",
+  "FromMapName": "Shabak",
+  "ToMapName": "Shabak",
+  "FromMapFile": "MirCt01",
+  "ToMapFile": "MirCt01",
+  "FromCoords": "1050, 504",
+  "ToCoords": "587, 940"
+}

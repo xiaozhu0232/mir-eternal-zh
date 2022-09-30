@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 215,
+  "ToMapId": 146,
+  "TeleportGateName": "WoomaTemple1st",
+  "FromMapName": "ShadowPassage4th",
+  "ToMapName": "WoomaTemple1st",
+  "FromMapFile": "Mir_Dg05_7",
+  "ToMapFile": "Mir_Dg05",
+  "FromCoords": "982, 155",
+  "ToCoords": "1124, 398"
+}

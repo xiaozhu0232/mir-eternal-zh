@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 4795,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1103, 622",
+  "Direction": "下方",
+  "RegionName": "BichyProvince-Mystic Swordsman(1103,622)"
+}

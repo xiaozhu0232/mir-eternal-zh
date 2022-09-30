@@ -1,0 +1,64 @@
+{
+  "SkillName": "施毒之术-3-凌云印-红毒双毒",
+  "Race": "道士",
+  "OwnSkillId": 3004,
+  "Id": 3,
+  "BindingLevelId": 3004,
+  "CalculateTriggerProbability": 1,
+  "NeedConsumeMagic": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "NeedConsumeItems": [],
+  "Nodes": {
+    "1": {
+      "$type": "C_01_CalculateHitTarget, Assembly-CSharp",
+      "技能能否穿墙": true,
+      "技能锁定方式": "锁定目标",
+      "SkillEvasion": "CanBePoisonEvaded",
+      "SkillHitFeedback": "后仰",
+      "技能命中通知": true,
+      "计算飞行耗时": true,
+      "单格飞行耗时": 60,
+      "HitsLimit": 1,
+      "LimitedTargetType": "Player, Pet, Monster, NPC",
+      "LimitedTargetRelationship": "Hostility",
+      "清除状态列表": []
+    },
+    "2": {
+      "$type": "C_02_CalculateTargetDamage, Assembly-CSharp",
+      "点爆需要层数": 1,
+      "技能伤害类型": "Toxicity",
+      "技能伤害基数": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "技能伤害系数": [
+        0.0625,
+        0.0625,
+        0.0625,
+        0.0625
+      ],
+      "GainSkillExp": true,
+      "ExpSkillId": 3004,
+      "目标硬直时间": 500,
+      "清除状态列表": []
+    },
+    "3": {
+      "$type": "A_01_TriggerObjectBuff, Assembly-CSharp",
+      "触发Id": 30040,
+      "Buff触发概率": 1,
+      "所需Buff层数": 1
+    },
+    "4": {
+      "$type": "A_01_TriggerObjectBuff, Assembly-CSharp",
+      "触发Id": 30041,
+      "Buff触发概率": 1,
+      "所需Buff层数": 1
+    }
+  }
+}

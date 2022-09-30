@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 12,
+  "FromMapId": 152,
+  "ToMapId": 152,
+  "TeleportGateName": "Shabak牢房",
+  "FromMapName": "Shabak",
+  "ToMapName": "Shabak",
+  "FromMapFile": "MirCt01",
+  "ToMapFile": "MirCt01",
+  "FromCoords": "1076, 501",
+  "ToCoords": "336, 1196"
+}

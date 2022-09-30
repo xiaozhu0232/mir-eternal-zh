@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 222,
+  "ToMapId": 216,
+  "TeleportGateName": "RitualCloister",
+  "FromMapName": "ClaustrophobicPassage4th",
+  "ToMapName": "RitualCloister",
+  "FromMapFile": "Mir_Dg05_14",
+  "ToMapFile": "Mir_Dg05_8",
+  "FromCoords": "1022, 234",
+  "ToCoords": "1081, 199"
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6192,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "949, 533",
+  "Direction": "右下",
+  "RegionName": "AlliedProvince-Aqua Orange(949,533)"
+}

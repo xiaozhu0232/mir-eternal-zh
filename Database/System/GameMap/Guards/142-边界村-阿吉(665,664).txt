@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6665,
+  "FromMapId": 142,
+  "FromMapName": "BorderVillage",
+  "FromCoords": "665, 664",
+  "Direction": "右下",
+  "RegionName": "BorderVillage-Aggie(665,664)"
+}

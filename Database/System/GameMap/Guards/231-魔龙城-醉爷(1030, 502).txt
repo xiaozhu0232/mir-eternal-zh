@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6664,
+  "FromMapId": 231,
+  "FromMapName": "MagicDragonCity",
+  "FromCoords": "1030, 502",
+  "Direction": "右下",
+  "RegionName": "MagicDragonCity-Drunken Master(1030, 502)"
+}

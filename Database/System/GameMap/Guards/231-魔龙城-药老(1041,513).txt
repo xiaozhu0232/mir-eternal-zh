@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6663,
+  "FromMapId": 231,
+  "FromMapName": "MagicDragonCity",
+  "FromCoords": "1041, 513",
+  "Direction": "右下",
+  "RegionName": "MagicDragonCity-Medicine Elder(1041, 513)"
+}

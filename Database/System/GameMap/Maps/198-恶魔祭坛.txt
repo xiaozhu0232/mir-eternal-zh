@@ -1,0 +1,11 @@
+{
+  "MapId": 198,
+  "MapName": "The Devil's Altar",
+  "MapFile": "MirDg11_10",
+  "TerrainFile": "0198-恶魔祭坛",
+  "LimitPlayers": 9999,
+  "MinLevel": 40,
+  "LimitInstances": 1,
+  "NoReconnect": true,
+  "NoReconnectMapId": 195
+}

@@ -1,6 +1,0 @@
-G:\永恒传奇服务端反编译C#代码\LumiSoft.Net\bin\Release\net45\LumiSoft.Net.dll
-G:\永恒传奇服务端反编译C#代码\LumiSoft.Net\bin\Release\net45\LumiSoft.Net.pdb
-G:\永恒传奇服务端反编译C#代码\LumiSoft.Net\obj\Release\net45\LumiSoft.Net.GeneratedMSBuildEditorConfig.editorconfig
-G:\永恒传奇服务端反编译C#代码\LumiSoft.Net\obj\Release\net45\LumiSoft.Net.csproj.CoreCompileInputs.cache
-G:\永恒传奇服务端反编译C#代码\LumiSoft.Net\obj\Release\net45\LumiSoft.Net.dll
-G:\永恒传奇服务端反编译C#代码\LumiSoft.Net\obj\Release\net45\LumiSoft.Net.pdb

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6359,
+  "FromMapId": 87,
+  "FromMapName": "UnknownDarkHall1st",
+  "FromCoords": "866, 471",
+  "Direction": "左下",
+  "RegionName": "UnknownDarkHall1st-Xiao Ying(866,471)"
+}

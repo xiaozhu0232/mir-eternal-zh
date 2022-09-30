@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6693,
+  "FromMapId": 142,
+  "FromMapName": "BorderVillage",
+  "FromCoords": "892, 508",
+  "Direction": "下方",
+  "RegionName": "BorderVillage-Qi Yun Gong(892,508)"
+}

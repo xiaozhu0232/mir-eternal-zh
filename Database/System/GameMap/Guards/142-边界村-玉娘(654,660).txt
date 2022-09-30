@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6680,
+  "FromMapId": 142,
+  "FromMapName": "BorderVillage",
+  "FromCoords": "654, 660",
+  "Direction": "左下",
+  "RegionName": "BorderVillage-Jade Lady(654,660)"
+}

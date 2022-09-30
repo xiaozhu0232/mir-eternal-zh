@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 8463,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "815, 254",
+  "Direction": "右下",
+  "RegionName": "BichyProvince-Erma Summer(815,254)"
+}

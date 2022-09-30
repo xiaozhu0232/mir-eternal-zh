@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6358,
+  "FromMapId": 88,
+  "FromMapName": "UnknownDarkHall2nd",
+  "FromCoords": "1139, 218",
+  "Direction": "右下",
+  "RegionName": "UnknownDarkHall2nd-Ah Hooi(1139,218)"
+}

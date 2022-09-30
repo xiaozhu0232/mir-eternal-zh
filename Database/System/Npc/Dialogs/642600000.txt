@@ -1,0 +1,4 @@
+{
+  "Id": 642600000,
+  "Content": "<#UI:Shop>Equipment Exchange<#UI/>"
+}

@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 201,
+  "ToMapId": 208,
+  "TeleportGateName": "PoisonousInsectCloister",
+  "FromMapName": "DeathCanyon2nd",
+  "ToMapName": "PoisonousInsectCloister",
+  "FromMapFile": "MirDg01_3",
+  "ToMapFile": "MirDg01_6",
+  "FromCoords": "738, 592",
+  "ToCoords": "945, 199"
+}

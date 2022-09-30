@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 197,
+  "ToMapId": 199,
+  "TeleportGateName": "Red Moon Demon Cave",
+  "FromMapName": "SecretValleyRoad",
+  "ToMapName": "Red Moon Demon Cave",
+  "FromMapFile": "MirDg11_9",
+  "ToMapFile": "MirDg11_11",
+  "FromCoords": "1109, 273",
+  "ToCoords": "1029, 114"
+}

@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 5,
+  "FromMapId": 50,
+  "ToMapId": 50,
+  "TeleportGateName": "To the warehouse",
+  "FromMapName": "PaleMoonIsland",
+  "ToMapName": "PaleMoonIsland",
+  "FromMapFile": "MirPb04",
+  "ToMapFile": "MirPb04",
+  "FromCoords": "1205, 446",
+  "ToCoords": "808, 936"
+}

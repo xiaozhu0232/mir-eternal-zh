@@ -1,0 +1,7 @@
+{
+  "GuardNumber": 6733,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1096, 614",
+  "RegionName": "BichyProvince-Martial Art Instructiors(1096,614)"
+}

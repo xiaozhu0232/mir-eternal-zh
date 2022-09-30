@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6733,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "937, 514",
+  "Direction": "右上",
+  "RegionName": "AlliedProvince-Martial Art Instructiors(937,514)"
+}

@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6126,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "925, 540",
+  "Direction": "左下",
+  "RegionName": "AlliedProvince-金家Blacksmith(925,540)"
+}

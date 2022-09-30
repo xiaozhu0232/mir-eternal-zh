@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 3,
+  "FromMapId": 114,
+  "ToMapId": 113,
+  "TeleportGateName": "To LongYaoYai",
+  "FromMapName": "BlackRockPeak",
+  "ToMapName": "LongYaoYai",
+  "FromMapFile": "MirDg26_1",
+  "ToMapFile": "MirDg26",
+  "FromCoords": "894, 223",
+  "ToCoords": "1080, 689"
+}

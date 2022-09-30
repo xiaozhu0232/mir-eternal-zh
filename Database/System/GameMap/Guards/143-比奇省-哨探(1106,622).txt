@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6242,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1106, 622",
+  "Direction": "下方",
+  "RegionName": "BichyProvince-Sentinel(1106,622)"
+}

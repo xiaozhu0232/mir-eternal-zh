@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6192,
+  "FromMapId": 231,
+  "FromMapName": "MagicDragonCity",
+  "FromCoords": "1044,498",
+  "Direction": "右下",
+  "RegionName": "MagicDragonCity-Aqua Orange(1044,498)"
+}

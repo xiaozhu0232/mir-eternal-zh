@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6542,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1108, 603",
+  "Direction": "上方",
+  "RegionName": "BichyProvince-Irvine(1108,603)"
+}

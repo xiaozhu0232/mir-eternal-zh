@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 4,
+  "FromMapId": 155,
+  "ToMapId": 156,
+  "TeleportGateName": "Temple Of Warma 3rd Floor",
+  "FromMapName": "WoomaTemple1st",
+  "ToMapName": "Temple Of Warma 3rd Floor",
+  "FromMapFile": "Mir_Dg05_1",
+  "ToMapFile": "Mir_Dg05_2",
+  "FromCoords": "1054, 478",
+  "ToCoords": "919, 329"
+}

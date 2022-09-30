@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 59,
+  "ToMapId": 60,
+  "TeleportGateName": "OxmoorTemple1st",
+  "FromMapName": "BullDemonTempleEnt",
+  "ToMapName": "OxmoorTemple1st",
+  "FromMapFile": "MirDg15",
+  "ToMapFile": "MirDg15_1",
+  "FromCoords": "1018, 102",
+  "ToCoords": "936, 392"
+}

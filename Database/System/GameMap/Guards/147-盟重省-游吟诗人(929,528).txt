@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6252,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "929, 528",
+  "Direction": "左下",
+  "RegionName": "AlliedProvince-Troubadour(929,528)"
+}

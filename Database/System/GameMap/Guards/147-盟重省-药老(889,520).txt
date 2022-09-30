@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6663,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "889, 520",
+  "Direction": "左下",
+  "RegionName": "AlliedProvince-Medicine Elder(889,520)"
+}

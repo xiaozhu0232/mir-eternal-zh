@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6663,
+  "FromMapId": 149,
+  "FromMapName": "StoneTomb",
+  "FromCoords": "1070, 483",
+  "Direction": "右下",
+  "RegionName": "StoneTomb-Medicine Elder(1070,483)"
+}

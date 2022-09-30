@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6680,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "822, 248",
+  "Direction": "右下",
+  "RegionName": "BichyProvince-Jade Lady(822,248)"
+}

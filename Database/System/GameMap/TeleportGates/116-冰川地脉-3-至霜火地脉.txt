@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 3,
+  "FromMapId": 116,
+  "ToMapId": 117,
+  "TeleportGateName": "To FrostAndFireVeins",
+  "FromMapName": "Glacial Veins",
+  "ToMapName": "FrostAndFireVeins",
+  "FromMapFile": "MirDg27_1",
+  "ToMapFile": "MirDg27_2",
+  "FromCoords": "916, 319",
+  "ToCoords": "1132, 376"
+}

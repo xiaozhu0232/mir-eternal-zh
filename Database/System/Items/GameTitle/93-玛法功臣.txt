@@ -1,0 +1,13 @@
+{
+  "Name": "玛法功臣",
+  "Id": 93,
+  "Combat": 40,
+  "Attributes": {
+    "MaxDC": 1,
+    "MaxMC": 1,
+    "MaxSC": 1,
+    "MaxNC": 1,
+    "MaxBC": 1,
+    "MaxHP": 5
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "Id": 619201100,
+  "Content": "Only the equipment you have equiped can punch!\r"
+}

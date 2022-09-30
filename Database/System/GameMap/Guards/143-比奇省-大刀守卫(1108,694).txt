@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6734,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1108, 694",
+  "Direction": "左上",
+  "RegionName": "BichyProvince-Greatsword Guard(1108,694)"
+}

@@ -1,0 +1,68 @@
+{
+  "SkillName": "二连射击-0-无铭文-主体技能",
+  "Race": "弓手",
+  "SkillType": "SubSkills",
+  "OwnSkillId": 20430,
+  "BindingLevelId": 2043,
+  "CalculateTriggerProbability": 1,
+  "NeedConsumeMagic": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "Nodes": {
+    "0": {
+      "$type": "B_01_SkillReleaseNotification, Assembly-CSharp",
+      "发送释放通知": true
+    },
+    "1": {
+      "$type": "C_01_CalculateHitTarget, Assembly-CSharp",
+      "技能能否穿墙": true,
+      "技能锁定方式": "锁定目标",
+      "SkillEvasion": "CanBePhsyicallyEvaded",
+      "SkillHitFeedback": "后仰",
+      "技能命中通知": true,
+      "计算飞行耗时": true,
+      "单格飞行耗时": 60,
+      "HitsLimit": 1,
+      "LimitedTargetType": "Player, Pet, Monster, NPC",
+      "LimitedTargetRelationship": "Hostility",
+      "清除状态列表": []
+    },
+    "2": {
+      "$type": "C_02_CalculateTargetDamage, Assembly-CSharp",
+      "点爆需要层数": 1,
+      "技能伤害类型": "Archery",
+      "技能伤害基数": [
+        13,
+        17,
+        21,
+        25
+      ],
+      "技能伤害系数": [
+        1,
+        1.1,
+        1.2,
+        1.3
+      ],
+      "GainSkillExp": true,
+      "ExpSkillId": 2043,
+      "清除状态列表": []
+    },
+    "3": {
+      "$type": "A_00_触发子类技能, Assembly-CSharp",
+      "技能触发方式": "TargetMissDefinitely",
+      "触发SkillName": "精准打击-2-射戟印-闪避触发",
+      "验证铭文技能": true,
+      "所需Id": 20422
+    },
+    "4": {
+      "$type": "A_00_触发子类技能, Assembly-CSharp",
+      "技能触发方式": "TargetHitDefinitely",
+      "触发SkillName": "战术标记-2-汲灵印-吸血触发",
+      "验证铭文技能": true,
+      "所需Id": 20442
+    }
+  }
+}

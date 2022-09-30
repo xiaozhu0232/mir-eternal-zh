@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 243,
+  "ToMapId": 242,
+  "TeleportGateName": "To MagicDragonValley",
+  "FromMapName": "Dragon'sBloodRoad",
+  "ToMapName": "MagicDragonValley",
+  "FromMapFile": "MirDg12_12",
+  "ToMapFile": "MirDg12_11",
+  "FromCoords": "899, 362",
+  "ToCoords": "1174, 503"
+}

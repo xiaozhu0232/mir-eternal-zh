@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 110,
+  "ToMapId": 112,
+  "TeleportGateName": "Orcs Deep In The Tomb",
+  "FromMapName": "AncientForbiddenRealm",
+  "ToMapName": "DeepInTheTomb",
+  "FromMapFile": "MirDg23",
+  "ToMapFile": "MirDg23_2",
+  "FromCoords": "1023, 42",
+  "ToCoords": "1014, 234"
+}

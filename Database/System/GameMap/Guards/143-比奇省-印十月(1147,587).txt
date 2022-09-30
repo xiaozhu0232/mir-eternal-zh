@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6194,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1147, 587",
+  "Direction": "右下",
+  "RegionName": "BichyProvince-Ind October(1147,587)"
+}

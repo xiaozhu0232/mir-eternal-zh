@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6542,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "943, 520",
+  "Direction": "右上",
+  "RegionName": "AlliedProvince-Irvine(943,520)"
+}

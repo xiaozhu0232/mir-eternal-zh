@@ -1,0 +1,9 @@
+{
+  "MapId": 209,
+  "MapName": "Bug's Nest",
+  "MapFile": "MirDg01_7",
+  "TerrainFile": "0209-虫巢",
+  "LimitPlayers": 9999,
+  "MinLevel": 20,
+  "LimitInstances": 1
+}

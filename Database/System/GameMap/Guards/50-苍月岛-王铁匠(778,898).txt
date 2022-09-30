@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6672,
+  "FromMapId": 50,
+  "FromMapName": "PaleMoonIsland",
+  "FromCoords": "778, 898",
+  "Direction": "右下",
+  "RegionName": "PaleMoonIsland-KingBlacksmith(778,898)"
+}

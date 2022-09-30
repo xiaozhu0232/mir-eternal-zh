@@ -1,0 +1,122 @@
+﻿{
+  "FromMapId": 235,
+  "FromMapName": "魔龙旧寨",
+  "FromCoords": "1047, 492",
+  "RegionName": "魔龙旧寨-怪物区域",
+  "AreaRadius": 242,
+  "Spawns": [
+      {
+            "MonsterName": "魔龙巨蛾 水影",
+            "SpawnCount": 1,
+            "RevivalInterval": 30
+        },
+        {
+            "MonsterName": "魔龙力士 坠天斩",
+            "SpawnCount": 1,
+            "RevivalInterval": 30
+        },
+        {
+            "MonsterName": "魔龙力士 虚空斩",
+            "SpawnCount": 1,
+            "RevivalInterval": 30
+        },
+        {
+            "MonsterName": "魔龙战将 血愁",
+            "SpawnCount": 1,
+            "RevivalInterval": 30
+        },
+        {
+            "MonsterName": "魔龙战将 灵台",
+            "SpawnCount": 1,
+            "RevivalInterval": 30
+        },
+    {
+      "MonsterName": "魔龙邪眼绿",
+      "SpawnCount": 65,
+      "RevivalInterval": 5
+    },
+    {
+      "MonsterName": "魔龙邪眼红",
+      "SpawnCount": 65,
+      "RevivalInterval": 5
+    },
+    {
+      "MonsterName": "魔龙刺蛙绿",
+      "SpawnCount": 45,
+      "RevivalInterval": 5
+    },
+    {
+      "MonsterName": "魔龙刺蛙红",
+      "SpawnCount": 65,
+      "RevivalInterval": 5
+    },
+    {
+      "MonsterName": "魔龙血蛙",
+      "SpawnCount": 30,
+      "RevivalInterval": 5
+    },
+    {
+      "MonsterName": "魔龙刀兵",
+      "SpawnCount": 30,
+      "RevivalInterval": 5
+    },
+    {
+      "MonsterName": "魔龙射手",
+      "SpawnCount": 30,
+      "RevivalInterval": 5
+    },
+    {
+      "MonsterName": "魔龙破甲兵",
+      "SpawnCount": 30,
+      "RevivalInterval": 5
+    },
+    {
+      "MonsterName": "魔龙鬼射",
+      "SpawnCount": 2,
+      "RevivalInterval": 180
+    },
+    {
+      "MonsterName": "魔龙力士",
+      "SpawnCount": 2,
+      "RevivalInterval": 180
+    }
+  ],
+  "RangeCoords": [
+"1009,225",
+"1009,227",
+"1009,229",
+"1009,231",
+"1009,233",
+"1009,235",
+"1009,237",
+"1009,240",
+"1007,242",
+"1005,244",
+"1003,247",
+"1005,249",
+"1007,251",
+"1009,253",
+"1011,256",
+"1009,258",
+"1007,260",
+"1005,262",
+"1003,264",
+"1003,266",
+"1005,268",
+"1007,270",
+"1009,272",
+"1011,277",
+"1010,282",
+"1010,284",
+"1010,286",
+"1010,288",
+"1010,290",
+"1010,292",
+"1008,294",
+"1006,296",
+"1004,298",
+"1002,300",
+"1000,302",
+ "998,304"
+]
+}

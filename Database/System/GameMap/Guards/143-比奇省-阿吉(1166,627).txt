@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6665,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1166, 627",
+  "Direction": "左下",
+  "RegionName": "BichyProvince-Aggie(1166,627)"
+}

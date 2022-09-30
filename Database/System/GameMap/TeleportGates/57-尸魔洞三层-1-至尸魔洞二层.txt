@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 1,
+  "FromMapId": 57,
+  "ToMapId": 58,
+  "TeleportGateName": "CaveOfDead1st",
+  "FromMapName": "CorpseCave3rd",
+  "ToMapName": "CorpseCave2nd",
+  "FromMapFile": "MirDg14_2",
+  "ToMapFile": "MirDg14_3",
+  "FromCoords": "1038, 189",
+  "ToCoords": "924, 327"
+}

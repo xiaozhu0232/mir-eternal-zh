@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 3,
+  "FromMapId": 195,
+  "ToMapId": 194,
+  "TeleportGateName": "RightCloister",
+  "FromMapName": "PlaceOfChoice",
+  "ToMapName": "RightCloister",
+  "FromMapFile": "MirDg11_7",
+  "ToMapFile": "MirDg11_6",
+  "FromCoords": "1114, 273",
+  "ToCoords": "1042, 274"
+}

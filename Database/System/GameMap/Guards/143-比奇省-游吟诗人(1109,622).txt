@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6252,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1109, 622",
+  "Direction": "下方",
+  "RegionName": "BichyProvince-Troubadour(1109,622)"
+}

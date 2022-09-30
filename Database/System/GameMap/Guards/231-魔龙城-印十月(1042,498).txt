@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6194,
+  "FromMapId": 231,
+  "FromMapName": "MagicDragonCity",
+  "FromCoords": "1042,498",
+  "Direction": "右下",
+  "RegionName": "MagicDragonCity-Ind October(1042,498)"
+}

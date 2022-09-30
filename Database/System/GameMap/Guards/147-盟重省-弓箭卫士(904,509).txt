@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6724,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "904, 509",
+  "Direction": "右下",
+  "RegionName": "AlliedProvince-Arrow And Bow Guard(904,509)"
+}

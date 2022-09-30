@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6274,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1104, 603",
+  "Direction": "上方",
+  "RegionName": "BichyProvince-Sand City Offering(1104,603)"
+}

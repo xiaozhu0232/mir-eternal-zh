@@ -1,0 +1,7 @@
+{
+  "GuardNumber": 6663,
+  "FromMapId": 171,
+  "FromMapName": "ZumaGallery",
+  "FromCoords": "1005, 70",
+  "RegionName": "ZumaGallery-Medicine Elder(1005,70)"
+}

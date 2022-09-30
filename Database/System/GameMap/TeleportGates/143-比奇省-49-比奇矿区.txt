@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 49,
+  "FromMapId": 143,
+  "ToMapId": 144,
+  "TeleportGateName": "BeechMines",
+  "FromMapName": "BichProvince",
+  "ToMapName": "BeechMines",
+  "FromMapFile": "Mir_Pb02",
+  "ToMapFile": "Mir_Dg03",
+  "FromCoords": "782, 785",
+  "ToCoords": "1004, 120"
+}

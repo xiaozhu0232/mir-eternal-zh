@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6665,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "963, 476",
+  "Direction": "左下",
+  "RegionName": "AlliedProvince-Aggie(963,476)"
+}

@@ -1,0 +1,52 @@
+{
+  "SkillName": "道士普攻-1-灵爆印-范围伤害",
+  "Race": "道士",
+  "SkillType": "SubSkills",
+  "OwnSkillId": 30010,
+  "BindingLevelId": 3001,
+  "CalculateTriggerProbability": 1,
+  "NeedConsumeMagic": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "Nodes": {
+    "0": {
+      "$type": "B_01_SkillReleaseNotification, Assembly-CSharp",
+      "发送释放通知": true
+    },
+    "1": {
+      "$type": "C_01_CalculateHitTarget, Assembly-CSharp",
+      "技能能否穿墙": true,
+      "技能锁定方式": "锁定锚点坐标",
+      "SkillHitFeedback": "后仰",
+      "技能范围类型": "Solid3x3",
+      "技能命中通知": true,
+      "HitsLimit": 9,
+      "LimitedTargetType": "Player, Pet, Monster, NPC",
+      "LimitedTargetRelationship": "Hostility",
+      "清除状态列表": []
+    },
+    "2": {
+      "$type": "C_02_CalculateTargetDamage, Assembly-CSharp",
+      "点爆需要层数": 1,
+      "技能伤害基数": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "技能伤害系数": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "GainSkillExp": true,
+      "ExpSkillId": 3001,
+      "目标硬直时间": 500,
+      "清除状态列表": []
+    }
+  }
+}

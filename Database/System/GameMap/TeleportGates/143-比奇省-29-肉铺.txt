@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 29,
+  "FromMapId": 143,
+  "ToMapId": 143,
+  "TeleportGateName": "肉铺",
+  "FromMapName": "BichProvince",
+  "ToMapName": "BichProvince",
+  "FromMapFile": "Mir_Pb02",
+  "ToMapFile": "Mir_Pb02",
+  "FromCoords": "1131, 609",
+  "ToCoords": "563, 482"
+}

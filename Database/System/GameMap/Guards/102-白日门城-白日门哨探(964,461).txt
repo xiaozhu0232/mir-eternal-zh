@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6482,
+  "FromMapId": 102,
+  "FromMapName": "WhiteSunGateTown",
+  "FromCoords": "964, 461",
+  "Direction": "右下",
+  "RegionName": "WhiteSunGateTown-White Sun Gate Sentinel(964,461)"
+}

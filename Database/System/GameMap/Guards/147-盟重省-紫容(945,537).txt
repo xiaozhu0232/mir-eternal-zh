@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6714,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "945, 537",
+  "Direction": "右下",
+  "RegionName": "AlliedProvince-Purple Face(945,537)"
+}

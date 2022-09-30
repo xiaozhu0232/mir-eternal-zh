@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6192,
+  "FromMapId": 143,
+  "FromMapName": "BichyProvince",
+  "FromCoords": "1143, 591",
+  "Direction": "右下",
+  "RegionName": "BichyProvince-Aqua Orange(1143,591)"
+}

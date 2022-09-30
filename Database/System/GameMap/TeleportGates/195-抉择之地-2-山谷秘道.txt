@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 195,
+  "ToMapId": 196,
+  "TeleportGateName": "SecretValleyRoad",
+  "FromMapName": "PlaceOfChoice",
+  "ToMapName": "SecretValleyRoad",
+  "FromMapFile": "MirDg11_7",
+  "ToMapFile": "MirDg11_8",
+  "FromCoords": "1077, 268",
+  "ToCoords": "965, 167"
+}

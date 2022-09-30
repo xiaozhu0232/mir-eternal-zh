@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6663,
+  "FromMapId": 202,
+  "FromMapName": "DeathCanyon4th",
+  "FromCoords": "790, 544",
+  "Direction": "右下",
+  "RegionName": "DeathCanyon4th-Medicine Elder(790,544)"
+}

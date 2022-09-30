@@ -1,0 +1,12 @@
+{
+  "TeleportGateNumber": 2,
+  "FromMapId": 115,
+  "ToMapId": 116,
+  "TeleportGateName": "To Glacial Veins",
+  "FromMapName": "LongQifeng",
+  "ToMapName": "Glacial Veins",
+  "FromMapFile": "MirDg26_2",
+  "ToMapFile": "MirDg27_1",
+  "FromCoords": "910, 477",
+  "ToCoords": "1104, 380"
+}

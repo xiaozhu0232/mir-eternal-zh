@@ -1,0 +1,53 @@
+{
+  "SkillName": "强袭之箭-1-爆裂印-范围伤害",
+  "Race": "弓手",
+  "OwnSkillId": 20481,
+  "BindingLevelId": 2048,
+  "CalculateTriggerProbability": 1,
+  "NeedConsumeMagic": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "Nodes": {
+    "0": {
+      "$type": "B_01_SkillReleaseNotification, Assembly-CSharp",
+      "发送释放通知": true
+    },
+    "1": {
+      "$type": "C_01_CalculateHitTarget, Assembly-CSharp",
+      "技能能否穿墙": true,
+      "技能锁定方式": "锁定目标坐标",
+      "SkillEvasion": "CanBePhsyicallyEvaded",
+      "SkillHitFeedback": "后仰",
+      "技能范围类型": "Hollow3x3",
+      "技能命中通知": true,
+      "HitsLimit": 8,
+      "LimitedTargetType": "Player, Pet, Monster, NPC",
+      "LimitedTargetRelationship": "Hostility",
+      "清除状态列表": []
+    },
+    "2": {
+      "$type": "C_02_CalculateTargetDamage, Assembly-CSharp",
+      "点爆需要层数": 1,
+      "技能伤害类型": "Archery",
+      "技能伤害基数": [
+        10,
+        12,
+        14,
+        16
+      ],
+      "技能伤害系数": [
+        1.4,
+        1.6,
+        1.8,
+        2
+      ],
+      "GainSkillExp": true,
+      "ExpSkillId": 2048,
+      "目标硬直时间": 500,
+      "清除状态列表": []
+    }
+  }
+}

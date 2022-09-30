@@ -1,0 +1,8 @@
+{
+  "GuardNumber": 6804,
+  "FromMapId": 147,
+  "FromMapName": "AlliedProvince",
+  "FromCoords": "966, 479",
+  "Direction": "左下",
+  "RegionName": "AlliedProvince-Old Kat(966,479)"
+}

@@ -1,0 +1,9 @@
+{
+  "MapId": 205,
+  "MapName": "FragantStoneCrypt2nd",
+  "MapFile": "MirDg08_2",
+  "TerrainFile": "0205-香石墓穴二层",
+  "LimitPlayers": 9999,
+  "MinLevel": 25,
+  "LimitInstances": 1
+}
