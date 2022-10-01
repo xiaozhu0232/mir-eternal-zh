@@ -84,7 +84,7 @@ namespace GameServer.Maps
             }
             set
             {
-                value = ComputingClass.ValueLimit(0, value, this[GameObjectStats.MaxHP]);
+                value = ComputingClass.ValueLimit(0, value, this[GameObjectStats.最大体力]);
                 if (base.CurrentHP != value)
                 {
                     base.CurrentHP = value;
@@ -92,7 +92,7 @@ namespace GameServer.Maps
                     {
                         ObjectId = this.ObjectId,
                         CurrentHP = this.CurrentHP,
-                        MaxHP = this[GameObjectStats.MaxHP]
+                        MaxHP = this[GameObjectStats.最大体力]
                     });
                 }
             }
@@ -374,7 +374,7 @@ namespace GameServer.Maps
             this.漫游时间 = MainProcess.CurrentTime.AddMilliseconds((double)this.RoamingInterval);
             this.StatsBonus[this] = 对应宠物.基础Stat;
             this.RefreshStats();
-            this.CurrentHP = Math.Min(对应宠物.CurrentHP, this[GameObjectStats.MaxHP]);
+            this.CurrentHP = Math.Min(对应宠物.CurrentHP, this[GameObjectStats.最大体力]);
             string text = this.Template.NormalAttackSkills;
             if (text != null && text.Length > 0)
             {
@@ -530,7 +530,7 @@ namespace GameServer.Maps
                 }
                 if (MainProcess.CurrentTime > base.RecoveryTime)
                 {
-                    if (!this.CheckStatus(GameObjectState.Poisoned))
+                    if (!this.CheckStatus(GameObjectState.中毒状态))
                     {
                         this.CurrentHP += this[GameObjectStats.体力恢复];
                     }
@@ -878,7 +878,7 @@ namespace GameServer.Maps
                 }
                 游戏技能 = this.NormalAttackSkills;
             }
-            if (this.CheckStatus(GameObjectState.BusyGreen | GameObjectState.Paralyzed | GameObjectState.Absence))
+            if (this.CheckStatus(GameObjectState.忙绿状态 | GameObjectState.麻痹状态 | GameObjectState.失神状态))
             {
                 return;
             }
@@ -944,7 +944,7 @@ namespace GameServer.Maps
                 if (MainProcess.CurrentTime > this.Attack时间)
                 {
                     new SkillInstance(this, 游戏技能, null, ActionId++, this.CurrentMap, this.CurrentPosition, this.HateObject.当前目标, this.HateObject.当前目标.CurrentPosition, null, null, false);
-                    this.Attack时间 = MainProcess.CurrentTime.AddMilliseconds((double)(ComputingClass.ValueLimit(0, 10 - this[GameObjectStats.AttackSpeed], 10) * 500));
+                    this.Attack时间 = MainProcess.CurrentTime.AddMilliseconds((double)(ComputingClass.ValueLimit(0, 10 - this[GameObjectStats.攻击速度], 10) * 500));
                     return;
                 }
                 if (!this.ForbbidenMove && this.CanBeTurned())
@@ -970,7 +970,7 @@ namespace GameServer.Maps
             this.RefreshStats();
             this.CurrentMap = this.出生地图;
             this.CurrentDirection = ComputingClass.随机方向();
-            this.CurrentHP = this[GameObjectStats.MaxHP];
+            this.CurrentHP = this[GameObjectStats.最大体力];
             this.CurrentPosition = this.出生范围[MainProcess.RandomNumber.Next(0, this.出生范围.Length)];
             for (int i = 0; i < 100; i++)
             {
@@ -1051,7 +1051,7 @@ namespace GameServer.Maps
                 this.ActiveObject = true;
                 MapGatewayProcess.ActivateObject(this);
                 int num = (int)Math.Max(0.0, (MainProcess.CurrentTime - base.RecoveryTime).TotalSeconds / 5.0);
-                base.CurrentHP = Math.Min(this[GameObjectStats.MaxHP], this.CurrentHP + num * this[GameObjectStats.体力恢复]);
+                base.CurrentHP = Math.Min(this[GameObjectStats.最大体力], this.CurrentHP + num * this[GameObjectStats.体力恢复]);
                 base.RecoveryTime = base.RecoveryTime.AddSeconds(5.0);
                 this.Attack时间 = MainProcess.CurrentTime.AddSeconds(1.0);
                 this.漫游时间 = MainProcess.CurrentTime.AddMilliseconds((double)(MainProcess.RandomNumber.Next(5000) + this.RoamingInterval));

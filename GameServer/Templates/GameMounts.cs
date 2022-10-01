@@ -35,8 +35,8 @@ namespace GameServer.Templates
                 foreach (var obj in Serializer.Deserialize<GameMounts>(text))
                 {
                     obj.Stats = new Dictionary<GameObjectStats, int> {
-                        { GameObjectStats.WalkSpeed, obj.SpeedModificationRate / 500 },
-                        { GameObjectStats.RunSpeed, obj.SpeedModificationRate / 500 }
+                        { GameObjectStats.行走速度, obj.SpeedModificationRate / 500 },
+                        { GameObjectStats.奔跑速度, obj.SpeedModificationRate / 500 }
                     };
                     DataSheet.Add((obj).ID, obj);
                 }

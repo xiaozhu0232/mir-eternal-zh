@@ -303,8 +303,8 @@ namespace GameServer.Data
             this.HairColor.V = hairColor;
             this.FaceType.V = faceType;
             this.CreatedDate.V = MainProcess.CurrentTime;
-            this.CurrentHP.V = CharacterProgression.GetData(race, 1)[GameObjectStats.MaxHP];
-            this.CurrentMP.V = CharacterProgression.GetData(race, 1)[GameObjectStats.MaxMP];
+            this.CurrentHP.V = CharacterProgression.GetData(race, 1)[GameObjectStats.最大体力];
+            this.CurrentMP.V = CharacterProgression.GetData(race, 1)[GameObjectStats.最大魔力];
             this.CurrentDir.V = ComputingClass.随机方向();
             this.CurrentMap.V = 142;
             this.RebirthMap.V = 142;

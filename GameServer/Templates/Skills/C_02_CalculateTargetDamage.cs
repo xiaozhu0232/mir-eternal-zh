@@ -32,7 +32,7 @@ namespace GameServer.Templates
 		public float[] 技能伤害系数;
 
 		
-		public SkillDamageType 技能伤害类型;
+		public 技能伤害类型 技能伤害类型;
 
 		
 		public SpecifyTargetType 技能增伤类型;

@@ -124,7 +124,7 @@ namespace GameServer.Templates
                         {
                             flag = !a_00.CalculateLuckyProbability
                                 ? ComputingClass.CheckProbability(a_00.技能触发概率 + ((a_00.增加概率Buff == 0 || !CasterObject.Buffs.ContainsKey(a_00.增加概率Buff)) ? 0f : a_00.Buff增加系数))
-                                : ComputingClass.CheckProbability(ComputingClass.计算幸运(CasterObject[GameObjectStats.Luck]));
+                                : ComputingClass.CheckProbability(ComputingClass.计算幸运(CasterObject[GameObjectStats.幸运等级]));
                         }
 
                         if (flag && a_00.验证ItSelfBuff)
@@ -459,7 +459,7 @@ namespace GameServer.Templates
                 {
                     if (b_03.计算攻速缩减)
                     {
-                        AttackSpeedReduction = ComputingClass.ValueLimit(ComputingClass.CalcAttackSpeed(-5), AttackSpeedReduction + ComputingClass.CalcAttackSpeed(CasterObject[GameObjectStats.AttackSpeed]), ComputingClass.CalcAttackSpeed(5));
+                        AttackSpeedReduction = ComputingClass.ValueLimit(ComputingClass.CalcAttackSpeed(-5), AttackSpeedReduction + ComputingClass.CalcAttackSpeed(CasterObject[GameObjectStats.攻击速度]), ComputingClass.CalcAttackSpeed(5));
 
                         if (AttackSpeedReduction != 0)
                         {
@@ -626,7 +626,7 @@ namespace GameServer.Templates
                                     item.Value.Object.移除Buff时处理(编号);
 
                     if (c_01.触发PassiveSkill && Hits.Count != 0 && ComputingClass.CheckProbability(c_01.触发被动概率))
-                        CasterObject[GameObjectStats.SkillSign] = 1;
+                        CasterObject[GameObjectStats.技能标志] = 1;
 
                     if (c_01.GainSkillExp && Hits.Count != 0 && CasterObject is PlayerObject playerObj)
                         playerObj.SkillGainExp(c_01.ExpSkillId);

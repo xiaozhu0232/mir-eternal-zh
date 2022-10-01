@@ -157,7 +157,7 @@ namespace GameServer.Maps
 			}
 			set
 			{
-				value = ComputingClass.ValueLimit(0, value, this[GameObjectStats.MaxHP]);
+				value = ComputingClass.ValueLimit(0, value, this[GameObjectStats.最大体力]);
 				if (this.PetData.CurrentHP.V != value)
 				{
 					this.PetData.CurrentHP.V = value;
@@ -165,7 +165,7 @@ namespace GameServer.Maps
 					{
 						ObjectId = this.ObjectId,
 						CurrentHP = this.CurrentHP,
-						MaxHP = this[GameObjectStats.MaxHP]
+						MaxHP = this[GameObjectStats.最大体力]
 					});
 				}
 			}
@@ -485,7 +485,7 @@ namespace GameServer.Maps
 				}
 			}
 			this.RefreshStats();
-			this.CurrentHP = this[GameObjectStats.MaxHP];
+			this.CurrentHP = this[GameObjectStats.最大体力];
 			base.RecoveryTime = MainProcess.CurrentTime.AddSeconds(5.0);
 			this.Attack时间 = MainProcess.CurrentTime.AddSeconds(1.0);
 			this.漫游时间 = MainProcess.CurrentTime.AddMilliseconds((double)(MainProcess.RandomNumber.Next(5000) + this.RoamingInterval));
@@ -545,7 +545,7 @@ namespace GameServer.Maps
 			this.CurrentDirection = 诱惑怪物.CurrentDirection;
 			this.StatsBonus[this] = this.基础Stat;
 			this.RefreshStats();
-			this.CurrentHP = Math.Min(诱惑怪物.CurrentHP, this[GameObjectStats.MaxHP]);
+			this.CurrentHP = Math.Min(诱惑怪物.CurrentHP, this[GameObjectStats.最大体力]);
 			base.RecoveryTime = MainProcess.CurrentTime.AddSeconds(5.0);
 			this.Attack时间 = MainProcess.CurrentTime.AddSeconds(1.0);
 			this.BusyTime = MainProcess.CurrentTime.AddSeconds(1.0);
@@ -609,7 +609,7 @@ namespace GameServer.Maps
 			this.CurrentDirection = 诱惑宠物.CurrentDirection;
 			this.StatsBonus[this] = this.基础Stat;
 			this.RefreshStats();
-			this.CurrentHP = Math.Min(诱惑宠物.CurrentHP, this[GameObjectStats.MaxHP]);
+			this.CurrentHP = Math.Min(诱惑宠物.CurrentHP, this[GameObjectStats.最大体力]);
 			base.RecoveryTime = MainProcess.CurrentTime.AddSeconds(5.0);
 			this.Attack时间 = MainProcess.CurrentTime.AddSeconds(1.0);
 			this.BusyTime = MainProcess.CurrentTime.AddSeconds(1.0);
@@ -690,7 +690,7 @@ namespace GameServer.Maps
 				}
 				if (MainProcess.CurrentTime > base.RecoveryTime)
 				{
-					if (!this.CheckStatus(GameObjectState.Poisoned))
+					if (!this.CheckStatus(GameObjectState.中毒状态))
 					{
 						this.CurrentHP += this[GameObjectStats.体力恢复];
 					}
@@ -847,12 +847,12 @@ namespace GameServer.Maps
 		
 		public void 宠物智能Attack()
 		{
-			if (this.CheckStatus(GameObjectState.Paralyzed | GameObjectState.Absence))
+			if (this.CheckStatus(GameObjectState.麻痹状态 | GameObjectState.失神状态))
 			{
 				return;
 			}
 			GameSkills 游戏技能;
-			if (this.ProbabilityTriggerSkills != null && (!this.Coolings.ContainsKey((int)this.NormalAttackSkills.OwnSkillId | 16777216) || MainProcess.CurrentTime > this.Coolings[(int)this.NormalAttackSkills.OwnSkillId | 16777216]) && ComputingClass.CheckProbability(this.ProbabilityTriggerSkills.CalculateLuckyProbability ? ComputingClass.计算幸运(this[GameObjectStats.Luck]) : this.ProbabilityTriggerSkills.CalculateTriggerProbability))
+			if (this.ProbabilityTriggerSkills != null && (!this.Coolings.ContainsKey((int)this.NormalAttackSkills.OwnSkillId | 16777216) || MainProcess.CurrentTime > this.Coolings[(int)this.NormalAttackSkills.OwnSkillId | 16777216]) && ComputingClass.CheckProbability(this.ProbabilityTriggerSkills.CalculateLuckyProbability ? ComputingClass.计算幸运(this[GameObjectStats.幸运等级]) : this.ProbabilityTriggerSkills.CalculateTriggerProbability))
 			{
 				游戏技能 = this.ProbabilityTriggerSkills;
 			}
@@ -909,7 +909,7 @@ namespace GameServer.Maps
 				if (MainProcess.CurrentTime > this.Attack时间)
 				{
 					new SkillInstance(this, 游戏技能, null, ActionId++, this.CurrentMap, this.CurrentPosition, this.HateObject.当前目标, this.HateObject.当前目标.CurrentPosition, null, null, false);
-					this.Attack时间 = MainProcess.CurrentTime.AddMilliseconds((double)(ComputingClass.ValueLimit(0, 10 - this[GameObjectStats.AttackSpeed], 10) * 500));
+					this.Attack时间 = MainProcess.CurrentTime.AddMilliseconds((double)(ComputingClass.ValueLimit(0, 10 - this[GameObjectStats.攻击速度], 10) * 500));
 					return;
 				}
 				if (this.CanBeTurned())
@@ -932,7 +932,7 @@ namespace GameServer.Maps
 				this.宠物经验 = 0;
 				this.StatsBonus[this] = this.基础Stat;
 				this.RefreshStats();
-				this.CurrentHP = this[GameObjectStats.MaxHP];
+				this.CurrentHP = this[GameObjectStats.最大体力];
 				base.SendPacket(new ObjectTransformTypePacket
 				{
 					改变类型 = 2,

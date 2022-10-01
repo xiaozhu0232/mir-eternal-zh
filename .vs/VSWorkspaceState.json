@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GameServer",
+    "\\GameServer\\Maps"
   ],
-  "SelectedNode": "\\Mir3D.sln",
+  "SelectedNode": "\\GameServer\\Maps\\MapObject.cs",
   "PreviewInSolutionExplorer": false
 }

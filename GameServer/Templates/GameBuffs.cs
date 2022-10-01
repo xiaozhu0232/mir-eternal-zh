@@ -11,8 +11,8 @@ namespace GameServer.Templates
 		public string Buff名字; //Name
 		public ushort Buff编号;  //Id 
 		public ushort 分组编号;  //GroupId
-		public BuffActionType ActionType;  //Buff作用类型 作用类型;
-		public BuffOverlayType OverlayType;  //Buff叠加类型 叠加类型;
+		public Buff作用类型 作用类型;  //BuffActionType ActionType;
+		public Buff叠加类型 叠加类型;  //BuffOverlayType OverlayType;
 		public Buff效果类型 Buff效果;  //BuffEffectType Effect;
 		public bool 同步至客户端;  //SyncClient;
 		public bool 到期主动消失; //RemoveOnExpire
@@ -46,7 +46,7 @@ namespace GameServer.Templates
 		public int 铭文延长时间;   //InscriptionExtendedTime
 		public GameObjectState 角色所处状态;  //PlayerState
 		public InscriptionStat[] 属性增减;  //StatsIncOrDec 属性增减
-		public SkillDamageType Buff伤害类型;   //DamageType
+		public 技能伤害类型 Buff伤害类型;   //DamageType
 		public int[] Buff伤害基数;   //DamageBase
 		public float[] Buff伤害系数;  //DamageFactor
 		public int 强化铭文编号;  //StrengthenInscriptionId
@@ -55,10 +55,10 @@ namespace GameServer.Templates
 		public bool 效果生效移除;   //EffectRemoved
 		public ushort 生效后接编号;   //EffectiveFollowedById
 		public bool 后接技能来源;   //FollowUpSkillSource
-		public BuffDetherminationMethod 效果判定方式;   //HowJudgeEffect
+		public BuffDetherminationMethod 效果判定方式;   //BuffDetherminationMethod HowJudgeEffect;
 		public bool 限定伤害上限;   //LimitedDamage 
 		public int 限定伤害数值;   //LimitedDamageValue
-		public BuffJudgmentType 效果判定类型;  //EffectJudgeType
+		public Buff判定类型 效果判定类型;  //EffectJudgeType
 		public HashSet<ushort> 特定技能编号;   //SpecificSkillId
 		public int[] 伤害增减基数;  //DamageIncOrDecBase
 		public float[] 伤害增减系数;  //DamageIncOrDecFactor

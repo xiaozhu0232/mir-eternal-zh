@@ -93,26 +93,26 @@ namespace GameServer.Data
                 int num4 = 0;
                 switch (this.伤害类型)
                 {
-                    case SkillDamageType.Attack:
-                        num4 = ComputingClass.CalculateAttack(来源[GameObjectStats.MinDC], 来源[GameObjectStats.MaxDC], 来源[GameObjectStats.Luck]);
+                    case 技能伤害类型.攻击:
+                        num4 = ComputingClass.CalculateAttack(来源[GameObjectStats.最小攻击], 来源[GameObjectStats.最大攻击], 来源[GameObjectStats.幸运等级]);
                         break;
-                    case SkillDamageType.Magic:
-                        num4 = ComputingClass.CalculateAttack(来源[GameObjectStats.MinMC], 来源[GameObjectStats.MaxMC], 来源[GameObjectStats.Luck]);
+                    case 技能伤害类型.魔法:
+                        num4 = ComputingClass.CalculateAttack(来源[GameObjectStats.最小魔法], 来源[GameObjectStats.最大魔法], 来源[GameObjectStats.幸运等级]);
                         break;
-                    case SkillDamageType.Taoism:
-                        num4 = ComputingClass.CalculateAttack(来源[GameObjectStats.MinSC], 来源[GameObjectStats.MaxSC], 来源[GameObjectStats.Luck]);
+                    case 技能伤害类型.道术:
+                        num4 = ComputingClass.CalculateAttack(来源[GameObjectStats.最小道术], 来源[GameObjectStats.最大道术], 来源[GameObjectStats.幸运等级]);
                         break;
-                    case SkillDamageType.Needle:
-                        num4 = ComputingClass.CalculateAttack(来源[GameObjectStats.MinNC], 来源[GameObjectStats.MaxNC], 来源[GameObjectStats.Luck]);
+                    case 技能伤害类型.刺术:
+                        num4 = ComputingClass.CalculateAttack(来源[GameObjectStats.最小刺术], 来源[GameObjectStats.最大刺术], 来源[GameObjectStats.幸运等级]);
                         break;
-                    case SkillDamageType.Archery:
-                        num4 = ComputingClass.CalculateAttack(来源[GameObjectStats.MinBC], 来源[GameObjectStats.MaxBC], 来源[GameObjectStats.Luck]);
+                    case 技能伤害类型.弓术:
+                        num4 = ComputingClass.CalculateAttack(来源[GameObjectStats.最小弓术], 来源[GameObjectStats.最大弓术], 来源[GameObjectStats.幸运等级]);
                         break;
-                    case SkillDamageType.Toxicity:
-                        num4 = 来源[GameObjectStats.MaxSC];
+                    case 技能伤害类型.毒性:
+                        num4 = 来源[GameObjectStats.最大道术];
                         break;
-                    case SkillDamageType.Sacred:
-                        num4 = ComputingClass.CalculateAttack(来源[GameObjectStats.MinHC], 来源[GameObjectStats.MaxHC], 0);
+                    case 技能伤害类型.神圣:
+                        num4 = ComputingClass.CalculateAttack(来源[GameObjectStats.最小圣伤], 来源[GameObjectStats.最大圣伤], 0);
                         break;
                 }
                 this.伤害基数.V = num2 + (int)((float)num4 * num3);
@@ -144,7 +144,7 @@ namespace GameServer.Data
         }
 
 
-        public SkillDamageType 伤害类型
+        public 技能伤害类型 伤害类型
         {
             get
             {
@@ -173,7 +173,7 @@ namespace GameServer.Data
         {
             get
             {
-                return this.Template.ActionType == BuffActionType.Gain;
+                return this.Template.作用类型 == Buff作用类型.增益类型;
             }
         }
 

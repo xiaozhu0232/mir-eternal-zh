@@ -167,8 +167,8 @@ namespace GameServer.Maps
             {
                 CurrentMap = MapGatewayProcess.GetMapInstance(this.重生地图);
                 CurrentPosition = (this.红名玩家 ? this.CurrentMap.红名区域.RandomCoords : this.CurrentMap.ResurrectionArea.RandomCoords);
-                CurrentHP = (int)((float)this[GameObjectStats.MaxHP] * 0.3f);
-                CurrentMP = (int)((float)this[GameObjectStats.MaxMP] * 0.3f);
+                CurrentHP = (int)((float)this[GameObjectStats.最大体力] * 0.3f);
+                CurrentMP = (int)((float)this[GameObjectStats.最大魔力] * 0.3f);
             }
             else if (GameMap.DataSheet[(byte)CharacterData.CurrentMap.V].NoReconnect)
             {
@@ -1035,9 +1035,9 @@ namespace GameServer.Maps
             }
         }
 
-        public void ProcessActionNPC(int actionValue, int actionType)
+        public void ProcessActionNPC(int actionValue, int 作用类型)
         {
-            switch (actionType)
+            switch (作用类型)
             {
                 case 1: // Accept Quest
                     StartQuest(actionValue);
@@ -1366,8 +1366,8 @@ namespace GameServer.Maps
                     队伍编号 = this.Team.队伍编号,
                     对象编号 = this.ObjectId,
                     对象等级 = (int)this.CurrentLevel,
-                    MaxHP = this[GameObjectStats.MaxHP],
-                    MaxMP = this[GameObjectStats.MaxMP],
+                    MaxHP = this[GameObjectStats.最大体力],
+                    MaxMP = this[GameObjectStats.最大魔力],
                     CurrentHP = this.CurrentHP,
                     CurrentMP = this.CurrentMP,
                     CurrentMap = this.CurrentMap.MapId,
@@ -1403,7 +1403,7 @@ namespace GameServer.Maps
         {
             if (MainProcess.CurrentTime > base.RecoveryTime)
             {
-                if (!this.CheckStatus(GameObjectState.Poisoned))
+                if (!this.CheckStatus(GameObjectState.中毒状态))
                 {
                     this.CurrentHP += this[GameObjectStats.体力恢复];
                     this.CurrentMP += this[GameObjectStats.魔力恢复];
@@ -1415,7 +1415,7 @@ namespace GameServer.Maps
             {
                 if (EquipmentData.Id == 99999100 || EquipmentData.Id == 99999101 || EquipmentData.Id == 99999101)
                 {
-                    int num4 = Math.Min(10, Math.Min(EquipmentData.当前持久.V, this[GameObjectStats.MaxHP] - this.CurrentHP));
+                    int num4 = Math.Min(10, Math.Min(EquipmentData.当前持久.V, this[GameObjectStats.最大体力] - this.CurrentHP));
                     if (num4 > 0)
                     {
                         this.CurrentHP += num4;
@@ -1425,7 +1425,7 @@ namespace GameServer.Maps
                 }
                 else if (EquipmentData.Id == 99999102)
                 {
-                    int num3 = Math.Min(15, Math.Min(EquipmentData.当前持久.V, this[GameObjectStats.MaxMP] - this.CurrentMP));
+                    int num3 = Math.Min(15, Math.Min(EquipmentData.当前持久.V, this[GameObjectStats.最大魔力] - this.CurrentMP));
                     if (num3 > 0)
                     {
                         this.CurrentMP += num3;
@@ -1438,7 +1438,7 @@ namespace GameServer.Maps
                 {
                     if (EquipmentData.Id == 99999110 || EquipmentData.Id == 99999111)
                     {
-                        int num2 = Math.Min(10, Math.Min(EquipmentData.当前持久.V, this[GameObjectStats.MaxHP] - this.CurrentHP));
+                        int num2 = Math.Min(10, Math.Min(EquipmentData.当前持久.V, this[GameObjectStats.最大体力] - this.CurrentHP));
                         if (num2 > 0)
                         {
                             this.CurrentHP += num2;
@@ -1742,7 +1742,7 @@ namespace GameServer.Maps
             }
             set
             {
-                value = Math.Min(this[GameObjectStats.MaxHP], Math.Max(0, value));
+                value = Math.Min(this[GameObjectStats.最大体力], Math.Max(0, value));
                 if (CurrentHP != value)
                 {
                     CharacterData.CurrentHP.V = value;
@@ -1750,7 +1750,7 @@ namespace GameServer.Maps
                     {
                         ObjectId = ObjectId,
                         CurrentHP = CurrentHP,
-                        MaxHP = this[GameObjectStats.MaxHP]
+                        MaxHP = this[GameObjectStats.最大体力]
                     });
                 }
             }
@@ -1765,7 +1765,7 @@ namespace GameServer.Maps
             }
             set
             {
-                value = Math.Min(this[GameObjectStats.MaxMP], Math.Max(0, value));
+                value = Math.Min(this[GameObjectStats.最大魔力], Math.Max(0, value));
                 if (this.CurrentMP != value)
                 {
                     this.CharacterData.CurrentMP.V = Math.Max(0, value);
@@ -2977,8 +2977,8 @@ namespace GameServer.Maps
             RefreshStats();
             if (!this.Died)
             {
-                this.CurrentHP = this[GameObjectStats.MaxHP];
-                this.CurrentMP = this[GameObjectStats.MaxMP];
+                this.CurrentHP = this[GameObjectStats.最大体力];
+                this.CurrentMP = this[GameObjectStats.最大魔力];
             }
             TeacherData 所属师门 = this.所属师门;
             if (所属师门 != null)
@@ -3816,7 +3816,7 @@ namespace GameServer.Maps
         {
             foreach (PetObject PetObject in this.Pets.ToList<PetObject>())
             {
-                if (PetObject.Neighbors.Contains(对象) && !对象.CheckStatus(GameObjectState.Invisibility | GameObjectState.StealthStatus))
+                if (PetObject.Neighbors.Contains(对象) && !对象.CheckStatus(GameObjectState.隐身状态 | GameObjectState.潜行状态))
                 {
                     PetObject.HateObject.添加仇恨(对象, default(DateTime), 0);
                 }
@@ -4020,14 +4020,14 @@ namespace GameServer.Maps
                 现身高度 = this.CurrentAltitude,
                 现身方向 = (ushort)this.CurrentDirection,
                 现身姿态 = ((byte)(this.Died ? 13 : 1)),
-                体力比例 = (byte)(this.CurrentHP * 100 / this[GameObjectStats.MaxHP])
+                体力比例 = (byte)(this.CurrentHP * 100 / this[GameObjectStats.最大体力])
             });
 
             ActiveConnection.SendPacket(new SyncObjectHP
             {
                 ObjectId = this.ObjectId,
                 CurrentHP = this.CurrentHP,
-                MaxHP = this[GameObjectStats.MaxHP]
+                MaxHP = this[GameObjectStats.最大体力]
             });
 
             ActiveConnection.SendPacket(new 同步对象魔力
@@ -4117,8 +4117,8 @@ namespace GameServer.Maps
                         复活方式 = 3
                     });
                 }
-                this.CurrentHP = (int)((float)this[GameObjectStats.MaxHP] * 0.3f);
-                this.CurrentMP = (int)((float)this[GameObjectStats.MaxMP] * 0.3f);
+                this.CurrentHP = (int)((float)this[GameObjectStats.最大体力] * 0.3f);
+                this.CurrentMP = (int)((float)this[GameObjectStats.最大魔力] * 0.3f);
                 this.Died = false;
                 this.Blocking = true;
                 if (this.CurrentMap == MapGatewayProcess.沙城地图 && MapGatewayProcess.SabakStage >= 2)
@@ -4497,7 +4497,7 @@ namespace GameServer.Maps
 
             foreach (BuffData BuffData in this.Buffs.Values.ToList<BuffData>())
             {
-                if (CharRole == GameObjectRace.刺客 && (BuffData.Buff效果 & Buff效果类型.状态标志) != Buff效果类型.技能标志 && (BuffData.Template.角色所处状态 & GameObjectState.StealthStatus) != GameObjectState.Normal)
+                if (CharRole == GameObjectRace.刺客 && (BuffData.Buff效果 & Buff效果类型.状态标志) != Buff效果类型.技能标志 && (BuffData.Template.角色所处状态 & GameObjectState.潜行状态) != GameObjectState.正常状态)
                 {
                     base.删除Buff时处理(BuffData.Id.V);
                 }
@@ -4536,7 +4536,7 @@ namespace GameServer.Maps
                     if (value2.CheckSkillMarks && !Buffs.ContainsKey(value2.SkillTagId))
                         continue;
 
-                    if ((value2.CheckPassiveTags && this[GameObjectStats.SkillSign] != 1) || (value2.CheckSkillCount && skill.RemainingTimeLeft.V <= 0))
+                    if ((value2.CheckPassiveTags && this[GameObjectStats.技能标志] != 1) || (value2.CheckSkillCount && skill.RemainingTimeLeft.V <= 0))
                     {
                         break;
                     }
@@ -4560,7 +4560,7 @@ namespace GameServer.Maps
                         {
                             if (value2.CalculateLuckyProbability)
                             {
-                                if (!ComputingClass.CheckProbability(ComputingClass.计算幸运(this[GameObjectStats.Luck])))
+                                if (!ComputingClass.CheckProbability(ComputingClass.计算幸运(this[GameObjectStats.幸运等级])))
                                 {
                                     continue;
                                 }
@@ -4635,9 +4635,9 @@ namespace GameServer.Maps
                         {
                             消耗背包物品(num2, list);
                         }
-                        if (value2.CheckPassiveTags && this[GameObjectStats.SkillSign] == 1)
+                        if (value2.CheckPassiveTags && this[GameObjectStats.技能标志] == 1)
                         {
-                            this[GameObjectStats.SkillSign] = 0;
+                            this[GameObjectStats.技能标志] = 0;
                         }
                         new SkillInstance(this, value2, skill, actionId, CurrentMap, CurrentPosition, targetObj, targetLocation, null);
                         break;
@@ -4762,8 +4762,8 @@ namespace GameServer.Maps
                     对象编号 = MapObject.ObjectId,
                     CurrentHP = MapObject.CurrentHP,
                     CurrentMP = MapObject.CurrentMP,
-                    MaxHP = MapObject[GameObjectStats.MaxHP],
-                    MaxMP = MapObject[GameObjectStats.MaxMP],
+                    MaxHP = MapObject[GameObjectStats.最大体力],
+                    MaxMP = MapObject[GameObjectStats.最大魔力],
                     Buff描述 = MapObject.对象Buff详述()
                 });
             }
@@ -10855,19 +10855,19 @@ namespace GameServer.Maps
                 if (equipmentItem.NeedRace != GameObjectRace.通用 && equipmentItem.NeedRace != CharRole)
                     return;
 
-                if (equipmentItem.NeedAttack > this[GameObjectStats.MaxDC])
+                if (equipmentItem.NeedAttack > this[GameObjectStats.最大攻击])
                     return;
 
-                if (equipmentItem.NeedMagic > this[GameObjectStats.MaxMC])
+                if (equipmentItem.NeedMagic > this[GameObjectStats.最大魔法])
                     return;
 
-                if (equipmentItem.NeedTaoism > this[GameObjectStats.MaxSC])
+                if (equipmentItem.NeedTaoism > this[GameObjectStats.最大道术])
                     return;
 
-                if (equipmentItem.NeedAcupuncture > this[GameObjectStats.MaxNC])
+                if (equipmentItem.NeedAcupuncture > this[GameObjectStats.最大刺术])
                     return;
 
-                if (equipmentItem.NeedArchery > this[GameObjectStats.MaxBC])
+                if (equipmentItem.NeedArchery > this[GameObjectStats.最大弓术])
                     return;
 
                 if (toStoragePosition == 0 && equipmentItem.Weight > 最大腕力)
@@ -10943,19 +10943,19 @@ namespace GameServer.Maps
                 if (equipmentItem.NeedRace != GameObjectRace.通用 && equipmentItem.NeedRace != this.CharRole)
                     return;
 
-                if (equipmentItem.NeedAttack > this[GameObjectStats.MaxDC])
+                if (equipmentItem.NeedAttack > this[GameObjectStats.最大攻击])
                     return;
 
-                if (equipmentItem.NeedMagic > this[GameObjectStats.MaxMC])
+                if (equipmentItem.NeedMagic > this[GameObjectStats.最大魔法])
                     return;
 
-                if (equipmentItem.NeedTaoism > this[GameObjectStats.MaxSC])
+                if (equipmentItem.NeedTaoism > this[GameObjectStats.最大道术])
                     return;
 
-                if (equipmentItem.NeedAcupuncture > this[GameObjectStats.MaxNC])
+                if (equipmentItem.NeedAcupuncture > this[GameObjectStats.最大刺术])
                     return;
 
-                if (equipmentItem.NeedArchery > this[GameObjectStats.MaxBC])
+                if (equipmentItem.NeedArchery > this[GameObjectStats.最大弓术])
                     return;
 
                 if (fromStoragePosition == 0 && equipmentItem.Weight > this.最大腕力)
@@ -13727,23 +13727,23 @@ namespace GameServer.Maps
                     {
                         Dictionary<GameObjectStats, int> 装备Stat = EquipmentData3.装备Stat;
                         int value;
-                        if ((value = (装备Stat.ContainsKey(GameObjectStats.MinDC) ? 装备Stat[GameObjectStats.MinDC] : 0) + (装备Stat.ContainsKey(GameObjectStats.MaxDC) ? 装备Stat[GameObjectStats.MaxDC] : 0)) > 0)
+                        if ((value = (装备Stat.ContainsKey(GameObjectStats.最小攻击) ? 装备Stat[GameObjectStats.最小攻击] : 0) + (装备Stat.ContainsKey(GameObjectStats.最大攻击) ? 装备Stat[GameObjectStats.最大攻击] : 0)) > 0)
                         {
                             dictionary4[0][EquipmentData3] = value;
                         }
-                        if ((value = (装备Stat.ContainsKey(GameObjectStats.MinMC) ? 装备Stat[GameObjectStats.MinMC] : 0) + (装备Stat.ContainsKey(GameObjectStats.MaxMC) ? 装备Stat[GameObjectStats.MaxMC] : 0)) > 0)
+                        if ((value = (装备Stat.ContainsKey(GameObjectStats.最小魔法) ? 装备Stat[GameObjectStats.最小魔法] : 0) + (装备Stat.ContainsKey(GameObjectStats.最大魔法) ? 装备Stat[GameObjectStats.最大魔法] : 0)) > 0)
                         {
                             dictionary4[1][EquipmentData3] = value;
                         }
-                        if ((value = (装备Stat.ContainsKey(GameObjectStats.MinSC) ? 装备Stat[GameObjectStats.MinSC] : 0) + (装备Stat.ContainsKey(GameObjectStats.MaxSC) ? 装备Stat[GameObjectStats.MaxSC] : 0)) > 0)
+                        if ((value = (装备Stat.ContainsKey(GameObjectStats.最小道术) ? 装备Stat[GameObjectStats.最小道术] : 0) + (装备Stat.ContainsKey(GameObjectStats.最大道术) ? 装备Stat[GameObjectStats.最大道术] : 0)) > 0)
                         {
                             dictionary4[2][EquipmentData3] = value;
                         }
-                        if ((value = (装备Stat.ContainsKey(GameObjectStats.MinNC) ? 装备Stat[GameObjectStats.MinNC] : 0) + (装备Stat.ContainsKey(GameObjectStats.MaxNC) ? 装备Stat[GameObjectStats.MaxNC] : 0)) > 0)
+                        if ((value = (装备Stat.ContainsKey(GameObjectStats.最小刺术) ? 装备Stat[GameObjectStats.最小刺术] : 0) + (装备Stat.ContainsKey(GameObjectStats.最大刺术) ? 装备Stat[GameObjectStats.最大刺术] : 0)) > 0)
                         {
                             dictionary4[3][EquipmentData3] = value;
                         }
-                        if ((value = (装备Stat.ContainsKey(GameObjectStats.MinBC) ? 装备Stat[GameObjectStats.MinBC] : 0) + (装备Stat.ContainsKey(GameObjectStats.MaxBC) ? 装备Stat[GameObjectStats.MaxBC] : 0)) > 0)
+                        if ((value = (装备Stat.ContainsKey(GameObjectStats.最小弓术) ? 装备Stat[GameObjectStats.最小弓术] : 0) + (装备Stat.ContainsKey(GameObjectStats.最大弓术) ? 装备Stat[GameObjectStats.最大弓术] : 0)) > 0)
                         {
                             dictionary4[4][EquipmentData3] = value;
                         }
@@ -14766,8 +14766,8 @@ namespace GameServer.Maps
                         WeaponBody = EquipmentData?.对应模板?.V.Id ?? 0,
                         Clothes = playerObj.Equipment.TryGetValue(1, out var EquipmentData2) ? EquipmentData2.对应模板?.V?.Id ?? 0 : 0,
                         Cloak = playerObj.Equipment.TryGetValue(2, out var EquipmentData3) ? EquipmentData3.对应模板?.V?.Id ?? 0 : 0,
-                        CurrentHP = playerObj[GameObjectStats.MaxHP],
-                        CurrentMP = playerObj[GameObjectStats.MaxMP],
+                        CurrentHP = playerObj[GameObjectStats.最大体力],
+                        CurrentMP = playerObj[GameObjectStats.最大魔力],
                         Name = playerObj.ObjectName,
                         GuildId = playerObj.Guild?.Index.V ?? 0,
 
@@ -14796,7 +14796,7 @@ namespace GameServer.Maps
                             MobId = monsterObj.MonsterId,
                             CurrentRank = monsterObj.宠物等级,
                             对象质量 = (byte)monsterObj.Category,
-                            MaxHP = monsterObj[GameObjectStats.MaxHP]
+                            MaxHP = monsterObj[GameObjectStats.最大体力]
                         });
                     }
                     else
@@ -14807,7 +14807,7 @@ namespace GameServer.Maps
                             ObjectClass = monsterObj.CurrentLevel,
                             ObjectMass = (byte)monsterObj.Category,
                             ObjectTemplate = monsterObj.Template?.Id ?? 0,
-                            MaxHP = monsterObj[GameObjectStats.MaxHP]
+                            MaxHP = monsterObj[GameObjectStats.最大体力]
                         });
                     }
                 }
@@ -14821,7 +14821,7 @@ namespace GameServer.Maps
                         CurrentRank = PetObject.宠物等级,
                         对象等级 = PetObject.CurrentLevel,
                         对象质量 = (byte)PetObject.宠物级别,
-                        MaxHP = PetObject[GameObjectStats.MaxHP],
+                        MaxHP = PetObject[GameObjectStats.最大体力],
                         主人编号 = PetObject.PlayerOwner?.ObjectId ?? 0,
                         主人名字 = PetObject.PlayerOwner?.ObjectName ?? string.Empty
                     });
@@ -14834,7 +14834,7 @@ namespace GameServer.Maps
                         ObjectId = GuardInstance.ObjectId,
                         ObjectClass = GuardInstance.CurrentLevel,
                         ObjectTemplate = GuardInstance.对象模板?.GuardNumber ?? 0,
-                        MaxHP = GuardInstance[GameObjectStats.MaxHP]
+                        MaxHP = GuardInstance[GameObjectStats.最大体力]
                     });
                 }
             }
