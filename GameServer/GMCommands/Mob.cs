@@ -27,7 +27,7 @@ namespace GameServer.GMCommands
                 return;
             }
 
-            var mapInstance = MapGatewayProcess.GetMapInstance(map.MapId);
+            var mapInstance = MapGatewayProcess.GetMapInstance(map.地图编号);
 
             new MonsterObject(monster, mapInstance, int.MaxValue, new System.Drawing.Point[] { new System.Drawing.Point(MapX, MapY) }, true, true) { 存活时间 = MainProcess.CurrentTime.AddMinutes(1.0) };
         }

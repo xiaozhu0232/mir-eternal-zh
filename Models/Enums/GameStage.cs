@@ -3,7 +3,7 @@
 namespace GameServer
 {
 	
-	public enum GameStage
+	public enum GameStage   //GameStage
 	{
 		
 		StartingSessionScene,

@@ -12,9 +12,9 @@ namespace GameServer.Templates
 		public int Damage;
 		public ushort MissDamage;
 		public MapObject Object;
-		public SkillHitFeedback Feedback;
+		public 技能命中反馈 Feedback;
 
-		public HitDetail(MapObject obj, SkillHitFeedback feedback = default)
+		public HitDetail(MapObject obj, 技能命中反馈 feedback = default)
 		{
 			Object = obj;
 			Feedback = feedback;

@@ -3,7 +3,7 @@
 namespace GameServer.Templates
 {
 	
-	public sealed class A_00_触发子类技能 : SkillTask  //A_00_触发子类技能 : SkillTask 
+	public sealed class A_00_触发子类技能 : SkillTask  //A_00_TriggerSubSkills : SkillTask 
 	{
 		
 		public A_00_触发子类技能()
@@ -13,19 +13,19 @@ namespace GameServer.Templates
 		}
 
 		
-		public SkillTriggerMethod 技能触发方式;
+		public 技能触发方式 技能触发方式;  //SkillTriggerMethod
 
 		
-		public string 触发SkillName;   
+		public string 触发技能名字;     //触发SkillName
 
 		
-		public string 反手SkillName;
+		public string 反手技能名字;  // 反手SkillName
 
 		
-		public bool CalculateTriggerProbability;  //Buff触发概率
+		public bool 计算触发概率;  //CalculateTriggerProbability
 
 		
-		public bool CalculateLuckyProbability;  //计算幸运概率
+		public bool 计算幸运概率;  //计算幸运概率//CalculateLuckyProbability
 
 		
 		public float 技能触发概率;
@@ -37,10 +37,10 @@ namespace GameServer.Templates
 		public float Buff增加系数;
 
 		
-		public bool 验证ItSelfBuff;  //验证自身Buff
+		public bool 验证自身Buff;  //验证自身Buff //验证ItSelfBuff
 
 		
-		public ushort Id;  //触发Buff编号
+		public ushort 自身Buff编号;  //Id
 
 		
 		public bool 触发成功移除;
@@ -49,7 +49,7 @@ namespace GameServer.Templates
 		public bool 验证铭文技能;
 
 		
-		public ushort 所需Id; //所需铭文编号
+		public ushort 所需铭文编号; //所需铭文编号 //所需Id
 
 		
 		public bool 同组铭文无效;

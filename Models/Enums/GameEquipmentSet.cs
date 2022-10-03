@@ -3,7 +3,7 @@
 namespace GameServer
 {
 	
-	public enum GameEquipmentSet
+	public enum GameEquipmentSet  //游戏装备套装
 	{
 		
 		无,

@@ -63,7 +63,7 @@ namespace GameServer.Templates
 		public int[] 伤害增减基数;  //DamageIncOrDecBase
 		public float[] 伤害增减系数;  //DamageIncOrDecFactor
 		public string 触发陷阱技能;  //TriggerTrapSkills
-		public ObjectSize 触发陷阱数量; //NumberTrapsTriggered
+		public 技能范围类型 触发陷阱数量; //NumberTrapsTriggered
 		public byte[] 体力回复基数;  //PhysicalRecoveryBase
 		public int 诱惑时长增加;  //TemptationIncreaseDuration
 		public float 诱惑概率增加;  //TemptationIncreaseRate
@@ -101,10 +101,10 @@ namespace GameServer.Templates
 				{
 					foreach (InscriptionStat stat in 属性增减)
 					{
-						_baseStatsIncOrDec[0][stat.Stat] = stat.Level0;
-						_baseStatsIncOrDec[1][stat.Stat] = stat.Level1;
-						_baseStatsIncOrDec[2][stat.Stat] = stat.Level2;
-						_baseStatsIncOrDec[3][stat.Stat] = stat.Level3;
+						_baseStatsIncOrDec[0][stat.Stat] = stat.零级;
+						_baseStatsIncOrDec[1][stat.Stat] = stat.一级;
+						_baseStatsIncOrDec[2][stat.Stat] = stat.二级;
+						_baseStatsIncOrDec[3][stat.Stat] = stat.三级;
 					}
 				}
 				return _baseStatsIncOrDec;

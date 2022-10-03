@@ -3,7 +3,7 @@
 namespace GameServer
 {
 	
-	public enum RankType
+	public enum RankType  //排名类型
 	{
 		
 		个人等级,

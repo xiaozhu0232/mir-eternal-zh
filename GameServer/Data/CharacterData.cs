@@ -68,19 +68,19 @@ namespace GameServer.Data
             }
         }
 
-        public long CharMaxExp => CharacterProgression.MaxExpTable[CharLevel];
+        public long CharMaxExp => CharacterProgression.升级所需经验[CharLevel];
 
         public int Ingots
         {
             get
             {
-                if (!Currencies.TryGetValue(GameCurrency.Ingots, out int result))
+                if (!Currencies.TryGetValue(GameCurrency.元宝, out int result))
                     return 0;
                 return result;
             }
             set
             {
-                Currencies[GameCurrency.Ingots] = value;
+                Currencies[GameCurrency.元宝] = value;
                 MainForm.UpdatedCharacterData(this, nameof(Ingots), value);
             }
         }
@@ -91,7 +91,7 @@ namespace GameServer.Data
             get
             {
                 int result;
-                if (!this.Currencies.TryGetValue(GameCurrency.Gold, out result))
+                if (!this.Currencies.TryGetValue(GameCurrency.金币, out result))
                 {
                     return 0;
                 }
@@ -99,7 +99,7 @@ namespace GameServer.Data
             }
             set
             {
-                this.Currencies[GameCurrency.Gold] = value;
+                this.Currencies[GameCurrency.金币] = value;
                 MainForm.UpdatedCharacterData(this, nameof(NumberGoldCoins), value);
             }
         }
@@ -110,7 +110,7 @@ namespace GameServer.Data
             get
             {
                 int result;
-                if (!this.Currencies.TryGetValue(GameCurrency.FamousTeacherReputation, out result))
+                if (!this.Currencies.TryGetValue(GameCurrency.名师声望, out result))
                 {
                     return 0;
                 }
@@ -118,7 +118,7 @@ namespace GameServer.Data
             }
             set
             {
-                this.Currencies[GameCurrency.FamousTeacherReputation] = value;
+                this.Currencies[GameCurrency.名师声望] = value;
                 MainForm.UpdatedCharacterData(this, "MasterRep", value);
             }
         }
@@ -338,7 +338,7 @@ namespace GameServer.Data
                 var currencyType = (GameCurrency)i;
                 switch (currencyType)
                 {
-                    case GameCurrency.Gold:
+                    case GameCurrency.金币:
                         Currencies[(GameCurrency)i] = 0;
                         break;
                     default:
@@ -381,7 +381,7 @@ namespace GameServer.Data
             {
                 if (InscriptionSkill.DataSheet.TryGetValue(skill, out InscriptionSkill inscriptionSkill))
                 {
-                    SkillData SkillData = new SkillData(inscriptionSkill.SkillId);
+                    SkillData SkillData = new SkillData(inscriptionSkill.技能编号);
                     this.SkillData.Add(SkillData.SkillId.V, SkillData);
                     this.ShorcutField[0] = SkillData;
                     SkillData.ShorcutField.V = 0;
@@ -393,22 +393,22 @@ namespace GameServer.Data
         {
             foreach (var inscriptionItem in InscriptionItems.AllInscriptionItems)
             {
-                if (inscriptionItem.NeedGender != null && inscriptionItem.NeedGender != CharGender.V)
+                if (inscriptionItem.需要性别 != null && inscriptionItem.需要性别 != CharGender.V)
                     continue;
 
-                if (inscriptionItem.NeedRace?.Length > 0 && !inscriptionItem.NeedRace.Contains(CharRace.V))
+                if (inscriptionItem.需要职业?.Length > 0 && !inscriptionItem.需要职业.Contains(CharRace.V))
                     continue;
 
-                if (!GameItems.DataSheet.TryGetValue(inscriptionItem.ItemId, out GameItems item))
+                if (!GameItems.DataSheet.TryGetValue(inscriptionItem.物品编号, out GameItems item))
                     continue;
 
-                if (inscriptionItem.Backpack == ItemBackPack.人物穿戴 && item is not EquipmentItem)
+                if (inscriptionItem.角色背包 == ItemBackPack.人物穿戴 && item is not EquipmentItem)
                     continue;
 
-                switch (inscriptionItem.Backpack)
+                switch (inscriptionItem.角色背包)
                 {
                     case ItemBackPack.人物背包:
-                        for (var i = 0; i < (inscriptionItem.Quantity ?? 1); i++)
+                        for (var i = 0; i < (inscriptionItem.数量 ?? 1); i++)
                             if (TryGetFreeSpaceAtInventory(out byte inventoryPosition))
                                 Backpack[inventoryPosition] = item is EquipmentItem
                                     ? new EquipmentData((EquipmentItem)item, this, 1, inventoryPosition, false)
@@ -662,9 +662,9 @@ namespace GameServer.Data
             binaryWriter.Write(CharLevel);
             binaryWriter.Write(CurrentMap.V);
             binaryWriter.Write(Equipment[0]?.升级次数.V ?? 0);
-            binaryWriter.Write((Equipment[0]?.对应模板.V?.Id).GetValueOrDefault());
-            binaryWriter.Write((Equipment[1]?.对应模板.V?.Id).GetValueOrDefault());
-            binaryWriter.Write((Equipment[2]?.对应模板.V?.Id).GetValueOrDefault());
+            binaryWriter.Write((Equipment[0]?.对应模板.V?.物品编号).GetValueOrDefault());
+            binaryWriter.Write((Equipment[1]?.对应模板.V?.物品编号).GetValueOrDefault());
+            binaryWriter.Write((Equipment[2]?.对应模板.V?.物品编号).GetValueOrDefault());
             binaryWriter.Write(ComputingClass.TimeShift(OfflineDate.V));
             binaryWriter.Write((!FreezeDate.V.Equals(default(DateTime))) ? ComputingClass.TimeShift(FreezeDate.V) : 0);
 

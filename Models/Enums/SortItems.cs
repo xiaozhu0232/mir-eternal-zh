@@ -3,7 +3,7 @@
 namespace GameServer
 {
 	
-	public enum SortItems
+	public enum SortItems  //物品摆放分类
 	{
 		
 		装备,

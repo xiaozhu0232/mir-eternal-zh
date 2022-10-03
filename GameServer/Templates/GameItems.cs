@@ -7,34 +7,34 @@ namespace GameServer.Templates
 {
     public class GameItems
     {
-        public static Dictionary<int, GameItems> DataSheet;
-        public static Dictionary<string, GameItems> DataSheetByName;
+        public static Dictionary<int, GameItems> DataSheet;  //游戏物品  数据表
+        public static Dictionary<string, GameItems> DataSheetByName;  //游戏物品 检索表
 
-        public string Name;
-        public int Id;
-        public int MaxDura;
-        public int Weight;
-        public int Level;
-        public int NeedLevel;
-        public int Cooldown;
-        public byte Group;
-        public int GroupCooling;
-        public int SalePrice;
-        public ushort AdditionalSkill;
-        public bool IsBound;
-        public bool CanDrop;
-        public bool CanSold;
-        public bool ValuableObjects;
-        public int? UnpackItemId;
-        public List<GameItemTreasure> TreasureItems = new List<GameItemTreasure>();
+        public string 物品名字;  //Name
+        public int 物品编号;     //Id
+        public int 物品持久;   //MaxDura
+        public int 物品重量;   //Weight
+        public int 物品等级;   //Level
+        public int 需要等级;   //NeedLevel
+        public int 冷却时间;    //Cooldown
+        public byte 物品分组;   //Group
+        public int 分组冷却;   //GroupCooling
+        public int 出售价格;    //SalePrice
+        public ushort 附加技能;   //AdditionalSkill
+        public bool 是否绑定;    //IsBound
+        public bool 能否掉落;    //CanDrop
+        public bool 能否出售;    //CanSold
+        public bool 贵重物品;   //ValuableObjects
+        public int? 解包物品编号;    //UnpackItemId
+        public List<GameItemTreasure> 宝盒物品 = new List<GameItemTreasure>();  //GameItemTreasure   TreasureItems
 
-        public ItemType Type;
-        public GameObjectRace NeedRace;
-        public GameObjectGender NeedGender;
-        public PersistentItemType PersistType;
-        public ItemsForSale StoreType;
+        public 物品使用分类 物品分类;   //物品使用分类 Type
+        public GameObjectRace 需要职业;  //游戏对象职业 NeedRace
+        public GameObjectGender 需要性别;  //游戏对象性别 NeedGender
+        public PersistentItemType 持久类型;  //物品持久分类 PersistType
+        public ItemsForSale 商店类型;   //物品出售分类 StoreType
 
-        public IDictionary<ItemProperty, int> Props = new Dictionary<ItemProperty, int>();
+        public IDictionary<ItemProperty, int> 物品属性 = new Dictionary<ItemProperty, int>();   //Props
 
         public static GameItems GetItem(int id)
         {
@@ -59,27 +59,27 @@ namespace GameServer.Templates
             DataSheet = new Dictionary<int, GameItems>();
             DataSheetByName = new Dictionary<string, GameItems>();
 
-            string text = Config.GameDataPath + "\\System\\Items\\Common\\";
+            string text = Config.GameDataPath + "\\System\\物品数据\\普通物品\\";
             if (Directory.Exists(text))
             {
                 var array = Serializer.Deserialize<GameItems>(text);
                 for (int i = 0; i < array.Length; i++)
                 {
-                    GameItems gameItem = array[i] as GameItems;
-                    DataSheet.Add(gameItem.Id, gameItem);
-                    DataSheetByName.Add(gameItem.Name, gameItem);
+                    GameItems 游戏物品 = array[i] as GameItems;
+                    DataSheet.Add(游戏物品.物品编号, 游戏物品);
+                    DataSheetByName.Add(游戏物品.物品名字, 游戏物品);
                 }
             }
 
-            text = Config.GameDataPath + "\\System\\Items\\Equipment\\";
+            text = Config.GameDataPath + "\\System\\物品数据\\装备物品\\";
             if (Directory.Exists(text))
             {
                 var array = Serializer.Deserialize<EquipmentItem>(text);
                 for (int i = 0; i < array.Length; i++)
                 {
-                    EquipmentItem gameItem = array[i] as EquipmentItem;
-                    DataSheet.Add(gameItem.Id, gameItem);
-                    DataSheetByName.Add(gameItem.Name, gameItem);
+                    EquipmentItem 游戏装备 = array[i] as EquipmentItem;
+                    DataSheet.Add(游戏装备.物品编号, 游戏装备);
+                    DataSheetByName.Add(游戏装备.物品名字, 游戏装备);
                 }
             }
         }

@@ -164,13 +164,13 @@ namespace GameServer.Maps
 
             if (MapInstances.TryGetValue(2433, out 沙城地图) && GameBuffs.DataSheet.TryGetValue(22300, out var 游戏Buff) && Templates.Monsters.DataSheet.TryGetValue("沙巴克城门", out var 对应模板) && Templates.Monsters.DataSheet.TryGetValue("沙巴克宫门", out var 对应模板2))
             {
-                if ((皇宫随机区域 = 沙城地图.地图区域.FirstOrDefault((MapAreas O) => O.RegionName == "Shabak-Random areas of the Palace")) != null)
+                if ((皇宫随机区域 = 沙城地图.地图区域.FirstOrDefault((MapAreas O) => O.区域名字 == "Shabak-Random areas of the Palace")) != null)
                 {
-                    if ((外城复活区域 = 沙城地图.地图区域.FirstOrDefault((MapAreas O) => O.RegionName == "Shabak-Outer Resurrection Area")) != null)
+                    if ((外城复活区域 = 沙城地图.地图区域.FirstOrDefault((MapAreas O) => O.区域名字 == "Shabak-Outer Resurrection Area")) != null)
                     {
-                        if ((内城复活区域 = 沙城地图.地图区域.FirstOrDefault((MapAreas O) => O.RegionName == "Shabak-Resurrection Area Town")) != null)
+                        if ((内城复活区域 = 沙城地图.地图区域.FirstOrDefault((MapAreas O) => O.区域名字 == "Shabak-Resurrection Area Town")) != null)
                         {
-                            if ((守方传送区域 = 沙城地图.地图区域.FirstOrDefault((MapAreas O) => O.RegionName == "Shabak-Safe Teleport")) != null)
+                            if ((守方传送区域 = 沙城地图.地图区域.FirstOrDefault((MapAreas O) => O.区域名字 == "Shabak-Safe Teleport")) != null)
                             {
                                 沙城城门 = new MonsterObject(对应模板, 沙城地图, int.MaxValue, new Point[] { ShachengGateCoords }, true, true)
                                 {
@@ -521,7 +521,7 @@ namespace GameServer.Maps
             }
             bool flag2 = true;
             GuildData GuildData3 = null;
-            foreach (Point 坐标 in MapGatewayProcess.皇宫随机区域.RangeCoords)
+            foreach (Point 坐标 in MapGatewayProcess.皇宫随机区域.范围坐标)
             {
                 foreach (MapObject MapObject13 in MapGatewayProcess.沙城地图[坐标])
                 {
@@ -723,12 +723,12 @@ namespace GameServer.Maps
 
             foreach (TeleportGates 传送法阵 in TeleportGates.DataSheet)
             {
-                var mapInstanceId = 传送法阵.FromMapId * 16 + 1;
+                var mapInstanceId = 传送法阵.所处地图 * 16 + 1;
                 if (!MapInstances.ContainsKey(mapInstanceId)) continue;
                 var mapInstance = MapInstances[mapInstanceId];
 
                 if (!mapInstance.CopyMap)
-                    mapInstance.法阵列表.Add(传送法阵.TeleportGateNumber, 传送法阵);
+                    mapInstance.法阵列表.Add(传送法阵.法阵编号, 传送法阵);
             }
 
             watcher.Stop();
@@ -742,14 +742,14 @@ namespace GameServer.Maps
 
             foreach (MapGuards 守卫刷新 in MapGuards.DataSheet)
             {
-                var mapInstanceId = 守卫刷新.FromMapId * 16 + 1;
+                var mapInstanceId = 守卫刷新.所处地图 * 16 + 1;
                 if (!MapInstances.ContainsKey(mapInstanceId)) continue;
                 var mapInstance = MapInstances[mapInstanceId];
 
                 mapInstance.守卫区域.Add(守卫刷新);
 
-                if (!mapInstance.CopyMap && Guards.DataSheet.TryGetValue(守卫刷新.GuardNumber, out var 对应模板))
-                    new GuardObject(对应模板, mapInstance, 守卫刷新.Direction, 守卫刷新.FromCoords);
+                if (!mapInstance.CopyMap && Guards.DataSheet.TryGetValue(守卫刷新.守卫编号, out var 对应模板))
+                    new GuardObject(对应模板, mapInstance, 守卫刷新.所处方向, 守卫刷新.所处坐标);
             }
             watcher.Stop();
             MainForm.AddSystemLog($"Loaded map guards in {watcher.ElapsedMilliseconds}ms");
@@ -762,14 +762,14 @@ namespace GameServer.Maps
 
             foreach (var chest in MapChest.DataSheet)
             {
-                var mapInstanceId = chest.MapId * 16 + 1;
+                var mapInstanceId = chest.所处地图 * 16 + 1;
                 if (!MapInstances.ContainsKey(mapInstanceId)) continue;
                 var map = MapInstances[mapInstanceId];
 
                 map.Chests.Add(chest);
 
-                if (!map.CopyMap && ChestTemplate.DataSheet.TryGetValue(chest.ChestId, out var chestTemplate))
-                    new ChestObject(chestTemplate, map, chest.Direction, chest.Coords);
+                if (!map.CopyMap && ChestTemplate.DataSheet.TryGetValue(chest.宝箱编号, out var chestTemplate))
+                    new ChestObject(chestTemplate, map, chest.所处方向, chest.所处坐标);
             }
 
             watcher.Stop();
@@ -850,7 +850,7 @@ namespace GameServer.Maps
             var instancesToInitialize = new List<MapInstance>();
             foreach (MonsterSpawns spawn in MonsterSpawns.DataSheet)
             {
-                var mapInstanceId = spawn.FromMapId * 16 + 1;
+                var mapInstanceId = spawn.所处地图 * 16 + 1;
                 if (!MapInstances.ContainsKey(mapInstanceId)) continue;
                 var mapInstance = MapInstances[mapInstanceId];
 
@@ -922,7 +922,7 @@ namespace GameServer.Maps
             watcher.Start();
             foreach (GameMap 游戏地图 in GameMap.DataSheet.Values)
             {
-                MapInstances.Add((int)(游戏地图.MapId * 16 + 1), new MapInstance(游戏地图, 16777217));
+                MapInstances.Add((int)(游戏地图.地图编号 * 16 + 1), new MapInstance(游戏地图, 16777217));
             }
             watcher.Stop();
             MainForm.AddSystemLog($"Loaded map instances in {watcher.ElapsedMilliseconds}ms");
@@ -930,7 +930,7 @@ namespace GameServer.Maps
             watcher.Restart();
             foreach (Terrains 地形数据 in Terrains.DataSheet.Values)
             {
-                var istanceId = (int)(地形数据.MapId * 16 + 1);
+                var istanceId = (int)(地形数据.地图编号 * 16 + 1);
 
                 if (!MapInstances.TryGetValue(istanceId, out var instance))
                     continue;
@@ -953,17 +953,17 @@ namespace GameServer.Maps
             {
                 foreach (MapInstance MapInstance2 in MapInstances.Values)
                 {
-                    if (MapInstance2.MapId == (int)地图区域.FromMapId)
+                    if (MapInstance2.MapId == (int)地图区域.所处地图)
                     {
-                        if (地图区域.AreaType == AreaType.复活区域)
+                        if (地图区域.区域类型 == AreaType.复活区域)
                         {
                             MapInstance2.ResurrectionArea = 地图区域;
                         }
-                        if (地图区域.AreaType == AreaType.红名区域)
+                        if (地图区域.区域类型 == AreaType.红名区域)
                         {
                             MapInstance2.红名区域 = 地图区域;
                         }
-                        if (地图区域.AreaType == AreaType.传送区域)
+                        if (地图区域.区域类型 == AreaType.传送区域)
                         {
                             MapInstance2.传送区域 = 地图区域;
                         }
@@ -1005,25 +1005,25 @@ namespace GameServer.Maps
 
             switch (obj.ObjectType)
             {
-                case GameObjectType.Player:
+                case 游戏对象类型.玩家:
                     Players.Add(obj.ObjectId, (PlayerObject)obj);
                     return;
-                case GameObjectType.Pet:
+                case 游戏对象类型.宠物:
                     Pets.Add(obj.ObjectId, (PetObject)obj);
                     return;
-                case GameObjectType.Monster:
+                case 游戏对象类型.怪物:
                     Monsters.TryAdd(obj.ObjectId, (MonsterObject)obj);
                     return;
-                case GameObjectType.NPC:
+                case 游戏对象类型.Npcc:
                     NPCs.TryAdd(obj.ObjectId, (GuardObject)obj);
                     return;
-                case GameObjectType.Item:
+                case 游戏对象类型.物品:
                     Items.Add(obj.ObjectId, (ItemObject)obj);
                     return;
-                case GameObjectType.Trap:
+                case 游戏对象类型.陷阱:
                     Traps.TryAdd(obj.ObjectId, (TrapObject)obj);
                     return;
-                case GameObjectType.Chest:
+                case 游戏对象类型.Chest:
                     Chests.TryAdd(obj.ObjectId, (ChestObject)obj);
                     return;
                 default:
@@ -1038,25 +1038,25 @@ namespace GameServer.Maps
 
             switch (obj.ObjectType)
             {
-                case GameObjectType.Player:
+                case 游戏对象类型.玩家:
                     Players.Remove(obj.ObjectId);
                     return;
-                case GameObjectType.Pet:
+                case 游戏对象类型.宠物:
                     Pets.Remove(obj.ObjectId);
                     return;
-                case GameObjectType.Monster:
+                case 游戏对象类型.怪物:
                     Monsters.Remove(obj.ObjectId, out var monsterRemoved);
                     return;
-                case GameObjectType.NPC:
+                case 游戏对象类型.Npcc:
                     NPCs.Remove(obj.ObjectId, out var guardRemoved);
                     return;
-                case GameObjectType.Item:
+                case 游戏对象类型.物品:
                     Items.Remove(obj.ObjectId);
                     return;
-                case GameObjectType.Trap:
+                case 游戏对象类型.陷阱:
                     Traps.Remove(obj.ObjectId, out var trapRemoved);
                     return;
-                case GameObjectType.Chest:
+                case 游戏对象类型.Chest:
                     Chests.Remove(obj.ObjectId, out var chestRemoved);
                     return;
                 default:

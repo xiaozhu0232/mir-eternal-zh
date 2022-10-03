@@ -3,10 +3,10 @@
 namespace GameServer.Templates
 {
 	
-	public sealed class C_07_CalculateTargetTeleportation : SkillTask
+	public sealed class C_07_计算目标瞬移 : SkillTask  //C_07_CalculateTargetTeleportation
 	{
 		
-		public C_07_CalculateTargetTeleportation()
+ 		public C_07_计算目标瞬移()   //C_07_CalculateTargetTeleportation
 		{
 			
 			
@@ -22,9 +22,9 @@ namespace GameServer.Templates
 		public ushort 失败添加Buff;
 
 		
-		public bool GainSkillExp;
+		public bool 增加技能经验;  //GainSkillExp
 
 		
-		public ushort ExpSkillId;
+		public ushort 经验技能编号;  //ExpSkillId
 	}
 }

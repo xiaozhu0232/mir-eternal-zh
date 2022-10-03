@@ -22,16 +22,16 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.StoreType;
+                return 物品模板.商店类型;
             }
         }
 
 
-        public ItemType 物品类型
+        public 物品使用分类 物品类型
         {
             get
             {
-                return 物品模板.Type;
+                return 物品模板.物品分类;
             }
         }
 
@@ -40,7 +40,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.PersistType;
+                return 物品模板.持久类型;
             }
         }
 
@@ -48,7 +48,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.UnpackItemId;
+                return 物品模板.解包物品编号;
 
             }
         }
@@ -57,7 +57,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.NeedRace;
+                return 物品模板.需要职业;
             }
         }
 
@@ -66,7 +66,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.NeedGender;
+                return 物品模板.需要性别;
             }
         }
 
@@ -75,7 +75,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.Name;
+                return 物品模板.物品名字;
             }
         }
 
@@ -84,7 +84,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.NeedLevel;
+                return 物品模板.需要等级;
             }
         }
 
@@ -93,7 +93,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 对应模板.V.Id;
+                return 对应模板.V.物品编号;
             }
         }
 
@@ -104,9 +104,9 @@ namespace GameServer.Data
             {
                 if (PersistType != PersistentItemType.堆叠)
                 {
-                    return 物品模板.Weight;
+                    return 物品模板.物品重量;
                 }
-                return 当前持久.V * 物品模板.Weight;
+                return 当前持久.V * 物品模板.物品重量;
             }
         }
 
@@ -115,7 +115,7 @@ namespace GameServer.Data
         {
             get
             {
-                switch (对应模板.V.PersistType)
+                switch (对应模板.V.持久类型)
                 {
                     default:
                         return 0;
@@ -126,8 +126,8 @@ namespace GameServer.Data
                             EquipmentData EquipmentData2 = this as EquipmentData;
                             EquipmentItem obj = 对应模板.V as EquipmentItem;
                             int v3 = EquipmentData2.当前持久.V;
-                            int num2 = obj.MaxDura * 1000;
-                            int num3 = obj.SalePrice;
+                            int num2 = obj.物品持久 * 1000;
+                            int num3 = obj.出售价格;
                             int num4 = Math.Max((sbyte)0, EquipmentData2.Luck.V);
                             int num5 = EquipmentData2.升级Attack.V * 100 + EquipmentData2.升级Magic.V * 100 + EquipmentData2.升级Taoism.V * 100 + EquipmentData2.升级Needle.V * 100 + EquipmentData2.升级Archery.V * 100;
                             int num6 = 0;
@@ -139,16 +139,16 @@ namespace GameServer.Data
                                 }
                             }
                             int num7 = 0;
-                            foreach (RandomStats item in EquipmentData2.随机Stat)
+                            foreach (随机属性 item in EquipmentData2.随机属性)
                             {
-                                num7 += item.CombatBonus * 100;
+                                num7 += item.战力加成 * 100;
                             }
                             int num8 = 0;
                             using (IEnumerator<GameItems> enumerator3 = EquipmentData2.镶嵌灵石.Values.GetEnumerator())
                             {
                                 while (enumerator3.MoveNext())
                                 {
-                                    switch (enumerator3.Current.Name)
+                                    switch (enumerator3.Current.物品名字)
                                     {
                                         case "驭朱灵石8级":
                                         case "精绿灵石8级":
@@ -341,21 +341,21 @@ namespace GameServer.Data
                     case PersistentItemType.消耗:
                         {
                             int v2 = 当前持久.V;
-                            int MaxDurability = 对应模板.V.MaxDura;
-                            int num = 对应模板.V.SalePrice;
+                            int MaxDurability = 对应模板.V.物品持久;
+                            int num = 对应模板.V.出售价格;
                             return (int)((decimal)v2 / (decimal)MaxDurability * (decimal)num);
                         }
                     case PersistentItemType.堆叠:
                         {
                             int v = 当前持久.V;
-                            return 对应模板.V.SalePrice * v;
+                            return 对应模板.V.出售价格 * v;
                         }
                     case PersistentItemType.回复:
                         return 1;
                     case PersistentItemType.容器:
-                        return 对应模板.V.SalePrice;
+                        return 对应模板.V.出售价格;
                     case PersistentItemType.纯度:
-                        return 对应模板.V.SalePrice;
+                        return 对应模板.V.出售价格;
                 }
             }
         }
@@ -365,7 +365,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 对应模板.V.MaxDura;
+                return 对应模板.V.物品持久;
             }
         }
 
@@ -376,9 +376,9 @@ namespace GameServer.Data
             {
                 if (PersistType != PersistentItemType.装备)
                 {
-                    return 对应模板.V.MaxDura;
+                    return 对应模板.V.物品持久;
                 }
-                return 对应模板.V.MaxDura * 1000;
+                return 对应模板.V.物品持久 * 1000;
             }
         }
 
@@ -400,7 +400,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.IsBound;
+                return 物品模板.是否绑定;
             }
         }
 
@@ -408,7 +408,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.CanSold;
+                return 物品模板.能否出售;
             }
         }
 
@@ -417,7 +417,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 对应模板.V.PersistType == PersistentItemType.堆叠;
+                return 对应模板.V.持久类型 == PersistentItemType.堆叠;
             }
         }
 
@@ -426,7 +426,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.CanDrop;
+                return 物品模板.能否掉落;
             }
         }
 
@@ -435,7 +435,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.AdditionalSkill;
+                return 物品模板.附加技能;
             }
         }
 
@@ -444,7 +444,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.Group;
+                return 物品模板.物品分组;
             }
         }
 
@@ -453,7 +453,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.GroupCooling;
+                return 物品模板.分组冷却;
             }
         }
 
@@ -462,7 +462,7 @@ namespace GameServer.Data
         {
             get
             {
-                return 物品模板.Cooldown;
+                return 物品模板.冷却时间;
             }
         }
 
@@ -475,7 +475,7 @@ namespace GameServer.Data
             物品容器.V = 容器;
             物品位置.V = position;
             生成时间.V = MainProcess.CurrentTime;
-            最大持久.V = 物品模板.MaxDura;
+            最大持久.V = 物品模板.物品持久;
             当前持久.V = Math.Min(durability, 最大持久.V);
 
             var activeQuests = character.GetInProgressQuests();
@@ -486,7 +486,7 @@ namespace GameServer.Data
                 foreach (var mission in missions)
                 {
                     if (mission.CompletedDate.V != DateTime.MinValue) continue;
-                    if (mission.Info.V.Id != item.Id) continue;
+                    if (mission.Info.V.Id != item.物品编号) continue;
                     mission.Count.V = (byte)(mission.Count.V + 1);
                     updated = true;
                 }
@@ -515,7 +515,7 @@ namespace GameServer.Data
                     CharacterData v = 生成来源.V;
                     binaryWriter2.Write((v != null) ? v.Index.V : 0);
                     binaryWriter.Write(ComputingClass.TimeShift(生成时间.V));
-                    binaryWriter.Write(对应模板.V.Id);
+                    binaryWriter.Write(对应模板.V.物品编号);
                     binaryWriter.Write(物品容器.V);
                     binaryWriter.Write(物品位置.V);
                     binaryWriter.Write(当前持久.V);
@@ -542,7 +542,7 @@ namespace GameServer.Data
                     CharacterData v = 生成来源.V;
                     binaryWriter2.Write((v != null) ? v.Index.V : 0);
                     binaryWriter.Write(ComputingClass.TimeShift(生成时间.V));
-                    binaryWriter.Write(对应模板.V.Id);
+                    binaryWriter.Write(对应模板.V.物品编号);
                     binaryWriter.Write(物品容器.V);
                     binaryWriter.Write(物品位置.V);
                     binaryWriter.Write(数量);
@@ -588,18 +588,18 @@ namespace GameServer.Data
         public readonly DataMonitor<byte> 物品位置;
 
 
-        public int PurchaseId;
+        public int PurchaseId;  //回购编号
 
         public int GetProp(ItemProperty property, int defaultValue = 0)
         {
-            return 物品模板.Props.TryGetValue(property, out int value)
+            return 物品模板.物品属性.TryGetValue(property, out int value)
                 ? value
                 : defaultValue;
         }
 
         public bool HasProp(ItemProperty property)
         {
-            return 物品模板.Props.ContainsKey(property);
+            return 物品模板.物品属性.ContainsKey(property);
         }
     }
 }

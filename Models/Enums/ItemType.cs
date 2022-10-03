@@ -3,7 +3,7 @@
 namespace GameServer
 {
 	
-	public enum ItemType
+	public enum 物品使用分类   //物品使用分类
 	{
 		无,
 		衣服,

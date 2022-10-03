@@ -39,7 +39,7 @@ namespace GameServer.GMCommands
                 return;
             }
 
-            var mapInstance = MapGatewayProcess.GetMapInstance(map.MapId);
+            var mapInstance = MapGatewayProcess.GetMapInstance(map.地图编号);
             var mapArea = mapInstance.传送区域 ?? mapInstance.地图区域.FirstOrDefault();
 
             var location = MapX != null && MapY != null
@@ -57,7 +57,7 @@ namespace GameServer.GMCommands
                         }
             }
 
-            player.玩家切换地图(mapInstance, mapArea?.AreaType ?? AreaType.未知区域, location);
+            player.玩家切换地图(mapInstance, mapArea?.区域类型 ?? AreaType.未知区域, location);
         }
 
         [Field(0)]

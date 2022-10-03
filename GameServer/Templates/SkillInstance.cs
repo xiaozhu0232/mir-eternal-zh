@@ -8,48 +8,48 @@ using GameServer.Networking;
 
 namespace GameServer.Templates
 {
-    public class SkillInstance
+    public class SkillInstance  //技能实例
     {
-        public GameSkills SkillInfo;
-        public SkillData SkillData;
-        public MapObject CasterObject;
-        public byte ActionId;
-        public byte SegmentId;
-        public MapInstance ReleaseMap;
-        public MapObject SkillTarget;
-        public Point SkillLocation;
-        public Point ReleaseLocation;
-        public DateTime ReleaseTime;
-        public SkillInstance ParentSkill;
-        public bool TargetBorrow;
-        public Dictionary<int, HitDetail> Hits;
-        public int FightTime;
-        public int AttackSpeedReduction;
-        public bool GainExperience;
-        public DateTime ProcessingTime;
-        public DateTime AppointmentTime;
-        public SortedDictionary<int, SkillTask> Nodes;
+        public GameSkills SkillInfo;  //游戏技能 技能模板
+        public SkillData SkillData;    //技能数据  技能数据 
+        public MapObject CasterObject;   //地图对象 技能来源
+        public byte ActionId;    //动作编号
+        public byte SegmentId;   //分段编号
+        public MapInstance ReleaseMap;  //地图实例 释放地图
+        public MapObject SkillTarget;   //地图对象 技能目标
+        public Point SkillLocation;   //Point 技能锚点
+        public Point ReleaseLocation;   //Point 释放位置
+        public DateTime ReleaseTime;   //DateTime 释放时间
+        public SkillInstance ParentSkill;   //  技能实例 父类技能
+        public bool TargetBorrow;   //目标借位
+        public Dictionary<int, HitDetail> Hits;  //int, 命中详情> 命中列表
+        public int FightTime;   //飞行耗时
+        public int AttackSpeedReduction;   //攻速缩减
+        public bool GainExperience;   //经验增加
+        public DateTime ProcessingTime;  //处理计时
+        public DateTime AppointmentTime;  //预约时间
+        public SortedDictionary<int, SkillTask> Nodes;  //技能任务> 节点列表
 
         public int MapId => CasterObject.ObjectId;
-        public byte GroupId => SkillInfo.GroupId;
-        public byte Id => SkillInfo.Id;
-        public ushort SkillId => SkillInfo.OwnSkillId;
+        public byte GroupId => SkillInfo.技能分组编号;
+        public byte Id => SkillInfo.自身铭文编号;
+        public ushort SkillId => SkillInfo.自身技能编号;
         public byte SkillLevel
         {
             get
             {
-                if (SkillInfo.BindingLevelId == 0) return 0;
+                if (SkillInfo.绑定等级编号 == 0) return 0;
 
-                if (CasterObject is PlayerObject playerObj && playerObj.MainSkills表.TryGetValue(SkillInfo.BindingLevelId, out var skillData))
+                if (CasterObject is PlayerObject playerObj && playerObj.MainSkills表.TryGetValue(SkillInfo.绑定等级编号, out var skillData))
                     return skillData.SkillLevel.V;
 
-                if (CasterObject is TrapObject trapObj && trapObj.TrapSource is PlayerObject playerObj2 && playerObj2.MainSkills表.TryGetValue(SkillInfo.BindingLevelId, out var skillData2))
+                if (CasterObject is TrapObject trapObj && trapObj.TrapSource is PlayerObject playerObj2 && playerObj2.MainSkills表.TryGetValue(SkillInfo.绑定等级编号, out var skillData2))
                     return skillData2.SkillLevel.V;
 
                 return 0;
             }
         }
-        public bool CheckCount => SkillInfo.CheckSkillCount;
+        public bool CheckCount => SkillInfo.检查技能计数;
 
         public bool IsSwitchedSkill { get; }
 
@@ -69,25 +69,25 @@ namespace GameServer.Templates
             Hits = (hits ?? new Dictionary<int, HitDetail>());
             Nodes = new SortedDictionary<int, SkillTask>(skillInfo.Nodes);
 
-            if (skillData != null && skillData.铭文模板.SwitchSkills.Count > 0 && GameSkills.DataSheet.TryGetValue(skillData.铭文模板.SwitchSkills[0], out GameSkills switchSkill) && skillInfo != switchSkill)
+            if (skillData != null && skillData.铭文模板.开关技能列表.Count > 0 && GameSkills.DataSheet.TryGetValue(skillData.铭文模板.开关技能列表[0], out GameSkills switchSkill) && skillInfo != switchSkill)
             {
                 var switchReleaseSkill = switchSkill.Nodes
                     .Select(x => x.Value)
-                    .OfType<B_01_SkillReleaseNotification>()
+                    .OfType<B_01_技能释放通知>()
                     .FirstOrDefault();
 
                 if (switchReleaseSkill != null)
                 {
                     IsSwitchedSkill = true;
-                    CasterObject.Coolings[SkillId | 16777216] = ReleaseTime.AddMilliseconds(switchReleaseSkill.ItSelfCooldown);
-                    CasterObject.Coolings[switchSkill.BindingLevelId | 16777216] = ReleaseTime.AddMilliseconds(switchReleaseSkill.ItSelfCooldown);
+                    CasterObject.Coolings[SkillId | 16777216] = ReleaseTime.AddMilliseconds(switchReleaseSkill.自身冷却时间);
+                    CasterObject.Coolings[switchSkill.绑定等级编号 | 16777216] = ReleaseTime.AddMilliseconds(switchReleaseSkill.自身冷却时间);
                     if (CasterObject is PlayerObject playerObj)
                     {
                         playerObj.ActiveConnection.SendPacket(new SyncSkillCountPacket
                         {
-                            SkillId = switchSkill.BindingLevelId,
+                            SkillId = switchSkill.绑定等级编号,
                             SkillCount = SkillData.RemainingTimeLeft.V,
-                            技能冷却 = switchReleaseSkill.ItSelfCooldown
+                            技能冷却 = switchReleaseSkill.自身冷却时间
                         });
                     }
                 }
@@ -115,30 +115,30 @@ namespace GameServer.Templates
             {
                 if (task is A_00_触发子类技能 a_00)
                 {
-                    if (GameSkills.DataSheet.TryGetValue(a_00.触发SkillName, out GameSkills skill))
+                    if (GameSkills.DataSheet.TryGetValue(a_00.触发技能名字, out GameSkills skill))
                     {
 
                         bool flag = true;
 
-                        if (a_00.CalculateTriggerProbability)
+                        if (a_00.计算触发概率)
                         {
-                            flag = !a_00.CalculateLuckyProbability
+                            flag = !a_00.计算幸运概率
                                 ? ComputingClass.CheckProbability(a_00.技能触发概率 + ((a_00.增加概率Buff == 0 || !CasterObject.Buffs.ContainsKey(a_00.增加概率Buff)) ? 0f : a_00.Buff增加系数))
                                 : ComputingClass.CheckProbability(ComputingClass.计算幸运(CasterObject[GameObjectStats.幸运等级]));
                         }
 
-                        if (flag && a_00.验证ItSelfBuff)
+                        if (flag && a_00.验证自身Buff)
                         {
-                            if (!CasterObject.Buffs.ContainsKey(a_00.Id))
+                            if (!CasterObject.Buffs.ContainsKey(a_00.自身Buff编号))
                                 flag = false;
                             else if (a_00.触发成功移除)
-                                CasterObject.移除Buff时处理(a_00.Id);
+                                CasterObject.移除Buff时处理(a_00.自身Buff编号);
                         }
 
                         if (flag && a_00.验证铭文技能 && CasterObject is PlayerObject playerObj)
                         {
-                            int num = a_00.所需Id / 10;
-                            int num2 = a_00.所需Id % 10;
+                            int num = a_00.所需铭文编号 / 10;
+                            int num2 = a_00.所需铭文编号 % 10;
                             flag = playerObj.MainSkills表.TryGetValue((ushort)num, out var v)
                                 && ((!a_00.同组铭文无效) ? (num2 == 0 || num2 == v.Id) : (num2 == v.Id));
                         }
@@ -147,67 +147,67 @@ namespace GameServer.Templates
                         {
                             switch (a_00.技能触发方式)
                             {
-                                case SkillTriggerMethod.OriginAbsolutePosition:
+                                case 技能触发方式.原点位置绝对触发:
                                     new SkillInstance(CasterObject, skill, SkillData, ActionId, ReleaseMap, ReleaseLocation, SkillTarget, ReleaseLocation, this);
                                     break;
-                                case SkillTriggerMethod.AnchorAbsolutePosition:
+                                case 技能触发方式.锚点位置绝对触发:
                                     new SkillInstance(CasterObject, skill, SkillData, ActionId, ReleaseMap, ReleaseLocation, SkillTarget, SkillLocation, this);
                                     break;
-                                case SkillTriggerMethod.AssassinationAbsolutePosition:
+                                case 技能触发方式.刺杀位置绝对触发:
                                     new SkillInstance(CasterObject, skill, SkillData, ActionId, ReleaseMap, ReleaseLocation, SkillTarget, ComputingClass.GetFrontPosition(ReleaseLocation, SkillLocation, 2), this);
                                     break;
-                                case SkillTriggerMethod.TargetHitDefinitely:
+                                case 技能触发方式.目标命中绝对触发:
                                     foreach (var item in Hits)
-                                        if ((item.Value.Feedback & SkillHitFeedback.Miss) == SkillHitFeedback.正常 && (item.Value.Feedback & SkillHitFeedback.丢失) == SkillHitFeedback.正常)
+                                        if ((item.Value.Feedback & 技能命中反馈.闪避) == 技能命中反馈.正常 && (item.Value.Feedback & 技能命中反馈.丢失) == 技能命中反馈.正常)
                                             _ = new SkillInstance(CasterObject, skill, SkillData, ActionId, ReleaseMap, (ParentSkill == null) ? ReleaseLocation : SkillLocation, item.Value.Object, item.Value.Object.CurrentPosition, this);
                                     break;
-                                case SkillTriggerMethod.MonsterDeathDefinitely:
+                                case 技能触发方式.怪物死亡绝对触发:
                                     foreach (var item in Hits)
-                                        if (item.Value.Object is MonsterObject && (item.Value.Feedback & SkillHitFeedback.死亡) != 0)
+                                        if (item.Value.Object is MonsterObject && (item.Value.Feedback & 技能命中反馈.死亡) != 0)
                                             _ = new SkillInstance(CasterObject, skill, SkillData, ActionId, ReleaseMap, ReleaseLocation, null, item.Value.Object.CurrentPosition, this);
                                     break;
-                                case SkillTriggerMethod.MonsterDeathTransposition:
+                                case 技能触发方式.怪物死亡换位触发:
                                     foreach (var item in Hits)
-                                        if (item.Value.Object is MonsterObject && (item.Value.Feedback & SkillHitFeedback.死亡) != 0)
+                                        if (item.Value.Object is MonsterObject && (item.Value.Feedback & 技能命中反馈.死亡) != 0)
                                             _ = new SkillInstance(CasterObject, skill, null, item.Value.Object.ActionId++, ReleaseMap, item.Value.Object.CurrentPosition, item.Value.Object, item.Value.Object.CurrentPosition, this, targetBorrow: true);
                                     break;
-                                case SkillTriggerMethod.MonsterHitDefinitely:
+                                case 技能触发方式.怪物命中绝对触发:
                                     foreach (var item in Hits)
-                                        if (item.Value.Object is MonsterObject && (item.Value.Feedback & SkillHitFeedback.死亡) != 0)
+                                        if (item.Value.Object is MonsterObject && (item.Value.Feedback & 技能命中反馈.死亡) != 0)
                                             _ = new SkillInstance(CasterObject, skill, SkillData, ActionId, ReleaseMap, ReleaseLocation, null, SkillLocation, this);
                                     break;
-                                case SkillTriggerMethod.NoTargetPosition:
-                                    if (Hits.Count == 0 || Hits.Values.FirstOrDefault((HitDetail O) => O.Feedback != SkillHitFeedback.丢失) == null)
+                                case 技能触发方式.无目标锚点位触发:
+                                    if (Hits.Count == 0 || Hits.Values.FirstOrDefault((HitDetail O) => O.Feedback != 技能命中反馈.丢失) == null)
                                         _ = new SkillInstance(CasterObject, skill, SkillData, ActionId, ReleaseMap, ReleaseLocation, null, SkillLocation, this);
                                     break;
-                                case SkillTriggerMethod.TargetPositionAbsolute:
+                                case 技能触发方式.目标位置绝对触发:
                                     foreach (var item in Hits)
                                         _ = new SkillInstance(CasterObject, skill, SkillData, ActionId, ReleaseMap, ReleaseLocation, item.Value.Object, item.Value.Object.CurrentPosition, this);
                                     break;
-                                case SkillTriggerMethod.ForehandAndBackhandRandom:
-                                    if (ComputingClass.CheckProbability(0.5f) && GameSkills.DataSheet.TryGetValue(a_00.反手SkillName, out var value3))
+                                case 技能触发方式.正手反手随机触发:
+                                    if (ComputingClass.CheckProbability(0.5f) && GameSkills.DataSheet.TryGetValue(a_00.反手技能名字, out var value3))
                                         _ = new SkillInstance(CasterObject, value3, SkillData, ActionId, ReleaseMap, ReleaseLocation, null, SkillLocation, this);
                                     else
                                         _ = new SkillInstance(CasterObject, skill, SkillData, ActionId, ReleaseMap, ReleaseLocation, null, SkillLocation, this);
                                     break;
-                                case SkillTriggerMethod.TargetDeathDefinitely:
+                                case 技能触发方式.目标死亡绝对触发:
                                     foreach (var item in Hits)
-                                        if ((item.Value.Feedback & SkillHitFeedback.死亡) != 0)
+                                        if ((item.Value.Feedback & 技能命中反馈.死亡) != 0)
                                             new SkillInstance(CasterObject, skill, SkillData, ActionId, ReleaseMap, ReleaseLocation, null, item.Value.Object.CurrentPosition, this);
                                     break;
-                                case SkillTriggerMethod.TargetMissDefinitely:
+                                case 技能触发方式.目标闪避绝对触发:
                                     foreach (var item in Hits)
-                                        if ((item.Value.Feedback & SkillHitFeedback.Miss) != 0)
+                                        if ((item.Value.Feedback & 技能命中反馈.闪避) != 0)
                                             new SkillInstance(CasterObject, skill, SkillData, ActionId, ReleaseMap, ReleaseLocation, null, item.Value.Object.CurrentPosition, this);
                                     break;
                             }
                         }
                     }
                 }
-                else if (task is A_01_TriggerObjectBuff a_01)
+                else if (task is A_01_触发对象Buff a_01)
                 {
                     bool flag2 = false;
-                    if (a_01.角色ItSelf添加)
+                    if (a_01.角色自身添加)
                     {
                         bool flag3 = true;
                         if (!ComputingClass.CheckProbability(a_01.Buff触发概率))
@@ -215,66 +215,66 @@ namespace GameServer.Templates
 
                         if (flag3 && a_01.验证铭文技能 && CasterObject is PlayerObject PlayerObject2)
                         {
-                            int num3 = (int)(a_01.所需Id / 10);
-                            int num4 = (int)(a_01.所需Id % 10);
+                            int num3 = (int)(a_01.所需铭文编号 / 10);
+                            int num4 = (int)(a_01.所需铭文编号 % 10);
                             flag3 = PlayerObject2.MainSkills表.TryGetValue((ushort)num3, out SkillData skill) && a_01.同组铭文无效
                                 ? num4 == (int)skill.Id
                                 : skill != null && (num4 == 0 || num4 == (int)skill.Id);
 
                         }
-                        if (flag3 && a_01.验证ItSelfBuff)
+                        if (flag3 && a_01.验证自身Buff)
                         {
-                            if (!CasterObject.Buffs.ContainsKey(a_01.Id))
+                            if (!CasterObject.Buffs.ContainsKey(a_01.自身Buff编号))
                                 flag3 = false;
                             else
                             {
                                 if (a_01.触发成功移除)
-                                    CasterObject.移除Buff时处理(a_01.Id);
+                                    CasterObject.移除Buff时处理(a_01.自身Buff编号);
                                 if (a_01.移除伴生Buff)
                                     CasterObject.移除Buff时处理(a_01.移除伴生编号);
                             }
                         }
 
-                        if (flag3 && a_01.验证分组Buff && CasterObject.Buffs.Values.FirstOrDefault((BuffData O) => O.Buff分组 == a_01.BuffGroupId) == null)
+                        if (flag3 && a_01.验证分组Buff && CasterObject.Buffs.Values.FirstOrDefault((BuffData O) => O.Buff分组 == a_01.Buff分组编号) == null)
                             flag3 = false;
 
-                        if (flag3 && a_01.VerifyTargetBuff && Hits.Values.FirstOrDefault((HitDetail O) => (O.Feedback & SkillHitFeedback.Miss) == SkillHitFeedback.正常 && (O.Feedback & SkillHitFeedback.丢失) == SkillHitFeedback.正常 && O.Object.Buffs.TryGetValue(a_01.目标Id, out BuffData BuffData2) && BuffData2.当前层数.V >= a_01.所需Buff层数) == null)
+                        if (flag3 && a_01.验证目标Buff && Hits.Values.FirstOrDefault((HitDetail O) => (O.Feedback & 技能命中反馈.闪避) == 技能命中反馈.正常 && (O.Feedback & 技能命中反馈.丢失) == 技能命中反馈.正常 && O.Object.Buffs.TryGetValue(a_01.目标Buff编号, out BuffData BuffData2) && BuffData2.当前层数.V >= a_01.所需Buff层数) == null)
                             flag3 = false;
 
-                        if (flag3 && a_01.VerifyTargetType && Hits.Values.FirstOrDefault((HitDetail O) => (O.Feedback & SkillHitFeedback.Miss) == SkillHitFeedback.正常 && (O.Feedback & SkillHitFeedback.丢失) == SkillHitFeedback.正常 && O.Object.IsSpecificType(CasterObject, a_01.所需目标类型)) == null)
+                        if (flag3 && a_01.验证目标类型 && Hits.Values.FirstOrDefault((HitDetail O) => (O.Feedback & 技能命中反馈.闪避) == 技能命中反馈.正常 && (O.Feedback & 技能命中反馈.丢失) == 技能命中反馈.正常 && O.Object.IsSpecificType(CasterObject, a_01.所需目标类型)) == null)
                             flag3 = false;
 
                         if (flag3)
                         {
-                            CasterObject.OnAddBuff(a_01.触发Id, CasterObject);
-                            if (a_01.伴生Id > 0)
-                                CasterObject.OnAddBuff(a_01.伴生Id, CasterObject);
+                            CasterObject.OnAddBuff(a_01.触发Buff编号, CasterObject);
+                            if (a_01.伴生Buff编号 > 0)
+                                CasterObject.OnAddBuff(a_01.伴生Buff编号, CasterObject);
                             flag2 = true;
                         }
                     }
                     else
                     {
                         bool flag4 = true;
-                        if (a_01.验证ItSelfBuff)
+                        if (a_01.验证自身Buff)
                         {
-                            if (!CasterObject.Buffs.ContainsKey(a_01.Id))
+                            if (!CasterObject.Buffs.ContainsKey(a_01.自身Buff编号))
                                 flag4 = false;
                             else
                             {
                                 if (a_01.触发成功移除)
-                                    CasterObject.移除Buff时处理(a_01.Id);
+                                    CasterObject.移除Buff时处理(a_01.自身Buff编号);
                                 if (a_01.移除伴生Buff)
                                     CasterObject.移除Buff时处理(a_01.移除伴生编号);
                             }
                         }
 
-                        if (flag4 && a_01.验证分组Buff && CasterObject.Buffs.Values.FirstOrDefault((BuffData O) => O.Buff分组 == a_01.BuffGroupId) == null)
+                        if (flag4 && a_01.验证分组Buff && CasterObject.Buffs.Values.FirstOrDefault((BuffData O) => O.Buff分组 == a_01.Buff分组编号) == null)
                             flag4 = false;
 
                         if (flag4 && a_01.验证铭文技能 && CasterObject is PlayerObject PlayerObject3)
                         {
-                            int num5 = a_01.所需Id / 10;
-                            int num6 = a_01.所需Id % 10;
+                            int num5 = a_01.所需铭文编号 / 10;
+                            int num6 = a_01.所需铭文编号 % 10;
 
                             flag4 = PlayerObject3.MainSkills表.TryGetValue((ushort)num5, out SkillData SkillData4) && a_01.同组铭文无效
                                 ? (num6 == (int)SkillData4.Id)
@@ -287,63 +287,63 @@ namespace GameServer.Templates
                             {
                                 bool flag5 = true;
 
-                                if ((item.Value.Feedback & (SkillHitFeedback.Miss | SkillHitFeedback.丢失)) != SkillHitFeedback.正常)
+                                if ((item.Value.Feedback & (技能命中反馈.闪避 | 技能命中反馈.丢失)) != 技能命中反馈.正常)
                                     flag5 = false;
 
                                 if (flag5 && !ComputingClass.CheckProbability(a_01.Buff触发概率))
                                     flag5 = false;
 
-                                if (flag5 && a_01.VerifyTargetType && !item.Value.Object.IsSpecificType(CasterObject, a_01.所需目标类型))
+                                if (flag5 && a_01.验证目标类型 && !item.Value.Object.IsSpecificType(CasterObject, a_01.所需目标类型))
                                     flag5 = false;
 
-                                if (flag5 && a_01.VerifyTargetBuff)
-                                    flag5 = (item.Value.Object.Buffs.TryGetValue(a_01.目标Id, out BuffData buffData) && buffData.当前层数.V >= a_01.所需Buff层数);
+                                if (flag5 && a_01.验证目标Buff)
+                                    flag5 = (item.Value.Object.Buffs.TryGetValue(a_01.目标Buff编号, out BuffData buffData) && buffData.当前层数.V >= a_01.所需Buff层数);
 
                                 if (flag5)
                                 {
-                                    item.Value.Object.OnAddBuff(a_01.触发Id, CasterObject);
-                                    if (a_01.伴生Id > 0) item.Value.Object.OnAddBuff(a_01.伴生Id, CasterObject);
+                                    item.Value.Object.OnAddBuff(a_01.触发Buff编号, CasterObject);
+                                    if (a_01.伴生Buff编号 > 0) item.Value.Object.OnAddBuff(a_01.伴生Buff编号, CasterObject);
                                     flag2 = true;
                                 }
                             }
                         }
                     }
 
-                    if (flag2 && a_01.GainSkillExp && CasterObject is PlayerObject playerObj)
-                        playerObj.SkillGainExp(a_01.ExpSkillId);
+                    if (flag2 && a_01.增加技能经验 && CasterObject is PlayerObject playerObj)
+                        playerObj.SkillGainExp(a_01.经验技能编号);
                 }
-                else if (task is A_02_TriggerTrapSkills a_02)
+                else if (task is A_02_触发陷阱技能 a_02)
                 {
-                    if (SkillTraps.DataSheet.TryGetValue(a_02.TriggerTrapSkills, out SkillTraps 陷阱模板))
+                    if (SkillTraps.DataSheet.TryGetValue(a_02.触发陷阱技能, out SkillTraps 陷阱模板))
                     {
                         int num7 = 0;
-                        var array = ComputingClass.GetLocationRange(SkillLocation, ComputingClass.GetDirection(ReleaseLocation, SkillLocation), a_02.NumberTrapsTriggered);
+                        var array = ComputingClass.GetLocationRange(SkillLocation, ComputingClass.GetDirection(ReleaseLocation, SkillLocation), a_02.触发陷阱数量);
                         foreach (var coord in array)
                         {
-                            if (!ReleaseMap.IsBlocked(coord) && (陷阱模板.AllowStacking || !ReleaseMap[coord].Any(o => o is TrapObject trapObj && trapObj.陷阱GroupId != 0 && trapObj.陷阱GroupId == 陷阱模板.GroupId)))
+                            if (!ReleaseMap.IsBlocked(coord) && (陷阱模板.陷阱允许叠加 || !ReleaseMap[coord].Any(o => o is TrapObject trapObj && trapObj.陷阱GroupId != 0 && trapObj.陷阱GroupId == 陷阱模板.分组编号)))
                             {
                                 CasterObject.Traps.Add(new TrapObject(CasterObject, 陷阱模板, ReleaseMap, coord));
                                 num7++;
                             }
                         }
 
-                        if (num7 != 0 && a_02.ExpSkillId != 0 && CasterObject is PlayerObject playerObj)
-                            playerObj.SkillGainExp(a_02.ExpSkillId);
+                        if (num7 != 0 && a_02.经验技能编号 != 0 && CasterObject is PlayerObject playerObj)
+                            playerObj.SkillGainExp(a_02.经验技能编号);
                     }
                 }
-                else if (task is B_00_SkillSwitchNotification b_00)
+                else if (task is B_00_技能切换通知 b_00)
                 {
-                    if (CasterObject.Buffs.ContainsKey(b_00.SkillTagId))
+                    if (CasterObject.Buffs.ContainsKey(b_00.技能标记编号))
                     {
                         if (b_00.允许移除标记)
-                            CasterObject.移除Buff时处理(b_00.SkillTagId);
+                            CasterObject.移除Buff时处理(b_00.技能标记编号);
                     }
-                    else if (GameBuffs.DataSheet.ContainsKey(b_00.SkillTagId))
+                    else if (GameBuffs.DataSheet.ContainsKey(b_00.技能标记编号))
                     {
-                        CasterObject.OnAddBuff(b_00.SkillTagId, CasterObject);
+                        CasterObject.OnAddBuff(b_00.技能标记编号, CasterObject);
                     }
                 }
-                else if (task is B_01_SkillReleaseNotification b_01)
+                else if (task is B_01_技能释放通知 b_01)
                 {
                     if (b_01.调整角色朝向)
                     {
@@ -359,10 +359,10 @@ namespace GameServer.Templates
                             CasterObject.CurrentDirection = ComputingClass.GetDirection(ReleaseLocation, SkillLocation);
                     }
 
-                    if (b_01.移除技能标记 && SkillInfo.SkillTagId != 0)
-                        CasterObject.移除Buff时处理(SkillInfo.SkillTagId);
+                    if (b_01.移除技能标记 && SkillInfo.技能标记编号 != 0)
+                        CasterObject.移除Buff时处理(SkillInfo.技能标记编号);
 
-                    if (b_01.ItSelfCooldown != 0 || b_01.Buff增加冷却)
+                    if (b_01.自身冷却时间 != 0 || b_01.Buff增加冷却)
                     {
                         if (CheckCount && CasterObject is PlayerObject playerObj)
                         {
@@ -376,9 +376,9 @@ namespace GameServer.Templates
                                 技能冷却 = (int)(SkillData.计数时间 - MainProcess.CurrentTime).TotalMilliseconds
                             });
                         }
-                        if (b_01.ItSelfCooldown > 0 || b_01.Buff增加冷却)
+                        if (b_01.自身冷却时间 > 0 || b_01.Buff增加冷却)
                         {
-                            var num8 = b_01.ItSelfCooldown;
+                            var num8 = b_01.自身冷却时间;
 
                             if (b_01.Buff增加冷却 && CasterObject.Buffs.ContainsKey(b_01.增加冷却Buff))
                                 num8 += b_01.冷却增加时间;
@@ -401,15 +401,15 @@ namespace GameServer.Templates
                         }
                     }
 
-                    if (CasterObject is PlayerObject playerObj2 && b_01.分组Cooldown != 0 && GroupId != 0)
+                    if (CasterObject is PlayerObject playerObj2 && b_01.分组冷却时间 != 0 && GroupId != 0)
                     {
-                        DateTime dateTime2 = ReleaseTime.AddMilliseconds((double)b_01.分组Cooldown);
+                        DateTime dateTime2 = ReleaseTime.AddMilliseconds((double)b_01.分组冷却时间);
                         DateTime t2 = playerObj2.Coolings.ContainsKey((int)(GroupId | 0)) ? playerObj2.Coolings[(int)(GroupId | 0)] : default(DateTime);
                         if (dateTime2 > t2) playerObj2.Coolings[(int)(GroupId | 0)] = dateTime2;
                         CasterObject.SendPacket(new AddedSkillCooldownPacket
                         {
                             CoolingId = (int)(GroupId | 0),
-                            Cooldown = b_01.分组Cooldown
+                            Cooldown = b_01.分组冷却时间
                         });
                     }
 
@@ -429,7 +429,7 @@ namespace GameServer.Templates
                             ActionId = ActionId,
                         });
                 }
-                else if (task is B_02_SkillHitNotification b_02)
+                else if (task is B_02_技能命中通知 b_02)
                 {
                     if (b_02.命中扩展通知)
                         CasterObject.SendPacket(new 触发技能扩展
@@ -455,7 +455,7 @@ namespace GameServer.Templates
                     if (b_02.计算飞行耗时)
                         FightTime = ComputingClass.GridDistance(ReleaseLocation, SkillLocation) * b_02.单格飞行耗时;
                 }
-                else if (task is B_03_FrontShakeEndNotification b_03)
+                else if (task is B_03_前摇结束通知 b_03)
                 {
                     if (b_03.计算攻速缩减)
                     {
@@ -465,7 +465,7 @@ namespace GameServer.Templates
                         {
                             foreach (var item in Nodes)
                             {
-                                if (item.Value is B_04_PostShakeEndNotification)
+                                if (item.Value is B_04_后摇结束通知)
                                 {
                                     int num9 = item.Key - AttackSpeedReduction;
                                     while (Nodes.ContainsKey(num9)) num9++;
@@ -499,7 +499,7 @@ namespace GameServer.Templates
                     if (b_03.解除技能陷阱 && CasterObject is TrapObject trapObj)
                         trapObj.陷阱消失处理();
                 }
-                else if (task is B_04_PostShakeEndNotification b_04)
+                else if (task is B_04_后摇结束通知 b_04)
                 {
                     CasterObject.SendPacket(new 技能释放完成
                     {
@@ -510,7 +510,7 @@ namespace GameServer.Templates
                     if (b_04.后摇结束死亡)
                         CasterObject.Dies(null, skillKill: false);
                 }
-                else if (task is C_00_CalculateSkillAnchor c_00)
+                else if (task is C_00_计算技能锚点 c_00)
                 {
                     if (c_00.计算当前位置)
                     {
@@ -520,10 +520,10 @@ namespace GameServer.Templates
                         else
                             SkillLocation = ComputingClass.GetFrontPosition(CasterObject.CurrentPosition, SkillLocation, c_00.技能最近距离);
                     }
-                    else if (ComputingClass.GridDistance(ReleaseLocation, SkillLocation) > c_00.MaxDistance)
+                    else if (ComputingClass.GridDistance(ReleaseLocation, SkillLocation) > c_00.技能最远距离)
                     {
                         SkillTarget = null;
-                        SkillLocation = ComputingClass.GetFrontPosition(ReleaseLocation, SkillLocation, c_00.MaxDistance);
+                        SkillLocation = ComputingClass.GetFrontPosition(ReleaseLocation, SkillLocation, c_00.技能最远距离);
                     }
                     else if (ComputingClass.GridDistance(ReleaseLocation, SkillLocation) < c_00.技能最近距离)
                     {
@@ -535,7 +535,7 @@ namespace GameServer.Templates
                             SkillLocation = ComputingClass.GetFrontPosition(ReleaseLocation, SkillLocation, c_00.技能最近距离);
                     }
                 }
-                else if (task is C_01_CalculateHitTarget c_01)
+                else if (task is C_01_计算命中目标 c_01)
                 {
                     if (c_01.清空命中列表)
                         Hits = new Dictionary<int, HitDetail>();
@@ -544,13 +544,13 @@ namespace GameServer.Templates
                     {
                         switch (c_01.技能锁定方式)
                         {
-                            case 技能锁定类型.锁定ItSelf:
+                            case 技能锁定类型.锁定自身:
                                 CasterObject.ProcessSkillHit(this, c_01);
                                 break;
                             case 技能锁定类型.锁定目标:
                                 SkillTarget?.ProcessSkillHit(this, c_01);
                                 break;
-                            case 技能锁定类型.锁定ItSelf坐标:
+                            case 技能锁定类型.锁定自身坐标:
                                 foreach (var 坐标2 in ComputingClass.GetLocationRange(CasterObject.CurrentPosition, ComputingClass.GetDirection(ReleaseLocation, SkillLocation), c_01.技能范围类型))
                                     foreach (var mapObj in ReleaseMap[坐标2])
                                         mapObj.ProcessSkillHit(this, c_01);
@@ -573,7 +573,7 @@ namespace GameServer.Templates
                                         mapObj.ProcessSkillHit(this, c_01);
 
                                 break;
-                            case 技能锁定类型.放空锁定ItSelf:
+                            case 技能锁定类型.放空锁定自身:
                                 var array3 = ComputingClass.GetLocationRange(SkillLocation, ComputingClass.GetDirection(ReleaseLocation, SkillLocation), c_01.技能范围类型);
 
                                 foreach (Point 坐标5 in array3)
@@ -616,20 +616,20 @@ namespace GameServer.Templates
                             ActionId = ActionId
                         });
 
-                    if (Hits.Count != 0 && c_01.攻速提升类型 != SpecifyTargetType.None && Hits[0].Object.IsSpecificType(CasterObject, c_01.攻速提升类型))
+                    if (Hits.Count != 0 && c_01.攻速提升类型 != 指定目标类型.无 && Hits[0].Object.IsSpecificType(CasterObject, c_01.攻速提升类型))
                         AttackSpeedReduction = ComputingClass.ValueLimit(ComputingClass.CalcAttackSpeed(-5), AttackSpeedReduction + ComputingClass.CalcAttackSpeed(c_01.攻速提升幅度), ComputingClass.CalcAttackSpeed(5));
 
                     if (c_01.清除目标状态 && c_01.清除状态列表.Count != 0)
                         foreach (var item in Hits)
-                            if ((item.Value.Feedback & SkillHitFeedback.Miss) == SkillHitFeedback.正常 && (item.Value.Feedback & SkillHitFeedback.丢失) == SkillHitFeedback.正常)
+                            if ((item.Value.Feedback & 技能命中反馈.闪避) == 技能命中反馈.正常 && (item.Value.Feedback & 技能命中反馈.丢失) == 技能命中反馈.正常)
                                 foreach (ushort 编号 in c_01.清除状态列表.ToList())
                                     item.Value.Object.移除Buff时处理(编号);
 
-                    if (c_01.触发PassiveSkill && Hits.Count != 0 && ComputingClass.CheckProbability(c_01.触发被动概率))
+                    if (c_01.触发被动技能 && Hits.Count != 0 && ComputingClass.CheckProbability(c_01.触发被动概率))
                         CasterObject[GameObjectStats.技能标志] = 1;
 
-                    if (c_01.GainSkillExp && Hits.Count != 0 && CasterObject is PlayerObject playerObj)
-                        playerObj.SkillGainExp(c_01.ExpSkillId);
+                    if (c_01.增加技能经验 && Hits.Count != 0 && CasterObject is PlayerObject playerObj)
+                        playerObj.SkillGainExp(c_01.经验技能编号);
 
                     if (c_01.计算飞行耗时 && c_01.单格飞行耗时 != 0)
                         FightTime = ComputingClass.GridDistance(ReleaseLocation, SkillLocation) * c_01.单格飞行耗时;
@@ -656,7 +656,7 @@ namespace GameServer.Templates
                             命中描述 = HitDetail.GetHitDescription(Hits, FightTime)
                         });
                 }
-                else if (task is C_02_CalculateTargetDamage c_02)
+                else if (task is C_02_计算目标伤害 c_02)
                 {
                     float num9 = 1f;
 
@@ -672,7 +672,7 @@ namespace GameServer.Templates
 
                         item.Value.Object.被动受伤时处理(this, c_02, item.Value, num9);
 
-                        if ((item.Value.Feedback & SkillHitFeedback.丢失) == SkillHitFeedback.正常)
+                        if ((item.Value.Feedback & 技能命中反馈.丢失) == 技能命中反馈.正常)
                         {
                             if (c_02.数量衰减伤害)
                                 num9 = Math.Max(c_02.伤害衰减下限, num9 - c_02.伤害衰减系数);
@@ -696,9 +696,9 @@ namespace GameServer.Templates
                     {
                         foreach (var item in Hits)
                         {
-                            if ((item.Value.Feedback & SkillHitFeedback.死亡) != SkillHitFeedback.正常 && item.Value.Object.IsSpecificType(CasterObject, c_02.回复限定类型))
+                            if ((item.Value.Feedback & 技能命中反馈.死亡) != 技能命中反馈.正常 && item.Value.Object.IsSpecificType(CasterObject, c_02.回复限定类型))
                             {
-                                int num11 = c_02.PhysicalRecoveryBase;
+                                int num11 = c_02.体力回复基数;
                                 if (c_02.等级差减回复)
                                 {
                                     int Value = (CasterObject.CurrentLevel - item.Value.Object.CurrentLevel) - c_02.减回复等级差;
@@ -724,7 +724,7 @@ namespace GameServer.Templates
                         int num14 = 0;
 
                         foreach (var item in Hits)
-                            if ((item.Value.Feedback & SkillHitFeedback.死亡) != SkillHitFeedback.正常 && item.Value.Object.IsSpecificType(CasterObject, c_02.冷却减少类型))
+                            if ((item.Value.Feedback & 技能命中反馈.死亡) != 技能命中反馈.正常 && item.Value.Object.IsSpecificType(CasterObject, c_02.冷却减少类型))
                                 num14 += (int)c_02.冷却减少时间;
 
                         if (num14 > 0)
@@ -758,7 +758,7 @@ namespace GameServer.Templates
                         int num15 = 0;
 
                         foreach (var item in Hits)
-                            if ((item.Value.Feedback & SkillHitFeedback.Miss) == SkillHitFeedback.正常 && (item.Value.Feedback & SkillHitFeedback.丢失) == SkillHitFeedback.正常 && item.Value.Object.IsSpecificType(CasterObject, c_02.冷却减少类型))
+                            if ((item.Value.Feedback & 技能命中反馈.闪避) == 技能命中反馈.正常 && (item.Value.Feedback & 技能命中反馈.丢失) == 技能命中反馈.正常 && item.Value.Object.IsSpecificType(CasterObject, c_02.冷却减少类型))
                                 num15 += (int)c_02.冷却减少时间;
 
                         if (num15 > 0)
@@ -792,31 +792,31 @@ namespace GameServer.Templates
 
                     if (c_02.目标硬直时间 > 0)
                         foreach (var item in Hits)
-                            if ((item.Value.Feedback & SkillHitFeedback.Miss) == SkillHitFeedback.正常 && (item.Value.Feedback & SkillHitFeedback.丢失) == SkillHitFeedback.正常)
-                                if (item.Value.Object is MonsterObject monsterObj && monsterObj.Category != MonsterLevelType.Boss)
+                            if ((item.Value.Feedback & 技能命中反馈.闪避) == 技能命中反馈.正常 && (item.Value.Feedback & 技能命中反馈.丢失) == 技能命中反馈.正常)
+                                if (item.Value.Object is MonsterObject monsterObj && monsterObj.Category != MonsterLevelType.头目首领)
                                     item.Value.Object.HardTime = MainProcess.CurrentTime.AddMilliseconds(c_02.目标硬直时间);
 
                     if (c_02.清除目标状态 && c_02.清除状态列表.Count != 0)
                         foreach (var item in Hits)
-                            if ((item.Value.Feedback & SkillHitFeedback.Miss) == SkillHitFeedback.正常 && (item.Value.Feedback & SkillHitFeedback.丢失) == SkillHitFeedback.正常)
+                            if ((item.Value.Feedback & 技能命中反馈.闪避) == 技能命中反馈.正常 && (item.Value.Feedback & 技能命中反馈.丢失) == 技能命中反馈.正常)
                                 foreach (ushort 编号2 in c_02.清除状态列表)
                                     item.Value.Object.移除Buff时处理(编号2);
 
                     if (CasterObject is PlayerObject playerObj)
                     {
-                        if (c_02.GainSkillExp && Hits.Count != 0)
-                            playerObj.SkillGainExp(c_02.ExpSkillId);
+                        if (c_02.增加技能经验 && Hits.Count != 0)
+                            playerObj.SkillGainExp(c_02.经验技能编号);
 
                         if (c_02.扣除武器持久 && Hits.Count != 0)
                             playerObj.武器损失持久();
                     }
                 }
-                else if (task is C_03_CalculateObjectDisplacement c_03)
+                else if (task is C_03_计算对象位移 c_03)
                 {
-                    byte[] ItSelf位移次数 = c_03.ItSelf位移次数;
-                    byte b2 = (byte)((((ItSelf位移次数 != null) ? ItSelf位移次数.Length : 0) > SkillLevel) ? c_03.ItSelf位移次数[SkillLevel] : 0);
+                    byte[] 自身位移次数 = c_03.自身位移次数;
+                    byte b2 = (byte)((((自身位移次数 != null) ? 自身位移次数.Length : 0) > SkillLevel) ? c_03.自身位移次数[SkillLevel] : 0);
 
-                    if (c_03.角色ItSelf位移 && (ReleaseMap != CasterObject.CurrentMap || SegmentId >= b2))
+                    if (c_03.角色自身位移 && (ReleaseMap != CasterObject.CurrentMap || SegmentId >= b2))
                     {
                         CasterObject.SendPacket(new 技能释放中断
                         {
@@ -833,11 +833,11 @@ namespace GameServer.Templates
                             动作编号 = ActionId
                         });
                     }
-                    else if (c_03.角色ItSelf位移)
+                    else if (c_03.角色自身位移)
                     {
                         int 数量 = (c_03.推动目标位移 ? c_03.连续推动数量 : 0);
-                        byte[] ItSelf位移距离 = c_03.ItSelf位移距离;
-                        int num16 = ((((ItSelf位移距离 != null) ? ItSelf位移距离.Length : 0) > SkillLevel) ? c_03.ItSelf位移距离[SkillLevel] : 0);
+                        byte[] 自身位移距离 = c_03.自身位移距离;
+                        int num16 = ((((自身位移距离 != null) ? 自身位移距离.Length : 0) > SkillLevel) ? c_03.自身位移距离[SkillLevel] : 0);
                         int num17 = (c_03.允许超出锚点 || c_03.锚点反向位移) ? num16 : Math.Min(num16, ComputingClass.GridDistance(ReleaseLocation, SkillLocation));
                         Point 锚点 = c_03.锚点反向位移 ? ComputingClass.前方坐标(CasterObject.CurrentPosition, ComputingClass.GetDirection(SkillLocation, CasterObject.CurrentPosition), num17) : SkillLocation;
                         if (CasterObject.CanBeDisplaced(CasterObject, 锚点, num17, 数量, c_03.能否穿越障碍, out var point, out var array2))
@@ -872,11 +872,11 @@ namespace GameServer.Templates
                                 }
                             }
 
-                            if (c_03.成功Id != 0 && ComputingClass.CheckProbability(c_03.成功Buff概率))
-                                CasterObject.OnAddBuff(c_03.成功Id, CasterObject);
+                            if (c_03.成功Buff编号 != 0 && ComputingClass.CheckProbability(c_03.成功Buff概率))
+                                CasterObject.OnAddBuff(c_03.成功Buff编号, CasterObject);
 
                             CasterObject.CurrentDirection = ComputingClass.GetDirection(CasterObject.CurrentPosition, point);
-                            int num18 = c_03.ItSelf位移耗时 * CasterObject.GetDistance(point);
+                            int num18 = c_03.自身位移耗时 * CasterObject.GetDistance(point);
                             CasterObject.BusyTime = MainProcess.CurrentTime.AddMilliseconds((num18 * 60));
                             CasterObject.SendPacket(new ObjectPassiveDisplacementPacket
                             {
@@ -887,7 +887,7 @@ namespace GameServer.Templates
                             });
                             CasterObject.ItSelf移动时处理(point);
 
-                            if (c_03.DisplacementIncreaseExp && !GainExperience && CasterObject is PlayerObject playerObj2)
+                            if (c_03.位移增加经验 && !GainExperience && CasterObject is PlayerObject playerObj2)
                             {
                                 playerObj2.SkillGainExp(SkillId);
                                 GainExperience = true;
@@ -914,15 +914,15 @@ namespace GameServer.Templates
                         else
                         {
                             if (ComputingClass.CheckProbability(c_03.失败Buff概率))
-                                CasterObject.OnAddBuff(c_03.失败Id, CasterObject);
+                                CasterObject.OnAddBuff(c_03.失败Buff编号, CasterObject);
 
-                            CasterObject.HardTime = MainProcess.CurrentTime.AddMilliseconds(c_03.ItSelf硬直时间);
+                            CasterObject.HardTime = MainProcess.CurrentTime.AddMilliseconds(c_03.自身硬直时间);
                             SegmentId = b2;
                         }
 
                         if (b2 > 1)
                         {
-                            int num19 = keyValuePair.Key + (int)(c_03.ItSelf位移耗时 * 60);
+                            int num19 = keyValuePair.Key + (int)(c_03.自身位移耗时 * 60);
 
                             while (Nodes.ContainsKey(num19))
                                 num19++;
@@ -935,9 +935,9 @@ namespace GameServer.Templates
                         foreach (var item in Hits)
                         {
                             if (
-                                (item.Value.Feedback & SkillHitFeedback.Miss) != SkillHitFeedback.正常
-                                || (item.Value.Feedback & SkillHitFeedback.丢失) != SkillHitFeedback.正常
-                                || (item.Value.Feedback & SkillHitFeedback.死亡) != SkillHitFeedback.正常
+                                (item.Value.Feedback & 技能命中反馈.闪避) != 技能命中反馈.正常
+                                || (item.Value.Feedback & 技能命中反馈.丢失) != 技能命中反馈.正常
+                                || (item.Value.Feedback & 技能命中反馈.死亡) != 技能命中反馈.正常
                                 || !ComputingClass.CheckProbability(c_03.推动目标概率)
                                 || !item.Value.Object.IsSpecificType(CasterObject, c_03.推动目标类型)
                             ) continue;
@@ -981,35 +981,35 @@ namespace GameServer.Templates
                         }
                     }
                 }
-                else if (task is C_04_CalculateTargetTemptation c_04)
+                else if (task is C_04_计算目标诱惑 c_04)
                 {
                     if (CasterObject is PlayerObject playerObj)
                         foreach (var item in Hits)
                             playerObj.玩家诱惑目标(this, c_04, item.Value.Object);
                 }
-                else if (task is C_06_CalculatePetSummoning c_06)
+                else if (task is C_06_计算宠物召唤 c_06)
                 {
-                    if (c_06.Companion)
+                    if (c_06.怪物召唤同伴)
                     {
-                        if (c_06.PetName == null || c_06.PetName.Length == 0)
+                        if (c_06.召唤宠物名字 == null || c_06.召唤宠物名字.Length == 0)
                             return;
 
-                        if (Monsters.DataSheet.TryGetValue(c_06.PetName, out var 对应模板))
+                        if (Monsters.DataSheet.TryGetValue(c_06.召唤宠物名字, out var 对应模板))
                             _ = new MonsterObject(对应模板, ReleaseMap, int.MaxValue, new Point[] { ReleaseLocation }, true, true) { 存活时间 = MainProcess.CurrentTime.AddMinutes(1.0) };
                     }
                     else if (CasterObject is PlayerObject playerObj)
                     {
-                        if (c_06.CheckSkillInscriptions && (!playerObj.MainSkills表.TryGetValue(SkillId, out var skill) || skill.Id != Id))
+                        if (c_06.检查技能铭文 && (!playerObj.MainSkills表.TryGetValue(SkillId, out var skill) || skill.Id != Id))
                             return;
 
-                        if (c_06.PetName == null || c_06.PetName.Length == 0)
+                        if (c_06.召唤宠物名字 == null || c_06.召唤宠物名字.Length == 0)
                             return;
 
-                        int num21 = ((c_06.SpawnCount?.Length > SkillLevel) ? c_06.SpawnCount[SkillLevel] : 0);
-                        if (playerObj.Pets.Count < num21 && Monsters.DataSheet.TryGetValue(c_06.PetName, out var value5))
+                        int num21 = ((c_06.召唤宠物数量?.Length > SkillLevel) ? c_06.召唤宠物数量[SkillLevel] : 0);
+                        if (playerObj.Pets.Count < num21 && Monsters.DataSheet.TryGetValue(c_06.召唤宠物名字, out var value5))
                         {
-                            byte GradeCap = (byte)((c_06.LevelCap?.Length > SkillLevel) ? c_06.LevelCap[SkillLevel] : 0);
-                            PetObject 宠物实例 = new PetObject(playerObj, value5, SkillLevel, GradeCap, c_06.PetBoundWeapons);
+                            byte GradeCap = (byte)((c_06.宠物等级上限?.Length > SkillLevel) ? c_06.宠物等级上限[SkillLevel] : 0);
+                            PetObject 宠物实例 = new PetObject(playerObj, value5, SkillLevel, GradeCap, c_06.宠物绑定武器);
                             playerObj.ActiveConnection.SendPacket(new SyncPetLevelPacket
                             {
                                 宠物编号 = 宠物实例.ObjectId,
@@ -1023,27 +1023,27 @@ namespace GameServer.Templates
                             playerObj.PetData.Add(宠物实例.PetData);
                             playerObj.Pets.Add(宠物实例);
 
-                            if (c_06.GainSkillExp)
-                                playerObj.SkillGainExp(c_06.ExpSkillId);
+                            if (c_06.增加技能经验)
+                                playerObj.SkillGainExp(c_06.经验技能编号);
                         }
                     }
                 }
-                else if (task is C_05_CalculateTargetReply c_05)
+                else if (task is C_05_计算目标回复 c_05)
                 {
                     foreach (var keyValuePair20 in Hits)
                         keyValuePair20.Value.Object.被动回复时处理(this, c_05);
 
-                    if (c_05.GainSkillExp && Hits.Count != 0 && CasterObject is PlayerObject playerObj)
-                        playerObj.SkillGainExp(c_05.ExpSkillId);
+                    if (c_05.增加技能经验 && Hits.Count != 0 && CasterObject is PlayerObject playerObj)
+                        playerObj.SkillGainExp(c_05.经验技能编号);
                 }
-                else if (task is C_07_CalculateTargetTeleportation c_07 && CasterObject is PlayerObject playerObj)
+                else if (task is C_07_计算目标瞬移 c_07 && CasterObject is PlayerObject playerObj)
                     playerObj.玩家瞬间移动(this, c_07);
             }
 
             if (Nodes.Count == 0)
             {
-                if (IsSwitchedSkill && SkillInfo.CheckSkillMarks)
-                    CasterObject.移除Buff时处理(SkillInfo.SkillTagId);
+                if (IsSwitchedSkill && SkillInfo.检查技能标记)
+                    CasterObject.移除Buff时处理(SkillInfo.技能标记编号);
 
                 CasterObject.SkillTasks.Remove(this);
                 return;

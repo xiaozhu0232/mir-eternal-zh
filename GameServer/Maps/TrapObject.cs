@@ -16,7 +16,7 @@ namespace GameServer.Maps
 		{
 			get
 			{
-				return this.陷阱模板.GroupId;
+				return this.陷阱模板.分组编号;
 			}
 		}
 
@@ -25,7 +25,7 @@ namespace GameServer.Maps
 		{
 			get
 			{
-				return this.陷阱模板.ActivelyTriggerInterval;
+				return this.陷阱模板.主动触发间隔;
 			}
 		}
 
@@ -34,7 +34,7 @@ namespace GameServer.Maps
 		{
 			get
 			{
-				return this.陷阱模板.ActivelyTriggerDelay;
+				return this.陷阱模板.主动触发延迟;
 			}
 		}
 
@@ -118,25 +118,25 @@ namespace GameServer.Maps
 		{
 			get
 			{
-				return this.陷阱模板.Name;
+				return this.陷阱模板.陷阱名字;
 			}
 		}
 
 		
-		public override GameObjectType ObjectType
+		public override 游戏对象类型 ObjectType
 		{
 			get
 			{
-				return GameObjectType.Trap;
+				return 游戏对象类型.陷阱;
 			}
 		}
 
 		
-		public override ObjectSize ObjectSize
+		public override 技能范围类型 ObjectSize
 		{
 			get
 			{
-				return this.陷阱模板.Size;
+				return this.陷阱模板.陷阱体型;
 			}
 		}
 
@@ -160,35 +160,35 @@ namespace GameServer.Maps
 			this.CurrentPosition = 坐标;
 			this.WalkTime = MainProcess.CurrentTime;
 			this.放置时间 = MainProcess.CurrentTime;
-			this.Id = 模板.Id;
+			this.Id = 模板.陷阱编号;
 			this.CurrentDirection = this.TrapSource.CurrentDirection;
 			this.被动触发列表 = new HashSet<MapObject>();
-			this.消失时间 = this.放置时间 + TimeSpan.FromMilliseconds((double)this.陷阱模板.Duration);
-			this.触发时间 = this.放置时间 + TimeSpan.FromMilliseconds((double)this.陷阱模板.ActivelyTriggerDelay);
+			this.消失时间 = this.放置时间 + TimeSpan.FromMilliseconds((double)this.陷阱模板.陷阱持续时间);
+			this.触发时间 = this.放置时间 + TimeSpan.FromMilliseconds((double)this.陷阱模板.主动触发延迟);
 			PlayerObject PlayerObject = 来源 as PlayerObject;
 			if (PlayerObject != null)
 			{
 				SkillData SkillData;
-				if (this.陷阱模板.BindingLevel != 0 && PlayerObject.MainSkills表.TryGetValue(this.陷阱模板.BindingLevel, out SkillData))
+				if (this.陷阱模板.绑定等级 != 0 && PlayerObject.MainSkills表.TryGetValue(this.陷阱模板.绑定等级, out SkillData))
 				{
 					this.陷阱等级 = SkillData.SkillLevel.V;
 				}
-				if (this.陷阱模板.ExtendedDuration && this.陷阱模板.SkillLevelDelay)
+				if (this.陷阱模板.持续时间延长 && this.陷阱模板.技能等级延时)
 				{
-					this.消失时间 += TimeSpan.FromMilliseconds((double)((int)this.陷阱等级 * this.陷阱模板.ExtendedTimePerLevel));
+					this.消失时间 += TimeSpan.FromMilliseconds((double)((int)this.陷阱等级 * this.陷阱模板.每级延长时间));
 				}
-				if (this.陷阱模板.ExtendedDuration && this.陷阱模板.PlayerStatDelay)
+				if (this.陷阱模板.持续时间延长 && this.陷阱模板.角色属性延时)
 				{
-					this.消失时间 += TimeSpan.FromMilliseconds((double)((float)PlayerObject[this.陷阱模板.BoundPlayerStat] * this.陷阱模板.StatDelayFactor));
+					this.消失时间 += TimeSpan.FromMilliseconds((double)((float)PlayerObject[this.陷阱模板.绑定角色属性] * this.陷阱模板.属性延时系数));
 				}
 				SkillData SkillData2;
-				if (this.陷阱模板.ExtendedDuration && this.陷阱模板.HasSpecificInscriptionDelay && PlayerObject.MainSkills表.TryGetValue((ushort)(this.陷阱模板.SpecificInscriptionSkills / 10), out SkillData2) && (int)SkillData2.Id == this.陷阱模板.SpecificInscriptionSkills % 10)
+				if (this.陷阱模板.持续时间延长 && this.陷阱模板.特定铭文延时 && PlayerObject.MainSkills表.TryGetValue((ushort)(this.陷阱模板.特定铭文技能 / 10), out SkillData2) && (int)SkillData2.Id == this.陷阱模板.特定铭文技能 % 10)
 				{
-					this.消失时间 += TimeSpan.FromMilliseconds((double)this.陷阱模板.InscriptionExtendedTime);
+					this.消失时间 += TimeSpan.FromMilliseconds((double)this.陷阱模板.铭文延长时间);
 				}
 			}
-			this.ActivelyTriggerSkills = ((this.陷阱模板.ActivelyTriggerSkills == null || !GameSkills.DataSheet.ContainsKey(this.陷阱模板.ActivelyTriggerSkills)) ? null : GameSkills.DataSheet[this.陷阱模板.ActivelyTriggerSkills]);
-			this.PassiveTriggerSkill = ((this.陷阱模板.PassiveTriggerSkill == null || !GameSkills.DataSheet.ContainsKey(this.陷阱模板.PassiveTriggerSkill)) ? null : GameSkills.DataSheet[this.陷阱模板.PassiveTriggerSkill]);
+			this.ActivelyTriggerSkills = ((this.陷阱模板.主动触发技能 == null || !GameSkills.DataSheet.ContainsKey(this.陷阱模板.主动触发技能)) ? null : GameSkills.DataSheet[this.陷阱模板.主动触发技能]);
+			this.PassiveTriggerSkill = ((this.陷阱模板.被动触发技能 == null || !GameSkills.DataSheet.ContainsKey(this.陷阱模板.被动触发技能)) ? null : GameSkills.DataSheet[this.陷阱模板.被动触发技能]);
 			this.ObjectId = ++MapGatewayProcess.MapInstanceId;
 			base.BindGrid();
 			base.更新邻居时处理();
@@ -218,9 +218,9 @@ namespace GameServer.Maps
 				{
 					this.主动触发陷阱();
 				}
-				if (this.陷阱模板.CanMove && this.陷阱移动次数 < this.陷阱模板.LimitMoveSteps && MainProcess.CurrentTime > this.WalkTime)
+				if (this.陷阱模板.陷阱能否移动 && this.陷阱移动次数 < this.陷阱模板.限制移动次数 && MainProcess.CurrentTime > this.WalkTime)
 				{
-					if (this.陷阱模板.MoveInCurrentDirection)
+					if (this.陷阱模板.当前方向移动)
 					{
 						base.ItSelf移动时处理(ComputingClass.前方坐标(this.CurrentPosition, this.CurrentDirection, 1));
 						base.SendPacket(new TrapMoveLocationPacket
@@ -228,7 +228,7 @@ namespace GameServer.Maps
 							Id = this.ObjectId,
 							移动坐标 = this.CurrentPosition,
 							移动高度 = this.CurrentAltitude,
-							移动速度 = this.陷阱模板.MoveSpeed
+							移动速度 = this.陷阱模板.陷阱移动速度
 						});
 					}
 					if (this.PassiveTriggerSkill != null)
@@ -242,7 +242,7 @@ namespace GameServer.Maps
 						}
 					}
 					this.陷阱移动次数 += 1;
-					this.WalkTime = this.WalkTime.AddMilliseconds((double)(this.陷阱模板.MoveSpeed * 60));
+					this.WalkTime = this.WalkTime.AddMilliseconds((double)(this.陷阱模板.陷阱移动速度 * 60));
 				}
 			}
 			base.Process();
@@ -255,7 +255,7 @@ namespace GameServer.Maps
 			{
 				return;
 			}
-			if (this.PassiveTriggerSkill != null && !对象.Died && (对象.ObjectType & this.陷阱模板.PassiveObjectType) != (GameObjectType)0 && 对象.IsSpecificType(this.TrapSource, this.陷阱模板.PassiveTargetType) && (this.TrapSource.GetRelationship(对象) & this.陷阱模板.PassiveType) != (GameObjectRelationship)0 && (!this.陷阱模板.RetriggeringIsProhibited || this.被动触发列表.Add(对象)))
+			if (this.PassiveTriggerSkill != null && !对象.Died && (对象.ObjectType & this.陷阱模板.被动限定类型) != (游戏对象类型)0 && 对象.IsSpecificType(this.TrapSource, this.陷阱模板.被动指定类型) && (this.TrapSource.GetRelationship(对象) & this.陷阱模板.被动限定关系) != (GameObjectRelationship)0 && (!this.陷阱模板.禁止重复触发 || this.被动触发列表.Add(对象)))
 			{
 				new SkillInstance(this, this.PassiveTriggerSkill, null, 0, this.CurrentMap, this.CurrentPosition, 对象, 对象.CurrentPosition, null, null, false);
 			}

@@ -35,7 +35,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return (int)this.地图模板.MapId;
+                return (int)this.地图模板.地图编号;
             }
         }
 
@@ -44,7 +44,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.地图模板.MinLevel;
+                return this.地图模板.限制等级;
             }
         }
 
@@ -62,7 +62,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.地图模板.NoReconnect;
+                return this.地图模板.下线传送;
             }
         }
 
@@ -71,7 +71,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.地图模板.NoReconnectMapId;
+                return this.地图模板.传送地图;
             }
         }
 
@@ -80,7 +80,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.地图模板.CopyMap;
+                return this.地图模板.副本地图;
             }
         }
 
@@ -89,7 +89,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.地形数据.StartPoint;
+                return this.地形数据.地图起点;
             }
         }
 
@@ -98,7 +98,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.地形数据.EndPoint;
+                return this.地形数据.地图终点;
             }
         }
 
@@ -107,7 +107,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.地形数据.MapSize;
+                return this.地形数据.地图大小;
             }
         }
 
@@ -162,25 +162,25 @@ namespace GameServer.Maps
                         MonsterSpawns 怪物刷新 = this.怪物波数[num];
                         int num2 = this.刷怪记录 >> 16;
                         int num3 = this.刷怪记录 & 65535;
-                        MonsterSpawnInfo 刷新信息 = 怪物刷新.Spawns[num2];
+                        刷新信息 刷新信息 = 怪物刷新.刷新列表[num2];
                         if (this.刷怪记录 == 0)
                         {
                             this.地图公告(string.Format("The {0}th wave of monsters has appeared, please take care of your defences", num + 1));
                         }
                         Monsters 对应模板;
-                        if (Monsters.DataSheet.TryGetValue(刷新信息.MonsterName, out 对应模板))
+                        if (Monsters.DataSheet.TryGetValue(刷新信息.怪物名字, out 对应模板))
                         {
                             new MonsterObject(对应模板, this, int.MaxValue, new Point[]
                             {
                                 new Point(995, 283)
                             }, true, true).存活时间 = MainProcess.CurrentTime.AddMinutes(30.0);
                         }
-                        if (++num3 >= 刷新信息.SpawnCount)
+                        if (++num3 >= 刷新信息.刷新数量)
                         {
                             num2++;
                             num3 = 0;
                         }
-                        if (num2 >= 怪物刷新.Spawns.Length)
+                        if (num2 >= 怪物刷新.刷新列表.Length)
                         {
                             this.副本节点 += 1;
                             this.刷怪记录 = 0;
@@ -273,16 +273,16 @@ namespace GameServer.Maps
 
             foreach (var spawn in 怪物区域)
             {
-                if (spawn.Spawns != null)
+                if (spawn.刷新列表 != null)
                 {
-                    var rangeCoords = spawn.RangeCoords.ToArray();
-                    foreach (var spawnInfo in spawn.Spawns)
+                    var rangeCoords = spawn.范围坐标.ToArray();
+                    foreach (var spawnInfo in spawn.刷新列表)
                     {
-                        if (Monsters.DataSheet.TryGetValue(spawnInfo.MonsterName, out var 游戏怪物))
+                        if (Monsters.DataSheet.TryGetValue(spawnInfo.怪物名字, out var 游戏怪物))
                         {
                             MainForm.添加怪物数据(游戏怪物);
-                            int RevivalInterval = spawnInfo.RevivalInterval * 60 * 1000;
-                            for (int l = 0; l < spawnInfo.SpawnCount; l++)
+                            int RevivalInterval = spawnInfo.复活间隔 * 60 * 1000;
+                            for (int l = 0; l < spawnInfo.刷新数量; l++)
                             {
                                 new MonsterObject(游戏怪物, this, RevivalInterval, rangeCoords, false, true);
                             }
@@ -292,15 +292,15 @@ namespace GameServer.Maps
             }
 
 
-            TotalMobs = (uint)怪物区域.Sum((MonsterSpawns O) => O.Spawns.Sum((MonsterSpawnInfo X) => X.SpawnCount));
+            TotalMobs = (uint)怪物区域.Sum((MonsterSpawns O) => O.刷新列表.Sum((刷新信息 X) => X.刷新数量));
             MainForm.添加地图数据(this);
         }
 
 
         public void 添加对象(MapObject 对象)
         {
-            GameObjectType 对象类型 = 对象.ObjectType;
-            if (对象类型 == GameObjectType.Player)
+            游戏对象类型 对象类型 = 对象.ObjectType;
+            if (对象类型 == 游戏对象类型.玩家)
             {
                 if (!Initialized)
                     Initialize();
@@ -308,12 +308,12 @@ namespace GameServer.Maps
                 this.NrPlayers.Add(对象 as PlayerObject);
                 return;
             }
-            if (对象类型 == GameObjectType.Pet)
+            if (对象类型 == 游戏对象类型.宠物)
             {
                 this.宠物列表.Add(对象 as PetObject);
                 return;
             }
-            if (对象类型 != GameObjectType.Item)
+            if (对象类型 != 游戏对象类型.物品)
             {
                 this.对象列表.Add(对象);
                 return;
@@ -324,18 +324,18 @@ namespace GameServer.Maps
 
         public void 移除对象(MapObject 对象)
         {
-            GameObjectType 对象类型 = 对象.ObjectType;
-            if (对象类型 == GameObjectType.Player)
+            游戏对象类型 对象类型 = 对象.ObjectType;
+            if (对象类型 == 游戏对象类型.玩家)
             {
                 this.NrPlayers.Remove(对象 as PlayerObject);
                 return;
             }
-            if (对象类型 == GameObjectType.Pet)
+            if (对象类型 == 游戏对象类型.宠物)
             {
                 this.宠物列表.Remove(对象 as PetObject);
                 return;
             }
-            if (对象类型 != GameObjectType.Item)
+            if (对象类型 != 游戏对象类型.物品)
             {
                 this.对象列表.Remove(对象);
                 return;
@@ -416,7 +416,7 @@ namespace GameServer.Maps
             {
                 return default(Point);
             }
-            MapAreas 地图区域 = this.地图区域.FirstOrDefault((MapAreas O) => O.AreaType == AreaType.随机区域);
+            MapAreas 地图区域 = this.地图区域.FirstOrDefault((MapAreas O) => O.区域类型 == AreaType.随机区域);
             if (地图区域 == null)
             {
                 return default(Point);
@@ -429,7 +429,7 @@ namespace GameServer.Maps
         {
             foreach (MapAreas 地图区域 in this.地图区域)
             {
-                if (地图区域.RangeCoords.Contains(坐标) && 地图区域.AreaType == AreaType.随机区域)
+                if (地图区域.范围坐标.Contains(坐标) && 地图区域.区域类型 == AreaType.随机区域)
                 {
                     return 地图区域.RandomCoords;
                 }

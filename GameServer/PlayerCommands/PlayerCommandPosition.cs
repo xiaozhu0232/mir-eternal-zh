@@ -10,7 +10,7 @@ namespace GameServer.PlayerCommands
     {
         public override void Execute()
         {
-            Player.SendMessage($"Your are in {Player.CurrentMap.MapId} ({Player.CurrentMap.地图模板.MapName}) at X: {Player.CurrentPosition.X}, Y: {Player.CurrentPosition.Y}");
+            Player.SendMessage($"Your are in {Player.CurrentMap.MapId} ({Player.CurrentMap.地图模板.地图名字}) at X: {Player.CurrentPosition.X}, Y: {Player.CurrentPosition.Y}");
         }
     }
 }

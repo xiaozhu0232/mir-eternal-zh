@@ -37,7 +37,7 @@ namespace GameServer
                         MainForm.AddCommandLog("<= @" + base.GetType().Name + " Command execution failed, character's bag is full");
                         return;
                     }
-                    if (游戏物品.MaxDura == 0)
+                    if (游戏物品.物品持久 == 0)
                     {
                         MainForm.AddCommandLog("<= @" + base.GetType().Name + " Command execution failed, cannot AddItemsCommand");
                         return;
@@ -50,17 +50,17 @@ namespace GameServer
                         {
                             CharacterData.Backpack[b] = new EquipmentData(游戏装备, CharacterData, 1, b, true);
                         }
-                        else if (游戏物品.PersistType == PersistentItemType.容器)
+                        else if (游戏物品.持久类型 == PersistentItemType.容器)
                         {
                             CharacterData.Backpack[b] = new ItemData(游戏物品, CharacterData, 1, b, 0);
                         }
-                        else if (游戏物品.PersistType == PersistentItemType.堆叠)
+                        else if (游戏物品.持久类型 == PersistentItemType.堆叠)
                         {
                             CharacterData.Backpack[b] = new ItemData(游戏物品, CharacterData, 1, b, 1);
                         }
                         else
                         {
-                            CharacterData.Backpack[b] = new ItemData(游戏物品, CharacterData, 1, b, 游戏物品.MaxDura);
+                            CharacterData.Backpack[b] = new ItemData(游戏物品, CharacterData, 1, b, 游戏物品.物品持久);
                         }
 
                         if(Quantity > 1)

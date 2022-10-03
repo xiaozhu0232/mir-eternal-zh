@@ -3,7 +3,7 @@
 namespace GameServer
 {
 	
-	public enum PersistentItemType
+	public enum PersistentItemType //物品持久分类
 	{
 		
 		无,

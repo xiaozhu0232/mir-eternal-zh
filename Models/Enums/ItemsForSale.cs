@@ -3,7 +3,7 @@
 namespace GameServer
 {
 	
-	public enum ItemsForSale
+	public enum ItemsForSale  //物品出售分类
 	{
 		禁售,
 		药品,

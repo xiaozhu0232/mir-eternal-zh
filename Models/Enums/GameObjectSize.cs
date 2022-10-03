@@ -3,7 +3,7 @@
 namespace GameServer
 {
 	
-	public enum GameObjectSize
+	public enum GameObjectSize  //游戏对象体型
 	{
 		
 		body0x0,

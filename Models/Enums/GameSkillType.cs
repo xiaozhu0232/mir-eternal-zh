@@ -2,9 +2,9 @@
 
 namespace GameServer.Templates
 {
-	public enum GameSkillType  //SkillType
+	public enum GameSkillType  //技能对应类型 //GameSkillType
 	{
-		MainSkills,   //主要技能
-		SubSkills    //子技能
+		主体技能,   //MainSkills
+		子类技能    //SubSkills
 	}
 }

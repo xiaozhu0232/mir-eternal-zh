@@ -4,7 +4,7 @@ namespace GameServer.Templates
 {
 	
 	[Flags]
-	public enum SkillHitFeedback
+	public enum 技能命中反馈    //SkillHitFeedback
 	{
 		
 		正常 = 0,
@@ -13,7 +13,7 @@ namespace GameServer.Templates
 		
 		格挡 = 2,
 		
-		Miss = 4,
+		闪避 = 4,  //Miss
 		
 		招架 = 8,
 		

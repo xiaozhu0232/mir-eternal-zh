@@ -69,20 +69,20 @@ namespace GameServer.Maps
         }
 
 
-        public override GameObjectType ObjectType
+        public override 游戏对象类型 ObjectType
         {
             get
             {
-                return GameObjectType.Item;
+                return 游戏对象类型.物品;
             }
         }
 
 
-        public override ObjectSize ObjectSize
+        public override 技能范围类型 ObjectSize
         {
             get
             {
-                return ObjectSize.Single1x1;
+                return 技能范围类型.单体1x1;
             }
         }
 
@@ -91,7 +91,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.物品模板.PersistType;
+                return this.物品模板.持久类型;
             }
         }
 
@@ -100,7 +100,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.物品模板.MaxDura;
+                return this.物品模板.物品持久;
             }
         }
 
@@ -114,7 +114,7 @@ namespace GameServer.Maps
                 {
                     return 0;
                 }
-                return 游戏物品.Id;
+                return 游戏物品.物品编号;
             }
         }
 
@@ -123,11 +123,11 @@ namespace GameServer.Maps
         {
             get
             {
-                if (this.物品模板.PersistType != PersistentItemType.堆叠)
+                if (this.物品模板.持久类型 != PersistentItemType.堆叠)
                 {
-                    return this.物品模板.Weight;
+                    return this.物品模板.物品重量;
                 }
-                return this.物品模板.Weight * this.堆叠数量;
+                return this.物品模板.物品重量 * this.堆叠数量;
             }
         }
 
@@ -136,7 +136,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.物品模板.PersistType == PersistentItemType.堆叠;
+                return this.物品模板.持久类型 == PersistentItemType.堆叠;
             }
         }
 
@@ -157,7 +157,7 @@ namespace GameServer.Maps
             this.CurrentMap = 掉落地图;
             this.ItemData = ItemData;
             this.堆叠数量 = 堆叠数量;
-            this.物品绑定 = (物品模板.IsBound || 物品绑定);
+            this.物品绑定 = (物品模板.是否绑定 || 物品绑定);
 
             int num = int.MaxValue;
             for (int i = 0; i <= 120; i++)
@@ -170,21 +170,21 @@ namespace GameServer.Maps
                     {
                         if (!MapObject.Died)
                         {
-                            GameObjectType 对象类型 = MapObject.ObjectType;
+                            游戏对象类型 对象类型 = MapObject.ObjectType;
                             switch (对象类型)
                             {
-                                case GameObjectType.Player:
+                                case 游戏对象类型.玩家:
                                     num2 += 10000;
                                     continue;
-                                case GameObjectType.Pet:
-                                case GameObjectType.Monster:
+                                case 游戏对象类型.宠物:
+                                case 游戏对象类型.怪物:
                                     break;
-                                case (GameObjectType)3:
+                                case (游戏对象类型)3:
                                     continue;
                                 default:
-                                    if (对象类型 != GameObjectType.NPC)
+                                    if (对象类型 != 游戏对象类型.Npcc)
                                     {
-                                        if (对象类型 != GameObjectType.Item)
+                                        if (对象类型 != 游戏对象类型.物品)
                                         {
                                             continue;
                                         }

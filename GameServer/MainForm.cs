@@ -493,7 +493,7 @@ namespace GameServer
                     dataRow["DoubleExp"] = 角色.DoubleExp;
                     dataRow["CurrentBattlePower"] = 角色.PowerCombat;
                     GameMap 游戏地图;
-                    dataRow["CurrentMap"] = (GameMap.DataSheet.TryGetValue((byte)角色.CurrentMap.V, out 游戏地图) ? 游戏地图.MapName : 角色.CurrentMap);
+                    dataRow["CurrentMap"] = (GameMap.DataSheet.TryGetValue((byte)角色.CurrentMap.V, out 游戏地图) ? 游戏地图.地图名字 : 角色.CurrentMap);
                     dataRow["PkLevel"] = 角色.PkLevel;
                     dataRow["CurrentCoords"] = string.Format("{0}, {1}", 角色.CurrentCoords.V.X, 角色.CurrentCoords.V.Y);
                     MainForm.CharacterData行[角色] = dataRow;
@@ -550,7 +550,7 @@ namespace GameServer
                         foreach (KeyValuePair<ushort, SkillData> keyValuePair in list)
                         {
                             DataRow dataRow = MainForm.SkillData表.NewRow();
-                            dataRow["SkillName"] = keyValuePair.Value.铭文模板.SkillName;
+                            dataRow["SkillName"] = keyValuePair.Value.铭文模板.技能名字;
                             dataRow["SkillId"] = keyValuePair.Value.SkillId;
                             dataRow["CurrentRank"] = keyValuePair.Value.SkillLevel;
                             dataRow["CurrentExp"] = keyValuePair.Value.SkillExp;
@@ -602,7 +602,7 @@ namespace GameServer
                     foreach (KeyValuePair<GameItems, long> keyValuePair5 in list5)
                     {
                         DataRow dataRow5 = MainForm.掉落DataSheet.NewRow();
-                        dataRow5["Name"] = keyValuePair5.Key.Name;
+                        dataRow5["Name"] = keyValuePair5.Key.物品名字;
                         dataRow5["DropNumber"] = keyValuePair5.Value;
                         MainForm.掉落DataSheet.Rows.Add(dataRow5);
                     }
@@ -747,14 +747,14 @@ namespace GameServer
                 if (!MainForm.怪物数据行.ContainsKey(怪物))
                 {
                     DataRow dataRow = MainForm.怪物DataSheet.NewRow();
-                    dataRow["MobId"] = 怪物.Id;
-                    dataRow["MonsterName"] = 怪物.MonsterName;
-                    dataRow["Level"] = 怪物.Level;
-                    dataRow["Category"] = 怪物.Category;
-                    dataRow["怪物经验"] = 怪物.ProvideExperience;
-                    dataRow["MobInterval"] = 怪物.MoveInterval;
-                    dataRow["RangeHate"] = 怪物.RangeHate;
-                    dataRow["HateTime"] = 怪物.HateTime;
+                    dataRow["MobId"] = 怪物.怪物编号;
+                    dataRow["MonsterName"] = 怪物.怪物名字;
+                    dataRow["Level"] = 怪物.怪物等级;
+                    dataRow["Category"] = 怪物.怪物级别;
+                    dataRow["怪物经验"] = 怪物.怪物提供经验;
+                    dataRow["MobInterval"] = 怪物.怪物移动间隔;
+                    dataRow["RangeHate"] = 怪物.怪物仇恨范围;
+                    dataRow["HateTime"] = 怪物.怪物仇恨时间;
                     MainForm.怪物数据行[怪物] = dataRow;
                     MainForm.数据行怪物[dataRow] = 怪物;
                     MainForm.怪物DataSheet.Rows.Add(dataRow);

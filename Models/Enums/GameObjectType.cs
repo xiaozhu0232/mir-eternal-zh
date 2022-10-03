@@ -3,14 +3,14 @@
 namespace GameServer
 {
 	
-	public enum GameObjectType  //游戏对象类型
+	public enum 游戏对象类型  //游戏对象类型 GameObjectType
 	{
-		Player = 1,   //玩家
-		Pet = 2,   //宠物
-		Monster = 4,  //怪物
-		NPC = 8,  
-		Item = 16,  //物品
-		Trap = 32,  //陷阱
+		玩家 = 1,   //Player
+		宠物 = 2,   //Pet
+		怪物 = 4,  //Monster
+		Npcc = 8,  //NPC
+		物品 = 16,  //Item
+		陷阱 = 32,  //Trap
 		Chest = 64,  //宝盒
 	}
 }

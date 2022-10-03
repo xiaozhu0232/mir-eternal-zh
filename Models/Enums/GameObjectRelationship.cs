@@ -3,10 +3,10 @@
 namespace GameServer.Templates
 {
 	[Flags]
-	public enum GameObjectRelationship
+	public enum GameObjectRelationship  //游戏对象关系
 	{
-		ItSelf = 1,
-		Friendly = 2,
-		Hostility = 4
+		自身 = 1,  //ItSelf
+		友方 = 2,  //Friendly
+		敌对 = 4  //Hostility
 	}
 }

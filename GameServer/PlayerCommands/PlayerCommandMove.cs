@@ -47,7 +47,7 @@ namespace GameServer.PlayerCommands
                         }
             }
 
-            Player.玩家切换地图(mapInstance, mapArea?.AreaType ?? AreaType.未知区域, location);
+            Player.玩家切换地图(mapInstance, mapArea?.区域类型 ?? AreaType.未知区域, location);
         }
     }
 }

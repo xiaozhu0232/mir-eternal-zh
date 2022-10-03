@@ -2,7 +2,7 @@
 
 namespace GameServer
 {
-	public enum GameObjectRace
+	public enum GameObjectRace  //游戏对象职业
 	{
 		战士,
 		法师,

@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace GameServer
 {
-    public static class MainProcess
+    public static class MainProcess //
     {
         public static DateTime CurrentTime;
         public static DateTime NextUpdateLoopCountsTime;

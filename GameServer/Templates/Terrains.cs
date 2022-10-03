@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace GameServer.Templates
 {
-    public sealed class Terrains
+    public sealed class Terrains  //地形数据
     {
-        public static Dictionary<byte, Terrains> DataSheet;
+        public static Dictionary<byte, Terrains> DataSheet; //地形数据 数据表
 
-        public byte MapId;
-        public string MapName;
-        public Point StartPoint;
-        public Point EndPoint;
-        public Point MapSize;
-        public Point MapHeight;
-        public uint[,] Matrix;
+        public byte 地图编号;   //MapId
+        public string 地图名字;  //MapName
+        public Point 地图起点;  //StartPoint
+        public Point 地图终点;  //EndPoint
+        public Point 地图大小;   //MapSize
+        public Point 地图高度;  //MapHeight
+        public uint[,] 点阵数据;   //Matrix
 
         private static Terrains LoadTerrainFromFile(FileSystemInfo fileInfo)
         {
@@ -26,25 +26,25 @@ namespace GameServer.Templates
 
             var terrain = new Terrains
             {
-                MapName = parts[1],
-                MapId = Convert.ToByte(parts[0])
+                地图名字 = parts[1],
+                地图编号 = Convert.ToByte(parts[0])
             };
 
             using (var ms = new MemoryStream(File.ReadAllBytes(fileInfo.FullName)))
             {
                 using var br = new BinaryReader(ms);
 
-                terrain.StartPoint = new Point(br.ReadInt32(), br.ReadInt32());
-                terrain.EndPoint = new Point(br.ReadInt32(), br.ReadInt32());
-                terrain.MapSize = new Point(terrain.EndPoint.X - terrain.StartPoint.X, terrain.EndPoint.Y - terrain.StartPoint.Y);
-                terrain.MapHeight = new Point(br.ReadInt32(), br.ReadInt32());
-                terrain.Matrix = new uint[terrain.MapSize.X, terrain.MapSize.Y];
+                terrain.地图起点 = new Point(br.ReadInt32(), br.ReadInt32());
+                terrain.地图终点 = new Point(br.ReadInt32(), br.ReadInt32());
+                terrain.地图大小 = new Point(terrain.地图终点.X - terrain.地图起点.X, terrain.地图终点.Y - terrain.地图起点.Y);
+                terrain.地图高度 = new Point(br.ReadInt32(), br.ReadInt32());
+                terrain.点阵数据 = new uint[terrain.地图大小.X, terrain.地图大小.Y];
 
-                for (int i = 0; i < terrain.MapSize.X; i++)
+                for (int i = 0; i < terrain.地图大小.X; i++)
                 {
-                    for (int j = 0; j < terrain.MapSize.Y; j++)
+                    for (int j = 0; j < terrain.地图大小.Y; j++)
                     {
-                        terrain.Matrix[i, j] = br.ReadUInt32();
+                        terrain.点阵数据[i, j] = br.ReadUInt32();
                     }
                 }
             }
@@ -56,7 +56,7 @@ namespace GameServer.Templates
         public static void LoadData()
         {
             DataSheet = new Dictionary<byte, Terrains>();
-            string path = Config.GameDataPath + "\\System\\GameMap\\Terrains\\";
+            string path = Config.GameDataPath + "\\System\\游戏地图\\地形数据\\";
             if (Directory.Exists(path))
             {
                 var terrains = new ConcurrentBag<Terrains>();
@@ -69,7 +69,7 @@ namespace GameServer.Templates
                 });
 
                 foreach (var terrain in terrains)
-                    DataSheet.Add(terrain.MapId, terrain);
+                    DataSheet.Add(terrain.地图编号, terrain);
             }
         }
 
@@ -78,7 +78,7 @@ namespace GameServer.Templates
         {
             get
             {
-                return this.Matrix[point.X - this.StartPoint.X, point.Y - this.StartPoint.Y];
+                return this.点阵数据[point.X - this.地图起点.X, point.Y - this.地图起点.Y];
             }
         }
     }

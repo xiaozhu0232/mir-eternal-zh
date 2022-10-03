@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GameServer.Templates
 {
-    public class GameItemTreasure
+    public class GameItemTreasure  //GameItem宝盒
     {
-        public string ItemName { get; set; }
-        public GameObjectRace? NeedRace { get; set; } = null;
-        public int? Rate { get; set; } = null;
+        public string 物品名字 { get; set; }  //ItemName
+        public GameObjectRace? 需要职业 { get; set; } = null;  //游戏对象职业? NeedRace
+        public int? 概率 { get; set; } = null;   //Rate
     }
 }

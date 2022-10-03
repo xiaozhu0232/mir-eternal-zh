@@ -3,23 +3,23 @@
 namespace GameServer.Templates
 {
 	
-	public sealed class A_01_TriggerObjectBuff : SkillTask
+	public sealed class A_01_触发对象Buff : SkillTask  //A_01_TriggerObjectBuff : SkillTask 
 	{
 		
-		public A_01_TriggerObjectBuff()
+		public A_01_触发对象Buff()
 		{
 			
 			
 		}
 
 		
-		public bool 角色ItSelf添加;
+		public bool 角色自身添加;    //角色ItSelf添加
 
 		
-		public ushort 触发Id;  //触发Buff编号
+		public ushort 触发Buff编号;  //触发Id
 
 		
-		public ushort 伴生Id;
+		public ushort 伴生Buff编号;  //伴生Id
 
 		
 		public float Buff触发概率;
@@ -28,16 +28,16 @@ namespace GameServer.Templates
 		public bool 验证铭文技能;
 
 		
-		public ushort 所需Id;
+		public ushort 所需铭文编号;  // 所需Id
 
 		
 		public bool 同组铭文无效;
 
 		
-		public bool 验证ItSelfBuff;
+		public bool 验证自身Buff;  //验证ItSelfBuff
 
 		
-		public ushort Id;
+		public ushort 自身Buff编号;  //Id
 
 		
 		public bool 触发成功移除;
@@ -52,27 +52,27 @@ namespace GameServer.Templates
 		public bool 验证分组Buff;
 
 		
-		public ushort BuffGroupId;
+		public ushort Buff分组编号;  //BuffGroupId
 
 		
-		public bool VerifyTargetBuff;
+		public bool 验证目标Buff;  //VerifyTargetBuff
 
 		
-		public ushort 目标Id;
+		public ushort 目标Buff编号; //目标Id
 
 		
 		public byte 所需Buff层数;
 
 		
-		public bool VerifyTargetType;
+		public bool 验证目标类型;  //VerifyTargetType
 
 		
-		public SpecifyTargetType 所需目标类型;
+		public 指定目标类型 所需目标类型;   //SpecifyTargetType 
 
 		
-		public bool GainSkillExp;  //增加技能经验
+		public bool 增加技能经验;  //增加技能经验 //GainSkillExp
 
 		
-		public ushort ExpSkillId;
+		public ushort 经验技能编号;  //ExpSkillId
 	}
 }

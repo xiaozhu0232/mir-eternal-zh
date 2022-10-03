@@ -23,84 +23,84 @@ namespace GameServer.Data
         {
             get
             {
-                if (装备模板.Type == ItemType.武器)
+                if (装备模板.物品分类 == 物品使用分类.武器)
                 {
-                    int num = (int)(装备模板.BasicPowerCombat * (Luck.V + 20) * 1717986919L >> 32 >> 3);
+                    int num = (int)(装备模板.基础战力 * (Luck.V + 20) * 1717986919L >> 32 >> 3);
                     int num2 = Sacred伤害.V * 3 + 升级Attack.V * 5 + 升级Magic.V * 5 + 升级Taoism.V * 5 + 升级Needle.V * 5 + 升级Archery.V * 5;
-                    int num3 = 随机Stat.Sum((RandomStats x) => x.CombatBonus);
+                    int num3 = 随机属性.Sum((随机属性 x) => x.战力加成);
                     return num + num2 + num3;
                 }
                 int num4 = 0;
-                switch (装备模板.EquipSet)
+                switch (装备模板.装备套装)
                 {
                     case GameEquipmentSet.祖玛装备:
-                        switch (装备模板.Type)
+                        switch (装备模板.物品分类)
                         {
-                            case ItemType.腰带:
-                            case ItemType.鞋子:
-                            case ItemType.头盔:
+                            case 物品使用分类.腰带:
+                            case 物品使用分类.鞋子:
+                            case 物品使用分类.头盔:
                                 num4 = 2 * 升级次数.V;
                                 break;
-                            case ItemType.衣服:
+                            case 物品使用分类.衣服:
                                 num4 = 4 * 升级次数.V;
                                 break;
                         }
                         break;
                     case GameEquipmentSet.赤月装备:
-                        switch (装备模板.Type)
+                        switch (装备模板.物品分类)
                         {
-                            case ItemType.腰带:
-                            case ItemType.鞋子:
-                            case ItemType.头盔:
+                            case 物品使用分类.腰带:
+                            case 物品使用分类.鞋子:
+                            case 物品使用分类.头盔:
                                 num4 = 4 * 升级次数.V;
                                 break;
-                            case ItemType.衣服:
+                            case 物品使用分类.衣服:
                                 num4 = 6 * 升级次数.V;
                                 break;
                         }
                         break;
                     case GameEquipmentSet.魔龙装备:
-                        switch (装备模板.Type)
+                        switch (装备模板.物品分类)
                         {
-                            case ItemType.腰带:
-                            case ItemType.鞋子:
-                            case ItemType.头盔:
+                            case 物品使用分类.腰带:
+                            case 物品使用分类.鞋子:
+                            case 物品使用分类.头盔:
                                 num4 = 5 * 升级次数.V;
                                 break;
-                            case ItemType.衣服:
+                            case 物品使用分类.衣服:
                                 num4 = 8 * 升级次数.V;
                                 break;
                         }
                         break;
                     case GameEquipmentSet.苍月装备:
-                        switch (装备模板.Type)
+                        switch (装备模板.物品分类)
                         {
-                            case ItemType.腰带:
-                            case ItemType.鞋子:
-                            case ItemType.头盔:
+                            case 物品使用分类.腰带:
+                            case 物品使用分类.鞋子:
+                            case 物品使用分类.头盔:
                                 num4 = 7 * 升级次数.V;
                                 break;
-                            case ItemType.衣服:
+                            case 物品使用分类.衣服:
                                 num4 = 11 * 升级次数.V;
                                 break;
                         }
                         break;
                     case GameEquipmentSet.星王装备:
-                        if (装备模板.Type == ItemType.衣服)
+                        if (装备模板.物品分类 == 物品使用分类.衣服)
                         {
                             num4 = 13 * 升级次数.V;
                         }
                         break;
                     case GameEquipmentSet.神秘装备:
                     case GameEquipmentSet.城主装备:
-                        switch (装备模板.Type)
+                        switch (装备模板.物品分类)
                         {
-                            case ItemType.腰带:
-                            case ItemType.鞋子:
-                            case ItemType.头盔:
+                            case 物品使用分类.腰带:
+                            case 物品使用分类.鞋子:
+                            case 物品使用分类.头盔:
                                 num4 = 9 * 升级次数.V;
                                 break;
-                            case ItemType.衣服:
+                            case 物品使用分类.衣服:
                                 num4 = 13 * 升级次数.V;
                                 break;
                         }
@@ -111,7 +111,7 @@ namespace GameServer.Data
                 {
                     while (enumerator.MoveNext())
                     {
-                        switch (enumerator.Current.Name)
+                        switch (enumerator.Current.物品名字)
                         {
                             case "驭朱灵石8级":
                             case "精绿灵石8级":
@@ -296,8 +296,8 @@ namespace GameServer.Data
                         }
                     }
                 }
-                int num6 = 随机Stat.Sum((RandomStats x) => x.CombatBonus);
-                return 装备模板.BasicPowerCombat + num4 + num6 + num5;
+                int num6 = 随机属性.Sum((随机属性 x) => x.战力加成);
+                return 装备模板.基础战力 + num4 + num6 + num5;
             }
         }
 
@@ -307,8 +307,8 @@ namespace GameServer.Data
             get
             {
                 int value = 最大持久.V - 当前持久.V;
-                decimal d = ((EquipmentItem)对应模板.V).RepairCost;
-                decimal d2 = ((EquipmentItem)对应模板.V).MaxDura * 1000m;
+                decimal d = ((EquipmentItem)对应模板.V).特修花费;
+                decimal d2 = ((EquipmentItem)对应模板.V).物品持久 * 1000m;
                 return (int)(d / d2 * value);
             }
         }
@@ -319,8 +319,8 @@ namespace GameServer.Data
             get
             {
                 decimal d = 最大持久.V - 当前持久.V;
-                decimal d2 = ((EquipmentItem)对应模板.V).SpecialRepairCost;
-                decimal d3 = ((EquipmentItem)对应模板.V).MaxDura * 1000m;
+                decimal d2 = ((EquipmentItem)对应模板.V).特修花费;
+                decimal d3 = ((EquipmentItem)对应模板.V).物品持久 * 1000m;
                 return (int)(d2 / d3 * d * Config.EquipRepairDto * 1.15m);
             }
         }
@@ -330,7 +330,7 @@ namespace GameServer.Data
         {
             get
             {
-                return ((EquipmentItem)base.物品模板).NeedAttack;
+                return ((EquipmentItem)base.物品模板).需要攻击;
             }
         }
 
@@ -339,7 +339,7 @@ namespace GameServer.Data
         {
             get
             {
-                return ((EquipmentItem)base.物品模板).NeedMagic;
+                return ((EquipmentItem)base.物品模板).需要魔法;
             }
         }
 
@@ -348,25 +348,25 @@ namespace GameServer.Data
         {
             get
             {
-                return ((EquipmentItem)base.物品模板).NeedTaoism;
+                return ((EquipmentItem)base.物品模板).需要道术;
             }
         }
 
 
-        public int NeedAcupuncture
+        public int NeedAcupuncture  //需要刺术
         {
             get
             {
-                return ((EquipmentItem)base.物品模板).NeedAcupuncture;
+                return ((EquipmentItem)base.物品模板).需要刺术;
             }
         }
 
 
-        public int NeedArchery
+        public int NeedArchery  //需要弓术
         {
             get
             {
-                return ((EquipmentItem)base.物品模板).NeedArchery;
+                return ((EquipmentItem)base.物品模板).需要弓术;
             }
         }
 
@@ -375,16 +375,16 @@ namespace GameServer.Data
         {
             get
             {
-                return base.物品模板.Name;
+                return base.物品模板.物品名字;
             }
         }
 
 
-        public bool DisableDismount
+        public bool DisableDismount  //禁止卸下
         {
             get
             {
-                return ((EquipmentItem)对应模板.V).DisableDismount;
+                return ((EquipmentItem)对应模板.V).禁止卸下;
             }
         }
 
@@ -506,15 +506,15 @@ namespace GameServer.Data
         }
 
 
-        public string StatDescription
+        public string StatDescription  //属性描述
         {
             get
             {
                 string text = "";
                 Dictionary<GameObjectStats, int> dictionary = new Dictionary<GameObjectStats, int>();
-                foreach (RandomStats 随机Stat in 随机Stat)
+                foreach (随机属性 随机属性 in 随机属性)
                 {
-                    dictionary[随机Stat.Stat] = 随机Stat.Value;
+                    dictionary[随机属性.对应属性] = 随机属性.属性数值;
                 }
                 if (dictionary.ContainsKey(GameObjectStats.最小攻击) || dictionary.ContainsKey(GameObjectStats.最大攻击))
                 {
@@ -648,7 +648,7 @@ namespace GameServer.Data
             {
                 if (当前铭栏.V == 0)
                 {
-                    if (铭文技能[0].Quality < 铭文技能[1].Quality)
+                    if (铭文技能[0].铭文品质 < 铭文技能[1].铭文品质)
                     {
                         return 铭文技能[1];
                     }
@@ -656,7 +656,7 @@ namespace GameServer.Data
                 }
                 else
                 {
-                    if (铭文技能[2].Quality < 铭文技能[3].Quality)
+                    if (铭文技能[2].铭文品质 < 铭文技能[3].铭文品质)
                     {
                         return 铭文技能[3];
                     }
@@ -667,7 +667,7 @@ namespace GameServer.Data
             {
                 if (当前铭栏.V == 0)
                 {
-                    if (铭文技能[0].Quality >= 铭文技能[1].Quality)
+                    if (铭文技能[0].铭文品质 >= 铭文技能[1].铭文品质)
                     {
                         铭文技能[0] = value;
                         return;
@@ -677,7 +677,7 @@ namespace GameServer.Data
                 }
                 else
                 {
-                    if (铭文技能[2].Quality >= 铭文技能[3].Quality)
+                    if (铭文技能[2].铭文品质 >= 铭文技能[3].铭文品质)
                     {
                         铭文技能[2] = value;
                         return;
@@ -695,7 +695,7 @@ namespace GameServer.Data
             {
                 if (当前铭栏.V == 0)
                 {
-                    if (铭文技能[0].Quality >= 铭文技能[1].Quality)
+                    if (铭文技能[0].铭文品质 >= 铭文技能[1].铭文品质)
                     {
                         return 铭文技能[1];
                     }
@@ -703,7 +703,7 @@ namespace GameServer.Data
                 }
                 else
                 {
-                    if (铭文技能[2].Quality >= 铭文技能[3].Quality)
+                    if (铭文技能[2].铭文品质 >= 铭文技能[3].铭文品质)
                     {
                         return 铭文技能[3];
                     }
@@ -714,7 +714,7 @@ namespace GameServer.Data
             {
                 if (当前铭栏.V == 0)
                 {
-                    if (铭文技能[0].Quality < 铭文技能[1].Quality)
+                    if (铭文技能[0].铭文品质 < 铭文技能[1].铭文品质)
                     {
                         铭文技能[0] = value;
                         return;
@@ -724,7 +724,7 @@ namespace GameServer.Data
                 }
                 else
                 {
-                    if (铭文技能[2].Quality < 铭文技能[3].Quality)
+                    if (铭文技能[2].铭文品质 < 铭文技能[3].铭文品质)
                     {
                         铭文技能[2] = value;
                         return;
@@ -763,85 +763,85 @@ namespace GameServer.Data
             get
             {
                 Dictionary<GameObjectStats, int> dictionary = new Dictionary<GameObjectStats, int>();
-                if (装备模板.MinDC != 0)
+                if (装备模板.最小攻击 != 0)
                 {
-                    dictionary[GameObjectStats.最小攻击] = 装备模板.MinDC;
+                    dictionary[GameObjectStats.最小攻击] = 装备模板.最小攻击;
                 }
-                if (装备模板.MaxDC != 0)
+                if (装备模板.最大攻击 != 0)
                 {
-                    dictionary[GameObjectStats.最大攻击] = 装备模板.MaxDC;
+                    dictionary[GameObjectStats.最大攻击] = 装备模板.最大攻击;
                 }
-                if (装备模板.MinMC != 0)
+                if (装备模板.最小魔法 != 0)
                 {
-                    dictionary[GameObjectStats.最小魔法] = 装备模板.MinMC;
+                    dictionary[GameObjectStats.最小魔法] = 装备模板.最小魔法;
                 }
-                if (装备模板.MaxMC != 0)
+                if (装备模板.最大魔法 != 0)
                 {
-                    dictionary[GameObjectStats.最大魔法] = 装备模板.MaxMC;
+                    dictionary[GameObjectStats.最大魔法] = 装备模板.最大魔法;
                 }
-                if (装备模板.MinSC != 0)
+                if (装备模板.最小道术 != 0)
                 {
-                    dictionary[GameObjectStats.最小道术] = 装备模板.MinSC;
+                    dictionary[GameObjectStats.最小道术] = 装备模板.最小道术;
                 }
-                if (装备模板.MaxSC != 0)
+                if (装备模板.最大道术 != 0)
                 {
-                    dictionary[GameObjectStats.最大道术] = 装备模板.MaxSC;
+                    dictionary[GameObjectStats.最大道术] = 装备模板.最大道术;
                 }
-                if (装备模板.MinNC != 0)
+                if (装备模板.最小刺术 != 0)
                 {
-                    dictionary[GameObjectStats.最小刺术] = 装备模板.MinNC;
+                    dictionary[GameObjectStats.最小刺术] = 装备模板.最小刺术;
                 }
-                if (装备模板.MaxNC != 0)
+                if (装备模板.最大刺术 != 0)
                 {
-                    dictionary[GameObjectStats.最大刺术] = 装备模板.MaxNC;
+                    dictionary[GameObjectStats.最大刺术] = 装备模板.最大刺术;
                 }
-                if (装备模板.MinBC != 0)
+                if (装备模板.最小弓术 != 0)
                 {
-                    dictionary[GameObjectStats.最小弓术] = 装备模板.MinBC;
+                    dictionary[GameObjectStats.最小弓术] = 装备模板.最小弓术;
                 }
-                if (装备模板.MaxBC != 0)
+                if (装备模板.最大弓术 != 0)
                 {
-                    dictionary[GameObjectStats.最大弓术] = 装备模板.MaxBC;
+                    dictionary[GameObjectStats.最大弓术] = 装备模板.最大弓术;
                 }
-                if (装备模板.MinDef != 0)
+                if (装备模板.最小防御 != 0)
                 {
-                    dictionary[GameObjectStats.最小防御] = 装备模板.MinDef;
+                    dictionary[GameObjectStats.最小防御] = 装备模板.最小防御;
                 }
-                if (装备模板.MaxDef != 0)
+                if (装备模板.最大防御 != 0)
                 {
-                    dictionary[GameObjectStats.最大防御] = 装备模板.MaxDef;
+                    dictionary[GameObjectStats.最大防御] = 装备模板.最大防御;
                 }
-                if (装备模板.MinMCDef != 0)
+                if (装备模板.最小魔防 != 0)
                 {
-                    dictionary[GameObjectStats.最小魔防] = 装备模板.MinMCDef;
+                    dictionary[GameObjectStats.最小魔防] = 装备模板.最小魔防;
                 }
-                if (装备模板.MaxMCDef != 0)
+                if (装备模板.最大魔防 != 0)
                 {
-                    dictionary[GameObjectStats.最大魔防] = 装备模板.MaxMCDef;
+                    dictionary[GameObjectStats.最大魔防] = 装备模板.最大魔防;
                 }
-                if (装备模板.MaxHP != 0)
+                if (装备模板.最大体力 != 0)
                 {
-                    dictionary[GameObjectStats.最大体力] = 装备模板.MaxHP;
+                    dictionary[GameObjectStats.最大体力] = 装备模板.最大体力;
                 }
-                if (装备模板.MaxMP != 0)
+                if (装备模板.最大魔力 != 0)
                 {
-                    dictionary[GameObjectStats.最大魔力] = 装备模板.MaxMP;
+                    dictionary[GameObjectStats.最大魔力] = 装备模板.最大魔力;
                 }
-                if (装备模板.AttackSpeed != 0)
+                if (装备模板.攻击速度 != 0)
                 {
-                    dictionary[GameObjectStats.攻击速度] = 装备模板.AttackSpeed;
+                    dictionary[GameObjectStats.攻击速度] = 装备模板.攻击速度;
                 }
-                if (装备模板.MagicDodge != 0)
+                if (装备模板.魔法闪避 != 0)
                 {
-                    dictionary[GameObjectStats.魔法闪避] = 装备模板.MagicDodge;
+                    dictionary[GameObjectStats.魔法闪避] = 装备模板.魔法闪避;
                 }
-                if (装备模板.PhysicallyAccurate != 0)
+                if (装备模板.物理准确 != 0)
                 {
-                    dictionary[GameObjectStats.物理准确] = 装备模板.PhysicallyAccurate;
+                    dictionary[GameObjectStats.物理准确] = 装备模板.物理准确;
                 }
-                if (装备模板.PhysicalAgility != 0)
+                if (装备模板.物理敏捷 != 0)
                 {
-                    dictionary[GameObjectStats.物理敏捷] = 装备模板.PhysicalAgility;
+                    dictionary[GameObjectStats.物理敏捷] = 装备模板.物理敏捷;
                 }
                 if (Luck.V != 0)
                 {
@@ -867,13 +867,13 @@ namespace GameServer.Data
                 {
                     dictionary[GameObjectStats.最大弓术] = (dictionary.ContainsKey(GameObjectStats.最大弓术) ? (dictionary[GameObjectStats.最大弓术] + (int)升级Archery.V) : ((int)升级Archery.V));
                 }
-                foreach (RandomStats 随机Stat in 随机Stat.ToList<RandomStats>())
+                foreach (随机属性 随机属性 in 随机属性.ToList<随机属性>())
                 {
-                    dictionary[随机Stat.Stat] = (dictionary.ContainsKey(随机Stat.Stat) ? (dictionary[随机Stat.Stat] + 随机Stat.Value) : 随机Stat.Value);
+                    dictionary[随机属性.对应属性] = (dictionary.ContainsKey(随机属性.对应属性) ? (dictionary[随机属性.对应属性] + 随机属性.属性数值) : 随机属性.属性数值);
                 }
                 foreach (GameItems GameItems in 镶嵌灵石.Values)
                 {
-                    int Id = GameItems.Id;
+                    int Id = GameItems.物品编号;
                     if (Id <= 10324)
                     {
                         switch (Id)
@@ -1053,15 +1053,15 @@ namespace GameServer.Data
             物品位置.V = location;
             生成时间.V = MainProcess.CurrentTime;
             物品状态.V = 1;
-            最大持久.V = ((item.PersistType == PersistentItemType.装备) ? (item.MaxDura * 1000) : item.MaxDura);
+            最大持久.V = ((item.持久类型 == PersistentItemType.装备) ? (item.物品持久 * 1000) : item.物品持久);
 
-            if (randomGenerated && item.PersistType == PersistentItemType.装备)
+            if (randomGenerated && item.持久类型 == PersistentItemType.装备)
                 当前持久.V = MainProcess.RandomNumber.Next(0, 最大持久.V);
             else
                 当前持久.V = 最大持久.V;
 
-            if (randomGenerated && item.PersistType == PersistentItemType.装备)
-                随机Stat.SetValue(EquipmentStats.GenerateStats(base.物品类型, false));
+            if (randomGenerated && item.持久类型 == PersistentItemType.装备)
+                随机属性.SetValue(装备属性.GenerateStats(base.物品类型, false));
 
             var activeQuests = character.GetInProgressQuests();
             foreach (var quest in activeQuests)
@@ -1071,7 +1071,7 @@ namespace GameServer.Data
                 foreach (var mission in missions)
                 {
                     if (mission.CompletedDate.V != DateTime.MinValue) continue;
-                    if (mission.Info.V.Id != item.Id) continue;
+                    if (mission.Info.V.Id != item.物品编号) continue;
                     mission.Count.V = (byte)(mission.Count.V + 1);
                     updated = true;
                 }
@@ -1087,21 +1087,21 @@ namespace GameServer.Data
             {
                 switch (base.物品类型)
                 {
-                    case ItemType.衣服:
-                    case ItemType.披风:
-                    case ItemType.腰带:
-                    case ItemType.鞋子:
-                    case ItemType.护肩:
-                    case ItemType.护腕:
-                    case ItemType.头盔:
+                    case 物品使用分类.衣服:
+                    case 物品使用分类.披风:
+                    case 物品使用分类.腰带:
+                    case 物品使用分类.鞋子:
+                    case 物品使用分类.护肩:
+                    case 物品使用分类.护腕:
+                    case 物品使用分类.头盔:
                         return 112003;
-                    case ItemType.项链:
-                    case ItemType.戒指:
-                    case ItemType.手镯:
-                    case ItemType.勋章:
-                    case ItemType.玉佩:
+                    case 物品使用分类.项链:
+                    case 物品使用分类.戒指:
+                    case 物品使用分类.手镯:
+                    case 物品使用分类.勋章:
+                    case 物品使用分类.玉佩:
                         return 112002;
-                    case ItemType.武器:
+                    case 物品使用分类.武器:
                         return 112001;
                     default:
                         return 0;
@@ -1121,7 +1121,7 @@ namespace GameServer.Data
                     BinaryWriter binaryWriter2 = binaryWriter;
                     binaryWriter2.Write(生成来源.V?.Index.V ?? 0);
                     binaryWriter.Write(ComputingClass.TimeShift(生成时间.V));
-                    binaryWriter.Write(对应模板.V.Id);
+                    binaryWriter.Write(对应模板.V.物品编号);
                     binaryWriter.Write(物品容器.V);
                     binaryWriter.Write(物品位置.V);
                     binaryWriter.Write(当前持久.V);
@@ -1137,16 +1137,16 @@ namespace GameServer.Data
                     int num2 = 0;
 
                     if (物品状态.V != 1) num2 |= 1;
-                    else if (随机Stat.Count != 0) num2 |= 1;
+                    else if (随机属性.Count != 0) num2 |= 1;
                     else if (Sacred伤害.V != 0) num2 |= 1;
 
-                    if (随机Stat.Count >= 1) num2 |= 2;
+                    if (随机属性.Count >= 1) num2 |= 2;
 
-                    if (随机Stat.Count >= 2) num2 |= 4;
+                    if (随机属性.Count >= 2) num2 |= 4;
 
-                    if (随机Stat.Count >= 3) num2 |= 8;
+                    if (随机属性.Count >= 3) num2 |= 8;
 
-                    if (随机Stat.Count >= 4) num2 |= 0x10;
+                    if (随机属性.Count >= 4) num2 |= 0x10;
 
                     if (Luck.V != 0) num2 |= 0x800;
 
@@ -1187,16 +1187,16 @@ namespace GameServer.Data
                         binaryWriter.Write(物品状态.V);
 
                     if (((uint)num2 & 2u) != 0)
-                        binaryWriter.Write((ushort)随机Stat[0].StatId);
+                        binaryWriter.Write((ushort)随机属性[0].属性编号);
 
                     if (((uint)num2 & 4u) != 0)
-                        binaryWriter.Write((ushort)随机Stat[1].StatId);
+                        binaryWriter.Write((ushort)随机属性[1].属性编号);
 
                     if (((uint)num2 & 8u) != 0)
-                        binaryWriter.Write((ushort)随机Stat[2].StatId);
+                        binaryWriter.Write((ushort)随机属性[2].属性编号);
 
                     if (((uint)num2 & 0x10u) != 0)
-                        binaryWriter.Write((ushort)随机Stat[3].StatId);
+                        binaryWriter.Write((ushort)随机属性[3].属性编号);
 
                     if (((uint)num & 0x100u) != 0)
                     {
@@ -1256,16 +1256,16 @@ namespace GameServer.Data
                     }
 
                     if (((uint)num2 & 0x4000u) != 0)
-                        binaryWriter.Write(镶嵌灵石[0].Id);
+                        binaryWriter.Write(镶嵌灵石[0].物品编号);
 
                     if (((uint)num2 & 0x8000u) != 0)
-                        binaryWriter.Write(镶嵌灵石[1].Id);
+                        binaryWriter.Write(镶嵌灵石[1].物品编号);
 
                     if (((uint)num2 & 0x10000u) != 0)
-                        binaryWriter.Write(镶嵌灵石[2].Id);
+                        binaryWriter.Write(镶嵌灵石[2].物品编号);
 
                     if (((uint)num2 & 0x20000u) != 0)
-                        binaryWriter.Write(镶嵌灵石[3].Id);
+                        binaryWriter.Write(镶嵌灵石[3].物品编号);
 
                     if (((uint)num2 & 0x80000u) != 0)
                         binaryWriter.Write(0);
@@ -1301,19 +1301,19 @@ namespace GameServer.Data
         public readonly DataMonitor<byte> 升级次数;
 
 
-        public readonly DataMonitor<byte> 升级Attack;
+        public readonly DataMonitor<byte> 升级Attack;  //升级攻击
 
 
-        public readonly DataMonitor<byte> 升级Magic;
+        public readonly DataMonitor<byte> 升级Magic;   //升级魔法
 
 
-        public readonly DataMonitor<byte> 升级Taoism;
+        public readonly DataMonitor<byte> 升级Taoism;   //升级道术
 
 
-        public readonly DataMonitor<byte> 升级Needle;
+        public readonly DataMonitor<byte> 升级Needle;   //升级刺术
 
 
-        public readonly DataMonitor<byte> 升级Archery;
+        public readonly DataMonitor<byte> 升级Archery;   //升级弓术
 
 
         public readonly DataMonitor<bool> 灵魂绑定;
@@ -1322,13 +1322,13 @@ namespace GameServer.Data
         public readonly DataMonitor<byte> 祈祷次数;
 
 
-        public readonly DataMonitor<sbyte> Luck;
+        public readonly DataMonitor<sbyte> Luck;  //幸运等级
 
 
         public readonly DataMonitor<bool> 装备神佑;
 
 
-        public readonly DataMonitor<byte> Sacred伤害;
+        public readonly DataMonitor<byte> Sacred伤害;  //神圣伤害
 
 
         public readonly DataMonitor<ushort> 圣石数量;
@@ -1349,7 +1349,7 @@ namespace GameServer.Data
         public readonly DataMonitor<byte> 物品状态;
 
 
-        public readonly ListMonitor<RandomStats> 随机Stat;
+        public readonly ListMonitor<随机属性> 随机属性;  //随机属性
 
 
         public readonly ListMonitor<EquipHoleColor> 孔洞颜色;

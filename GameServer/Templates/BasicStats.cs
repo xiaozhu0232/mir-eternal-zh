@@ -2,9 +2,9 @@
 
 namespace GameServer.Templates
 {
-	public struct BasicStats
+	public struct 基础属性  //BasicStats
 	{
-		public GameObjectStats Stat;
-		public int Value;
+		public GameObjectStats 属性;   //游戏对象属性  Stat
+		public int 数值;  //数值Value
 	}
 }

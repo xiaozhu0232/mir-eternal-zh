@@ -42,7 +42,7 @@ namespace GameServer.Data
 			{
 				return null;
 			}
-			return 铭文模板.SkillName;
+			return 铭文模板.技能名字;
 		}
 
 		
@@ -59,7 +59,7 @@ namespace GameServer.Data
 		{
 			get
 			{
-				return this.铭文模板.PassiveSkill;
+				return this.铭文模板.被动技能;
 			}
 		}
 
@@ -67,15 +67,15 @@ namespace GameServer.Data
 		{
 			get
 			{
-				if (this.铭文模板.MinPlayerLevel == null || this.铭文模板.MinPlayerLevel.Length <= (int)(this.SkillLevel.V + 1))
+				if (this.铭文模板.需要角色等级 == null || this.铭文模板.需要角色等级.Length <= (int)(this.SkillLevel.V + 1))
 				{
 					return byte.MaxValue;
 				}
-				if (this.铭文模板.MinPlayerLevel[(int)this.SkillLevel.V] == 0)
+				if (this.铭文模板.需要角色等级[(int)this.SkillLevel.V] == 0)
 				{
 					return byte.MaxValue;
 				}
-				return this.铭文模板.MinPlayerLevel[(int)this.SkillLevel.V];
+				return this.铭文模板.需要角色等级[(int)this.SkillLevel.V];
 			}
 		}
 
@@ -84,7 +84,7 @@ namespace GameServer.Data
 		{
 			get
 			{
-				return this.铭文模板.SkillCount;
+				return this.铭文模板.技能计数;
 			}
 		}
 
@@ -93,7 +93,7 @@ namespace GameServer.Data
 		{
 			get
 			{
-				return this.铭文模板.PeriodCount;
+				return this.铭文模板.计数周期;
 			}
 		}
 
@@ -102,9 +102,9 @@ namespace GameServer.Data
 		{
 			get
 			{
-				if (this.铭文模板.MinSkillExp != null && this.铭文模板.MinSkillExp.Length > (int)this.SkillLevel.V)
+				if (this.铭文模板.需要技能经验 != null && this.铭文模板.需要技能经验.Length > (int)this.SkillLevel.V)
 				{
-					return this.铭文模板.MinSkillExp[(int)this.SkillLevel.V];
+					return this.铭文模板.需要技能经验[(int)this.SkillLevel.V];
 				}
 				return 0;
 			}
@@ -124,7 +124,7 @@ namespace GameServer.Data
 		{
 			get
 			{
-				return this.铭文模板.SkillCombatBonus[(int)this.SkillLevel.V];
+				return this.铭文模板.技能战力加成[(int)this.SkillLevel.V];
 			}
 		}
 
@@ -133,16 +133,16 @@ namespace GameServer.Data
 		{
 			get
 			{
-				return this.铭文模板.ComesWithBuff;
+				return this.铭文模板.铭文附带Buff;
 			}
 		}
 
 		
-		public List<ushort> PassiveSkill
+		public List<ushort> 被动技能
 		{
 			get
 			{
-				return this.铭文模板.PassiveSkills;
+				return this.铭文模板.被动技能列表;
 			}
 		}
 

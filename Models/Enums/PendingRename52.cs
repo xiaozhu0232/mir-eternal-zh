@@ -3,17 +3,17 @@
 namespace GameServer.Templates
 {
 	
-	public enum SkillEvasionType  //技能闪避类型
+	public enum 技能闪避类型  //技能闪避类型SkillEvasionType
 	{
 		
-		SkillCannotBeEvaded,  //技能无法闪避
+		技能无法闪避,  //SkillCannotBeEvaded
 		
-		CanBePhsyicallyEvaded,  //可被物理闪避
+		可被物理闪避,   //CanBePhsyicallyEvaded
 		
-		CanBeMagicEvaded,  // 可被魔法闪避
+		可被魔法闪避,    //CanBeMagicEvaded
 		
-		CanBePoisonEvaded,  //可被中毒闪避
+		可被中毒闪避,    //CanBePoisonEvaded
 		
-		NonMonstersCanEvaded  //非怪物可闪避
+		非怪物可闪避   //NonMonstersCanEvaded
 	}
 }

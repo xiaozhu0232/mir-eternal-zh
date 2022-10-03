@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace GameServer.Templates
 {
-    public class GameMounts
+    public class GameMounts   //游戏坐骑
     {
-        public static IDictionary<ushort, GameMounts> DataSheet;
+        public static IDictionary<ushort, GameMounts> DataSheet;  //游戏坐骑 数据表
 
-        public ushort ID;
-        public string Name;
-        public int AuraID;
-        public short MountPower;
-        public ushort SoulAuraID;
+        public ushort ID;  //ID
+        public string Name;  //Name
+        public int AuraID;   //AuraID
+        public short MountPower;  //MountPower
+        public ushort SoulAuraID;   //
         public byte Quality;
         public byte LevelLimit;
         public int SpeedModificationRate;

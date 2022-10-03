@@ -396,16 +396,16 @@ namespace GameServer
         }
 
 
-        public static Point[] GetLocationRange(Point 锚点, GameDirection 方向, ObjectSize 范围)
+        public static Point[] GetLocationRange(Point 锚点, GameDirection 方向, 技能范围类型 范围)
         {
             switch (范围)
             {
-                case ObjectSize.Single1x1:
+                case 技能范围类型.单体1x1:
                     return new Point[]
                     {
                     锚点
                     };
-                case ObjectSize.HalfMoon3x1:
+                case 技能范围类型.半月3x1:
                     if (方向 <= GameDirection.上方)
                     {
                         if (方向 == GameDirection.左方)
@@ -500,7 +500,7 @@ namespace GameServer
                     new Point(锚点.X, 锚点.Y + 2),
                     new Point(锚点.X + 2, 锚点.Y)
                     };
-                case ObjectSize.HalfMoon3x2:
+                case 技能范围类型.半月3x2:
                     if (方向 <= GameDirection.上方)
                     {
                         if (方向 == GameDirection.左方)
@@ -619,7 +619,7 @@ namespace GameServer
                     new Point(锚点.X - 1, 锚点.Y + 1),
                     new Point(锚点.X + 1, 锚点.Y - 1)
                     };
-                case ObjectSize.HalfMoon3x3:
+                case 技能范围类型.半月3x3:
                     if (方向 <= GameDirection.上方)
                     {
                         if (方向 == GameDirection.左方)
@@ -770,7 +770,7 @@ namespace GameServer
                     new Point(锚点.X - 1, 锚点.Y + 2),
                     new Point(锚点.X + 2, 锚点.Y - 1)
                     };
-                case ObjectSize.Hollow3x3:
+                case 技能范围类型.空心3x3:
                     return new Point[]
                     {
                     ComputingClass.前方坐标(锚点, GameDirection.上方, 1),
@@ -782,7 +782,7 @@ namespace GameServer
                     ComputingClass.前方坐标(锚点, GameDirection.右上, 1),
                     ComputingClass.前方坐标(锚点, GameDirection.右下, 1)
                     };
-                case ObjectSize.Solid3x3:
+                case 技能范围类型.实心3x3:
                     return new Point[]
                     {
                     锚点,
@@ -795,7 +795,7 @@ namespace GameServer
                     ComputingClass.前方坐标(锚点, GameDirection.右上, 1),
                     ComputingClass.前方坐标(锚点, GameDirection.右下, 1)
                     };
-                case ObjectSize.Solid5x5:
+                case 技能范围类型.实心5x5:
                     return new Point[]
                     {
                     锚点,
@@ -824,14 +824,14 @@ namespace GameServer
                     new Point(锚点.X + 2, 锚点.Y - 2),
                     new Point(锚点.X + 2, 锚点.Y - 1)
                     };
-                case ObjectSize.Zhanyue1x3:
+                case 技能范围类型.斩月1x3:
                     return new Point[]
                     {
                     锚点,
                     ComputingClass.前方坐标(锚点, 方向, 1),
                     ComputingClass.前方坐标(锚点, 方向, 2)
                     };
-                case ObjectSize.Zhanyue3x3:
+                case 技能范围类型.斩月3x3:
                     if (方向 <= GameDirection.上方)
                     {
                         if (方向 == GameDirection.左方)
@@ -958,7 +958,7 @@ namespace GameServer
                     new Point(锚点.X - 2, 锚点.Y - 1),
                     new Point(锚点.X - 1, 锚点.Y - 2)
                     };
-                case ObjectSize.LineType1x5:
+                case 技能范围类型.线型1x5:
                     return new Point[]
                     {
                     锚点,
@@ -967,7 +967,7 @@ namespace GameServer
                     ComputingClass.前方坐标(锚点, 方向, 3),
                     ComputingClass.前方坐标(锚点, 方向, 4)
                     };
-                case ObjectSize.LineType1x8:
+                case 技能范围类型.线型1x8:
                     return new Point[]
                     {
                     锚点,
@@ -979,7 +979,7 @@ namespace GameServer
                     ComputingClass.前方坐标(锚点, 方向, 6),
                     ComputingClass.前方坐标(锚点, 方向, 7)
                     };
-                case ObjectSize.LineType3x8:
+                case 技能范围类型.线型3x8:
                     if (方向 <= GameDirection.上方)
                     {
                         if (方向 == GameDirection.左方)
@@ -1226,7 +1226,7 @@ namespace GameServer
                     new Point(锚点.X - 7, 锚点.Y - 6),
                     new Point(锚点.X - 6, 锚点.Y - 7)
                     };
-                case ObjectSize.Diamond3x3:
+                case 技能范围类型.菱形3x3:
                     return new Point[]
                     {
                     锚点,
@@ -1235,7 +1235,7 @@ namespace GameServer
                     new Point(锚点.X + 1, 锚点.Y),
                     new Point(锚点.X - 1, 锚点.Y)
                     };
-                case ObjectSize.LineType3x7:
+                case 技能范围类型.线型3x7:
                     if (方向 <= GameDirection.上方)
                     {
                         if (方向 == GameDirection.左方)
@@ -1458,7 +1458,7 @@ namespace GameServer
                     new Point(锚点.X - 6, 锚点.Y - 5),
                     new Point(锚点.X - 5, 锚点.Y - 6)
                     };
-                case ObjectSize.Fork3x3:
+                case 技能范围类型.叉型3x3:
                     return new Point[]
                     {
                     锚点,
@@ -1467,7 +1467,7 @@ namespace GameServer
                     new Point(锚点.X + 1, 锚点.Y - 1),
                     new Point(锚点.X - 1, 锚点.Y - 1)
                     };
-                case ObjectSize.Hollow5x5:
+                case 技能范围类型.空心5x5:
                     return new Point[]
                     {
                     new Point(锚点.X + 1, 锚点.Y + 1),
@@ -1495,13 +1495,13 @@ namespace GameServer
                     new Point(锚点.X + 2, 锚点.Y - 2),
                     new Point(锚点.X + 2, 锚点.Y - 1)
                     };
-                case ObjectSize.LineType1x2:
+                case 技能范围类型.线型1x2:
                     return new Point[]
                     {
                     锚点,
                     ComputingClass.前方坐标(锚点, 方向, 1)
                     };
-                case ObjectSize.Front3x1:
+                case 技能范围类型.前方3x1:
                     if (方向 <= GameDirection.上方)
                     {
                         if (方向 == GameDirection.左方)
@@ -1580,7 +1580,7 @@ namespace GameServer
                     new Point(锚点.X, 锚点.Y + 1),
                     new Point(锚点.X + 1, 锚点.Y)
                     };
-                case ObjectSize.Spiral7x7:
+                case 技能范围类型.螺旋7x7:
                     return new Point[]
                     {
                     锚点,
@@ -1633,7 +1633,7 @@ namespace GameServer
                     new Point(锚点.X - 2, 锚点.Y + 3),
                     new Point(锚点.X - 3, 锚点.Y + 3)
                     };
-                case ObjectSize.Yanlong1x2:
+                case 技能范围类型.炎龙1x2:
                     if (方向 <= GameDirection.上方)
                     {
                         if (方向 == GameDirection.左方)
@@ -1728,7 +1728,7 @@ namespace GameServer
                     new Point(锚点.X - 1, 锚点.Y),
                     new Point(锚点.X, 锚点.Y - 1)
                     };
-                case ObjectSize.LineType1x7:
+                case 技能范围类型.线型1x7:
                     return new Point[]
                     {
                     锚点,
@@ -1739,7 +1739,7 @@ namespace GameServer
                     ComputingClass.前方坐标(锚点, 方向, 5),
                     ComputingClass.前方坐标(锚点, 方向, 6)
                     };
-                case ObjectSize.Spiral15x15:
+                case 技能范围类型.螺旋15x15:
                     return new Point[]
                     {
                     new Point(锚点.X - 1, 锚点.Y),
@@ -2031,7 +2031,7 @@ namespace GameServer
                     new Point(锚点.X - 7, 锚点.Y + 8),
                     new Point(锚点.X - 8, 锚点.Y + 8)
                     };
-                case ObjectSize.LineType1x6:
+                case 技能范围类型.线型1x6:
                     return new Point[]
                     {
                     锚点,

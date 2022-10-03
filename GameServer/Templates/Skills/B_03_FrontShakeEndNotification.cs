@@ -3,10 +3,10 @@
 namespace GameServer.Templates
 {
 	
-	public sealed class B_03_FrontShakeEndNotification : SkillTask
+	public sealed class B_03_前摇结束通知 : SkillTask  //B_03_FrontShakeEndNotification
 	{
 		
-		public B_03_FrontShakeEndNotification()
+		public B_03_前摇结束通知()   //B_03_FrontShakeEndNotification
 		{
 			
 			

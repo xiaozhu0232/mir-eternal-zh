@@ -99,12 +99,12 @@ namespace GameServer.Data
                 DataMonitor.QuietlySetValue(DateTime.FromBinary(r.ReadInt64()));
                 return DataMonitor;
             };
-            Type typeFromHandle12 = typeof(DataMonitor<RandomStats>);
+            Type typeFromHandle12 = typeof(DataMonitor<随机属性>);
             dictionary[typeFromHandle12] = delegate (BinaryReader r, GameData o, DataField f)
             {
-                DataMonitor<RandomStats> DataMonitor = new DataMonitor<RandomStats>(o);
-                RandomStats 随机Stat;
-                DataMonitor.QuietlySetValue(RandomStats.DataSheet.TryGetValue(r.ReadInt32(), out 随机Stat) ? 随机Stat : null);
+                DataMonitor<随机属性> DataMonitor = new DataMonitor<随机属性>(o);
+                随机属性 随机属性;
+                DataMonitor.QuietlySetValue(随机属性.DataSheet.TryGetValue(r.ReadInt32(), out 随机属性) ? 随机属性 : null);
                 return DataMonitor;
             };
             Type typeFromHandle13 = typeof(DataMonitor<InscriptionSkill>);
@@ -415,15 +415,15 @@ namespace GameServer.Data
                 }
                 return ListMonitor;
             };
-            Type typeFromHandle40 = typeof(ListMonitor<RandomStats>);
+            Type typeFromHandle40 = typeof(ListMonitor<随机属性>);
             dictionary[typeFromHandle40] = delegate (BinaryReader r, GameData o, DataField f)
             {
-                ListMonitor<RandomStats> ListMonitor = new ListMonitor<RandomStats>(o);
+                ListMonitor<随机属性> ListMonitor = new ListMonitor<随机属性>(o);
                 int num = r.ReadInt32();
                 for (int i = 0; i < num; i++)
                 {
-                    RandomStats tv;
-                    if (RandomStats.DataSheet.TryGetValue(r.ReadInt32(), out tv))
+                    随机属性 tv;
+                    if (随机属性.DataSheet.TryGetValue(r.ReadInt32(), out tv))
                     {
                         ListMonitor.QuietlyAdd(tv);
                     }
@@ -817,11 +817,11 @@ namespace GameServer.Data
             {
                 b.Write(((DataMonitor<DateTime>)o).V.ToBinary());
             };
-            typeFromHandle52 = typeof(DataMonitor<RandomStats>);
+            typeFromHandle52 = typeof(DataMonitor<随机属性>);
             dictionary2[typeFromHandle52] = delegate (BinaryWriter b, object o)
             {
-                RandomStats v = ((DataMonitor<RandomStats>)o).V;
-                b.Write((v != null) ? v.StatId : 0);
+                随机属性 v = ((DataMonitor<随机属性>)o).V;
+                b.Write((v != null) ? v.属性编号 : 0);
             };
             typeFromHandle51 = typeof(DataMonitor<InscriptionSkill>);
             dictionary2[typeFromHandle51] = delegate (BinaryWriter b, object o)
@@ -833,7 +833,7 @@ namespace GameServer.Data
             dictionary2[typeFromHandle50] = delegate (BinaryWriter b, object o)
             {
                 GameItems v = ((DataMonitor<GameItems>)o).V;
-                b.Write((v != null) ? v.Id : 0);
+                b.Write((v != null) ? v.物品编号 : 0);
             };
             dictionary2[typeof(DataMonitor<GameQuests>)] = delegate (BinaryWriter b, object o)
             {
@@ -1062,14 +1062,14 @@ namespace GameServer.Data
                     b.Write(GuildEvents.事记时间);
                 }
             };
-            typeFromHandle24 = typeof(ListMonitor<RandomStats>);
+            typeFromHandle24 = typeof(ListMonitor<随机属性>);
             dictionary2[typeFromHandle24] = delegate (BinaryWriter b, object o)
             {
-                ListMonitor<RandomStats> ListMonitor = (ListMonitor<RandomStats>)o;
+                ListMonitor<随机属性> ListMonitor = (ListMonitor<随机属性>)o;
                 b.Write((ListMonitor != null) ? ListMonitor.Count : 0);
-                foreach (RandomStats 随机Stat in ListMonitor)
+                foreach (随机属性 随机属性 in ListMonitor)
                 {
-                    b.Write(随机Stat.StatId);
+                    b.Write(随机属性.属性编号);
                 }
             };
             typeFromHandle23 = typeof(ListMonitor<EquipHoleColor>);
@@ -1175,7 +1175,7 @@ namespace GameServer.Data
                 foreach (KeyValuePair<byte, GameItems> keyValuePair in MonitorDictionary)
                 {
                     b.Write(keyValuePair.Key);
-                    b.Write(keyValuePair.Value.Id);
+                    b.Write(keyValuePair.Value.物品编号);
                 }
             };
             typeFromHandle13 = typeof(MonitorDictionary<byte, InscriptionSkill>);

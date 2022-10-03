@@ -137,7 +137,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.对象模板.Level;
+                return this.对象模板.守卫等级;
             }
         }
 
@@ -155,25 +155,25 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.对象模板.Name;
+                return this.对象模板.守卫名字;
             }
         }
 
 
-        public override GameObjectType ObjectType
+        public override 游戏对象类型 ObjectType
         {
             get
             {
-                return GameObjectType.NPC;
+                return 游戏对象类型.Npcc;
             }
         }
 
 
-        public override ObjectSize ObjectSize
+        public override 技能范围类型 ObjectSize
         {
             get
             {
-                return ObjectSize.Single1x1;
+                return 技能范围类型.单体1x1;
             }
         }
 
@@ -204,7 +204,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.对象模板.GuardNumber;
+                return this.对象模板.守卫编号;
             }
         }
 
@@ -213,7 +213,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.对象模板.RevivalInterval;
+                return this.对象模板.复活间隔;
             }
         }
 
@@ -222,7 +222,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.对象模板.StoreId;
+                return this.对象模板.商店编号;
             }
         }
 
@@ -231,7 +231,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.对象模板.InterfaceCode;
+                return this.对象模板.界面代码;
             }
         }
 
@@ -240,7 +240,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.对象模板.CanBeInjured;
+                return this.对象模板.能否受伤;
             }
         }
 
@@ -249,7 +249,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.对象模板.ActiveAttack;
+                return this.对象模板.主动攻击;
             }
         }
 
@@ -266,10 +266,10 @@ namespace GameServer.Maps
             Dictionary<GameObjectStats, int> dictionary = new Dictionary<GameObjectStats, int>();
             dictionary[GameObjectStats.最大体力] = 9999;
             Stat加成[this] = dictionary;
-            string text = this.对象模板.BasicAttackSkills;
+            string text = this.对象模板.普攻技能;
             if (text != null && text.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.对象模板.BasicAttackSkills, out this.BasicAttackSkills);
+                GameSkills.DataSheet.TryGetValue(this.对象模板.普攻技能, out this.普攻技能);
             }
             MapGatewayProcess.AddObject(this);
             this.守卫复活处理();
@@ -381,16 +381,16 @@ namespace GameServer.Maps
 
         public void 守卫智能Attack()
         {
-            if (CheckStatus(GameObjectState.麻痹状态 | GameObjectState.失神状态) || BasicAttackSkills == null)
+            if (CheckStatus(GameObjectState.麻痹状态 | GameObjectState.失神状态) || 普攻技能 == null)
                 return;
 
-            if (GetDistance(HateObject.当前目标) > BasicAttackSkills.MaxDistance)
+            if (GetDistance(HateObject.当前目标) > 普攻技能.技能最远距离)
             {
                 HateObject.移除仇恨(HateObject.当前目标);
             }
             else
             {
-                GameSkills 技能模板 = BasicAttackSkills;
+                GameSkills 技能模板 = 普攻技能;
                 new SkillInstance(this, 技能模板, null, ActionId++, this.CurrentMap, this.CurrentPosition, this.HateObject.当前目标, this.HateObject.当前目标.CurrentPosition, null, null, false);
             }
         }
@@ -401,7 +401,7 @@ namespace GameServer.Maps
             this.RefreshStats();
             this.SecondaryObject = false;
             this.Died = false;
-            this.Blocking = !this.对象模板.Nothingness;
+            this.Blocking = !this.对象模板.虚无状态;
             this.CurrentMap = this.出生地图;
             this.CurrentDirection = this.出生方向;
             this.CurrentPosition = this.出生坐标;
@@ -465,6 +465,6 @@ namespace GameServer.Maps
         public MapInstance 出生地图;
 
 
-        public GameSkills BasicAttackSkills;
+        public GameSkills 普攻技能;  //BasicAttackSkills
     }
 }

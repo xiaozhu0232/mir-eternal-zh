@@ -10,16 +10,16 @@ using Models.Enums;
 namespace GameServer.Maps
 {
 
-    public sealed class MonsterObject : MapObject
+    public sealed class MonsterObject : MapObject  // 怪物实例 : 地图对象
     {
 
-        public bool ResurrectionDisabled { get; set; }
+        public bool ResurrectionDisabled { get; set; }   //禁止复活
 
 
         public bool 尸体消失 { get; set; }
 
 
-        public DateTime Attack时间 { get; set; }
+        public DateTime Attack时间 { get; set; }  //攻击时间
 
 
         public DateTime 漫游时间 { get; set; }
@@ -34,7 +34,7 @@ namespace GameServer.Maps
         public DateTime 存活时间 { get; set; }
 
 
-        public override int ProcessInterval
+        public override int ProcessInterval   //ProcessInterval
         {
             get
             {
@@ -43,7 +43,7 @@ namespace GameServer.Maps
         }
 
 
-        public override DateTime BusyTime
+        public override DateTime BusyTime  //忙碌时间
         {
             get
             {
@@ -53,7 +53,7 @@ namespace GameServer.Maps
             {
                 if (base.BusyTime < value)
                 {
-                    this.HardTime = value;
+                    this.HardTime = value;   //硬直时间
                     base.BusyTime = value;
                 }
             }
@@ -147,7 +147,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.Template.Level;
+                return this.Template.怪物等级;
             }
         }
 
@@ -156,25 +156,25 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.Template.MonsterName;
+                return this.Template.怪物名字;
             }
         }
 
 
-        public override GameObjectType ObjectType
+        public override 游戏对象类型 ObjectType
         {
             get
             {
-                return GameObjectType.Monster;
+                return 游戏对象类型.怪物;
             }
         }
 
 
-        public override ObjectSize ObjectSize
+        public override 技能范围类型 ObjectSize
         {
             get
             {
-                return this.Template.Size;
+                return this.Template.怪物体型;
             }
         }
 
@@ -196,7 +196,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.Template.Race;
+                return this.Template.怪物分类;
             }
         }
 
@@ -205,7 +205,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.Template.Category;
+                return this.Template.怪物级别;
             }
         }
 
@@ -214,7 +214,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.Template.Drops;
+                return this.Template.怪物掉落物品;
             }
         }
 
@@ -223,7 +223,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.Template.Id;
+                return this.Template.怪物编号;
             }
         }
 
@@ -232,7 +232,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return (int)this.Template.ProvideExperience;
+                return (int)this.Template.怪物提供经验;
             }
         }
 
@@ -243,7 +243,7 @@ namespace GameServer.Maps
             {
                 if (this.CurrentMap.MapId != 80)
                 {
-                    return (int)this.Template.RangeHate;
+                    return (int)this.Template.怪物仇恨范围;
                 }
                 return 25;
             }
@@ -254,7 +254,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return (int)this.Template.MoveInterval;
+                return (int)this.Template.怪物移动间隔;
             }
         }
 
@@ -272,7 +272,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return (int)this.Template.RoamInterval;
+                return (int)this.Template.怪物漫游间隔;
             }
         }
 
@@ -281,7 +281,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return (int)this.Template.HateTime;
+                return (int)this.Template.怪物仇恨时间;
             }
         }
 
@@ -290,7 +290,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return (int)this.Template.CorpsePreservationDuration;
+                return (int)this.Template.尸体保留时长;
             }
         }
 
@@ -299,7 +299,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.Template.ForbbidenMove;
+                return this.Template.怪物禁止移动;
             }
         }
 
@@ -308,7 +308,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.Template.CanBeDrivenBySkills;
+                return this.Template.可被技能推动;
             }
         }
 
@@ -317,7 +317,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.Template.VisibleStealthTargets;
+                return this.Template.可见隐身目标;
             }
         }
 
@@ -326,16 +326,16 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.Template.CanBeControlledBySkills;
+                return this.Template.可被技能控制;
             }
         }
 
 
-        public bool CanBeSeducedBySkills
+        public bool CanBeSeducedBySkills  //可被技能诱惑
         {
             get
             {
-                return this.Template.CanBeSeducedBySkills;
+                return this.Template.可被技能诱惑;
             }
         }
 
@@ -344,7 +344,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.Template.BaseTemptationProbability;
+                return this.Template.基础诱惑概率;
             }
         }
 
@@ -353,7 +353,7 @@ namespace GameServer.Maps
         {
             get
             {
-                return this.Template.ActiveAttackTarget;
+                return this.Template.主动攻击目标;
             }
         }
 
@@ -375,40 +375,40 @@ namespace GameServer.Maps
             this.StatsBonus[this] = 对应宠物.基础Stat;
             this.RefreshStats();
             this.CurrentHP = Math.Min(对应宠物.CurrentHP, this[GameObjectStats.最大体力]);
-            string text = this.Template.NormalAttackSkills;
+            string text = this.Template.普通攻击技能;
             if (text != null && text.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.NormalAttackSkills, out this.NormalAttackSkills);
+                GameSkills.DataSheet.TryGetValue(this.Template.普通攻击技能, out this.NormalAttackSkills);
             }
-            string text2 = this.Template.ProbabilityTriggerSkills;
+            string text2 = this.Template.概率触发技能;
             if (text2 != null && text2.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.ProbabilityTriggerSkills, out this.ProbabilityTriggerSkills);
+                GameSkills.DataSheet.TryGetValue(this.Template.概率触发技能, out this.ProbabilityTriggerSkills);
             }
-            string text3 = this.Template.EnterCombatSkills;
+            string text3 = this.Template.进入战斗技能;
             if (text3 != null && text3.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.EnterCombatSkills, out this.EnterCombatSkills);
+                GameSkills.DataSheet.TryGetValue(this.Template.进入战斗技能, out this.EnterCombatSkills);
             }
-            string text4 = this.Template.ExitCombatSkills;
+            string text4 = this.Template.退出战斗技能;
             if (text4 != null && text4.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.ExitCombatSkills, out this.ExitCombatSkills);
+                GameSkills.DataSheet.TryGetValue(this.Template.退出战斗技能, out this.ExitCombatSkills);
             }
-            string text5 = this.Template.DeathReleaseSkill;
+            string text5 = this.Template.死亡释放技能;
             if (text5 != null && text5.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.DeathReleaseSkill, out this.DeathReleaseSkill);
+                GameSkills.DataSheet.TryGetValue(this.Template.死亡释放技能, out this.DeathReleaseSkill);
             }
-            string text6 = this.Template.MoveReleaseSkill;
+            string text6 = this.Template.瞬移释放技能;
             if (text6 != null && text6.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.MoveReleaseSkill, out this.MoveReleaseSkill);
+                GameSkills.DataSheet.TryGetValue(this.Template.瞬移释放技能, out this.MoveReleaseSkill);
             }
-            string text7 = this.Template.BirthReleaseSkill;
+            string text7 = this.Template.复活释放技能;
             if (text7 != null && text7.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.BirthReleaseSkill, out this.BirthReleaseSkill);
+                GameSkills.DataSheet.TryGetValue(this.Template.复活释放技能, out this.BirthReleaseSkill);
             }
             对应宠物.Dies(null, false);
             对应宠物.Delete();
@@ -430,41 +430,41 @@ namespace GameServer.Maps
             this.出生范围 = 出生范围;
             this.ResurrectionDisabled = 禁止复活;
             this.ObjectId = ++MapGatewayProcess.ObjectId;
-            this.StatsBonus[this] = 对应模板.BasicStats;
-            string text = this.Template.NormalAttackSkills;
+            this.StatsBonus[this] = 对应模板.基础属性;
+            string text = this.Template.普通攻击技能;
             if (text != null && text.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.NormalAttackSkills, out this.NormalAttackSkills);
+                GameSkills.DataSheet.TryGetValue(this.Template.普通攻击技能, out this.NormalAttackSkills);
             }
-            string text2 = this.Template.ProbabilityTriggerSkills;
+            string text2 = this.Template.概率触发技能;
             if (text2 != null && text2.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.ProbabilityTriggerSkills, out this.ProbabilityTriggerSkills);
+                GameSkills.DataSheet.TryGetValue(this.Template.概率触发技能, out this.ProbabilityTriggerSkills);
             }
-            string text3 = this.Template.EnterCombatSkills;
+            string text3 = this.Template.进入战斗技能;
             if (text3 != null && text3.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.EnterCombatSkills, out this.EnterCombatSkills);
+                GameSkills.DataSheet.TryGetValue(this.Template.进入战斗技能, out this.EnterCombatSkills);
             }
-            string text4 = this.Template.ExitCombatSkills;
+            string text4 = this.Template.退出战斗技能;
             if (text4 != null && text4.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.ExitCombatSkills, out this.ExitCombatSkills);
+                GameSkills.DataSheet.TryGetValue(this.Template.退出战斗技能, out this.ExitCombatSkills);
             }
-            string text5 = this.Template.DeathReleaseSkill;
+            string text5 = this.Template.死亡释放技能;
             if (text5 != null && text5.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.DeathReleaseSkill, out this.DeathReleaseSkill);
+                GameSkills.DataSheet.TryGetValue(this.Template.死亡释放技能, out this.DeathReleaseSkill);
             }
-            string text6 = this.Template.MoveReleaseSkill;
+            string text6 = this.Template.瞬移释放技能;
             if (text6 != null && text6.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.MoveReleaseSkill, out this.MoveReleaseSkill);
+                GameSkills.DataSheet.TryGetValue(this.Template.瞬移释放技能, out this.MoveReleaseSkill);
             }
-            string text7 = this.Template.BirthReleaseSkill;
+            string text7 = this.Template.复活释放技能;
             if (text7 != null && text7.Length > 0)
             {
-                GameSkills.DataSheet.TryGetValue(this.Template.BirthReleaseSkill, out this.BirthReleaseSkill);
+                GameSkills.DataSheet.TryGetValue(this.Template.复活释放技能, out this.BirthReleaseSkill);
             }
             MapGatewayProcess.AddObject(this);
             if (!禁止复活)
@@ -556,18 +556,18 @@ namespace GameServer.Maps
                         new SkillInstance(this, ExitCombatSkills, null, ActionId++, this.CurrentMap, this.CurrentPosition, null, this.CurrentPosition, null, null, false);
                         FightingStance = false;
                     }
-                    else if (this.Template.OutWarAutomaticPetrochemical && !base.FightingStance && this.HateObject.仇恨列表.Count != 0)
+                    else if (this.Template.脱战自动石化 && !base.FightingStance && this.HateObject.仇恨列表.Count != 0)
                     {
                         base.FightingStance = true;
-                        base.移除Buff时处理(this.Template.PetrochemicalStatusId);
+                        base.移除Buff时处理(this.Template.石化状态编号);
                         base.TimeoutTime = MainProcess.CurrentTime.AddSeconds(10.0);
                     }
-                    else if (this.Template.OutWarAutomaticPetrochemical && base.FightingStance && this.HateObject.仇恨列表.Count == 0 && MainProcess.CurrentTime > base.TimeoutTime)
+                    else if (this.Template.脱战自动石化 && base.FightingStance && this.HateObject.仇恨列表.Count == 0 && MainProcess.CurrentTime > base.TimeoutTime)
                     {
                         base.FightingStance = false;
-                        base.OnAddBuff(this.Template.PetrochemicalStatusId, this);
+                        base.OnAddBuff(this.Template.石化状态编号, this);
                     }
-                    else if ((this.Category == MonsterLevelType.Boss) ? this.更新最近仇恨() : this.更新HateObject())
+                    else if ((this.Category == MonsterLevelType.头目首领) ? this.更新最近仇恨() : this.更新HateObject())
                     {
                         this.怪物智能Attack();
                     }
@@ -612,7 +612,7 @@ namespace GameServer.Maps
                     GameItems 物品模板;
                     if (GameItems.DataSheetByName.TryGetValue("强效金创药", out 物品模板))
                     {
-                        int num2 = (this.Category == MonsterLevelType.Normal) ? 15 : 1;
+                        int num2 = (this.Category == MonsterLevelType.普通怪物) ? 15 : 1;
                         int num3 = Math.Max(1, num2 - (int)Math.Round(num2 * Config.ExtraDropRate));
                         if (MainProcess.RandomNumber.Next(num3) == num3 / 2)
                         {
@@ -623,7 +623,7 @@ namespace GameServer.Maps
                     GameItems 物品模板2;
                     if (GameItems.DataSheetByName.TryGetValue("强效Magic药", out 物品模板2))
                     {
-                        int num4 = (this.Category == MonsterLevelType.Normal) ? 20 : 1;
+                        int num4 = (this.Category == MonsterLevelType.普通怪物) ? 20 : 1;
                         int num5 = Math.Max(1, num4 - (int)Math.Round(num4 * Config.ExtraDropRate));
                         if (MainProcess.RandomNumber.Next(num5) == num5 / 2)
                         {
@@ -634,7 +634,7 @@ namespace GameServer.Maps
                     GameItems 物品模板3;
                     if (GameItems.DataSheetByName.TryGetValue("疗伤药", out 物品模板3))
                     {
-                        int num6 = (this.Category == MonsterLevelType.Normal) ? 100 : 1;
+                        int num6 = (this.Category == MonsterLevelType.普通怪物) ? 100 : 1;
                         int num7 = Math.Max(1, num6 - (int)Math.Round(num6 * Config.ExtraDropRate));
                         if (MainProcess.RandomNumber.Next(num7) == num7 / 2)
                         {
@@ -645,7 +645,7 @@ namespace GameServer.Maps
                     GameItems 物品模板4;
                     if (GameItems.DataSheetByName.TryGetValue("祝福油", out 物品模板4))
                     {
-                        int num8 = (this.Category == MonsterLevelType.Normal) ? 1000 : ((this.Category == MonsterLevelType.Elite) ? 50 : 10);
+                        int num8 = (this.Category == MonsterLevelType.普通怪物) ? 1000 : ((this.Category == MonsterLevelType.精英干将) ? 50 : 10);
                         int num9 = Math.Max(1, num8 - (int)Math.Round(num8 * Config.ExtraDropRate));
                         if (MainProcess.RandomNumber.Next(num9) == num9 / 2)
                         {
@@ -694,7 +694,7 @@ namespace GameServer.Maps
                             foreach (var mission in missions)
                             {
                                 if (mission.CompletedDate.V != DateTime.MinValue) continue;
-                                if (mission.Info.V.Id != Template.Id) continue;
+                                if (mission.Info.V.Id != Template.怪物编号) continue;
 
                                 var idx = Array.IndexOf(quest.Missions.ToArray(), mission);
                                 mission.Count.V = (byte)(mission.Count.V + 1);
@@ -730,39 +730,39 @@ namespace GameServer.Maps
                         foreach (MonsterDrop drop in Drops)
                         {
                             if (
-                                GameItems.DataSheetByName.TryGetValue(drop.Name, out var item)
+                                GameItems.DataSheetByName.TryGetValue(drop.物品名字, out var item)
                                 && !ComputingClass.CheckProbability(num10)
                                 && (
                                     playerObject.CurrentPrivileges != 0
-                                    || Category == MonsterLevelType.Boss
-                                    || item.Type == ItemType.可用药剂
+                                    || Category == MonsterLevelType.头目首领
+                                    || item.物品分类 == 物品使用分类.可用药剂
                                     || !ComputingClass.CheckProbability(0.5f)
                                 )
                                 && (
                                     playerObject.CurrentPrivileges != 3
-                                    || Category == MonsterLevelType.Boss
-                                    || item.Type == ItemType.可用药剂
+                                    || Category == MonsterLevelType.头目首领
+                                    || item.物品分类 == 物品使用分类.可用药剂
                                     || !ComputingClass.CheckProbability(0.25f)
                                 )
                             )
                             {
-                                int num13 = Math.Max(1, drop.Probability - (int)Math.Round(drop.Probability * Config.ExtraDropRate));
+                                int num13 = Math.Max(1, drop.掉落概率 - (int)Math.Round(drop.掉落概率 * Config.ExtraDropRate));
                                 if (MainProcess.RandomNumber.Next(num13) == num13 / 2)
                                 {
-                                    int num14 = MainProcess.RandomNumber.Next(drop.MinAmount, drop.MaxAmount + 1);
+                                    int num14 = MainProcess.RandomNumber.Next(drop.最小数量, drop.最大数量 + 1);
                                     if (num14 != 0)
                                     {
-                                        if (item.MaxDura == 0)
+                                        if (item.物品持久 == 0)
                                         {
                                             new ItemObject(item, null, CurrentMap, CurrentPosition, hashSet, num14, false, this);
 
-                                            if (item.Id == 1)
+                                            if (item.物品编号 == 1)
                                             {
                                                 CurrentMap.MobGoldDrop += (long)num14;
                                                 num11 = num14;
                                             }
 
-                                            Template.DropStats[item] = (this.Template.DropStats.ContainsKey(item) ? this.Template.DropStats[item] : 0L) + (long)num14;
+                                            Template.掉落统计[item] = (this.Template.掉落统计.ContainsKey(item) ? this.Template.掉落统计[item] : 0L) + (long)num14;
                                         }
                                         else
                                         {
@@ -772,11 +772,11 @@ namespace GameServer.Maps
                                             }
                                             CurrentMap.MobsDrops += (long)num14;
                                             num12++;
-                                            Template.DropStats[item] = (Template.DropStats.ContainsKey(item) ? Template.DropStats[item] : 0L) + num14;
+                                            Template.掉落统计[item] = (Template.掉落统计.ContainsKey(item) ? Template.掉落统计[item] : 0L) + num14;
                                         }
-                                        if (item.ValuableObjects)
+                                        if (item.贵重物品)
                                         {
-                                            NetworkServiceGateway.SendAnnouncement($"[{playerObject}] has killed [{ObjectName}] and has drop {item.Name}.");
+                                            NetworkServiceGateway.SendAnnouncement($"[{playerObject}] has killed [{ObjectName}] and has drop {item.物品名字}.");
                                         }
                                     }
                                 }
@@ -793,7 +793,7 @@ namespace GameServer.Maps
                     }
                     if (num11 > 0 || num12 > 0)
                     {
-                        MainForm.UpdateDropStats(Template, Template.DropStats.ToList());
+                        MainForm.UpdateDropStats(Template, Template.掉落统计.ToList());
                     }
                     if (playerObject.Team == null)
                     {
@@ -866,13 +866,13 @@ namespace GameServer.Maps
         {
             base.TimeoutTime = MainProcess.CurrentTime.AddSeconds(10.0);
             GameSkills 游戏技能;
-            if (this.ProbabilityTriggerSkills != null && (!this.Coolings.ContainsKey((int)this.ProbabilityTriggerSkills.OwnSkillId | 16777216) || MainProcess.CurrentTime > this.Coolings[(int)this.ProbabilityTriggerSkills.OwnSkillId | 16777216]) && ComputingClass.CheckProbability(this.ProbabilityTriggerSkills.CalculateTriggerProbability))
+            if (this.ProbabilityTriggerSkills != null && (!this.Coolings.ContainsKey((int)this.ProbabilityTriggerSkills.自身技能编号 | 16777216) || MainProcess.CurrentTime > this.Coolings[(int)this.ProbabilityTriggerSkills.自身技能编号 | 16777216]) && ComputingClass.CheckProbability(this.ProbabilityTriggerSkills.计算触发概率))
             {
                 游戏技能 = this.ProbabilityTriggerSkills;
             }
             else
             {
-                if (this.NormalAttackSkills == null || (this.Coolings.ContainsKey((int)this.NormalAttackSkills.OwnSkillId | 16777216) && !(MainProcess.CurrentTime > this.Coolings[(int)this.NormalAttackSkills.OwnSkillId | 16777216])))
+                if (this.NormalAttackSkills == null || (this.Coolings.ContainsKey((int)this.NormalAttackSkills.自身技能编号 | 16777216) && !(MainProcess.CurrentTime > this.Coolings[(int)this.NormalAttackSkills.自身技能编号 | 16777216])))
                 {
                     return;
                 }
@@ -882,7 +882,7 @@ namespace GameServer.Maps
             {
                 return;
             }
-            if (base.GetDistance(this.HateObject.当前目标) > (int)游戏技能.MaxDistance)
+            if (base.GetDistance(this.HateObject.当前目标) > (int)游戏技能.技能最远距离)
             {
                 if (!this.ForbbidenMove && this.CanMove())
                 {
@@ -909,7 +909,7 @@ namespace GameServer.Maps
                     return;
                 }
             }
-            else if (游戏技能.NeedMoveForward && !ComputingClass.直线方向(this.CurrentPosition, this.HateObject.当前目标.CurrentPosition))
+            else if (游戏技能.需要正向走位 && !ComputingClass.直线方向(this.CurrentPosition, this.HateObject.当前目标.CurrentPosition))
             {
                 if (!this.ForbbidenMove && this.CanMove())
                 {
@@ -990,9 +990,9 @@ namespace GameServer.Maps
                     base.更新邻居时处理();
                     if (!this.ActiveObject)
                     {
-                        if (this.Template.OutWarAutomaticPetrochemical)
+                        if (this.Template.脱战自动石化)
                         {
-                            base.OnAddBuff(this.Template.PetrochemicalStatusId, this);
+                            base.OnAddBuff(this.Template.石化状态编号, this);
                         }
                         if (this.ExitCombatSkills != null)
                         {

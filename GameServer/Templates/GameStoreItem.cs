@@ -2,11 +2,11 @@
 
 namespace GameServer.Templates
 {
-	public sealed class GameStoreItem
+	public sealed class GameStoreItem  //游戏商品
 	{
-		public int Id;
-		public int Units;
-		public int CurrencyType;
-		public int Price;
+		public int 商品编号;    //Id
+		public int 单位数量;   //Units
+		public int 货币类型;   //CurrencyType
+		public int 商品价格;    //Price
 	}
 }

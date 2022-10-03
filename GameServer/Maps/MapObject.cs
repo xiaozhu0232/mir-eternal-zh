@@ -19,18 +19,18 @@ namespace GameServer.Maps
             return this.ObjectName;
         }
 
-        public DateTime RecoveryTime { get; set; }
-        public DateTime HealTime { get; set; }
-        public DateTime TimeoutTime { get; set; }
-        public DateTime CurrentTime { get; set; }
-        public DateTime ProcessTime { get; set; }
-        public virtual int ProcessInterval { get; }
-        public int TreatmentCount { get; set; }
-        public int TreatmentBase { get; set; }
-        public byte ActionId { get; set; }
-        public bool FightingStance { get; set; }
-        public abstract GameObjectType ObjectType { get; }
-        public abstract ObjectSize ObjectSize { get; }
+        public DateTime RecoveryTime { get; set; } //恢复时间
+        public DateTime HealTime { get; set; }  //治疗时间
+        public DateTime TimeoutTime { get; set; }  //脱战时间
+        public DateTime CurrentTime { get; set; }  //处理计时
+        public DateTime ProcessTime { get; set; }  //预约时间
+        public virtual int ProcessInterval { get; }  //处理间隔 
+        public int TreatmentCount { get; set; }   //治疗次数
+        public int TreatmentBase { get; set; }   //治疗基数
+        public byte ActionId { get; set; }   //动作编号
+        public bool FightingStance { get; set; }  //战斗姿态
+        public abstract 游戏对象类型 ObjectType { get; }
+        public abstract 技能范围类型 ObjectSize { get; }
         public ushort WalkSpeed => (ushort)this[GameObjectStats.行走速度];
         public ushort RunSpeed => (ushort)this[GameObjectStats.奔跑速度];
         public virtual int WalkInterval => WalkSpeed * 60;
@@ -149,12 +149,12 @@ namespace GameServer.Maps
             {
                 foreach (PetObject petObject in playerObject.Pets)
                 {
-                    if (petObject.Template.InheritsStats != null)
+                    if (petObject.Template.继承属性 != null)
                     {
                         var dictionary = new Dictionary<GameObjectStats, int>();
-                        foreach (var InheritStat in petObject.Template.InheritsStats)
+                        foreach (var InheritStat in petObject.Template.继承属性)
                         {
-                            dictionary[InheritStat.ConvertStat] = (int)(this[InheritStat.InheritsStats] * InheritStat.Ratio);
+                            dictionary[InheritStat.转换属性] = (int)(this[InheritStat.继承属性] * InheritStat.继承比例);
                         }
                         petObject.StatsBonus[playerObject.CharacterData] = dictionary;
                         petObject.RefreshStats();
@@ -288,25 +288,25 @@ namespace GameServer.Maps
         {
             switch (ObjectType)
             {
-                case GameObjectType.Player:
+                case 游戏对象类型.玩家:
                     return true;
-                case GameObjectType.Pet:
-                case GameObjectType.Monster:
-                    return obj.ObjectType == GameObjectType.Monster
-                        || obj.ObjectType == GameObjectType.Player
-                        || obj.ObjectType == GameObjectType.Pet
-                        || obj.ObjectType == GameObjectType.NPC
-                        || obj.ObjectType == GameObjectType.Trap;
-                case GameObjectType.NPC:
-                    return obj.ObjectType == GameObjectType.Monster
-                        || obj.ObjectType == GameObjectType.Player
-                        || obj.ObjectType == GameObjectType.Pet
-                        || obj.ObjectType == GameObjectType.Trap;
-                case GameObjectType.Item:
-                    return obj.ObjectType == GameObjectType.Player;
-                case GameObjectType.Trap:
-                    return obj.ObjectType == GameObjectType.Player
-                        || obj.ObjectType == GameObjectType.Pet;
+                case 游戏对象类型.宠物:
+                case 游戏对象类型.怪物:
+                    return obj.ObjectType == 游戏对象类型.怪物
+                        || obj.ObjectType == 游戏对象类型.玩家
+                        || obj.ObjectType == 游戏对象类型.宠物
+                        || obj.ObjectType == 游戏对象类型.Npcc
+                        || obj.ObjectType == 游戏对象类型.陷阱;
+                case 游戏对象类型.Npcc:
+                    return obj.ObjectType == 游戏对象类型.怪物
+                        || obj.ObjectType == 游戏对象类型.玩家
+                        || obj.ObjectType == 游戏对象类型.宠物
+                        || obj.ObjectType == 游戏对象类型.陷阱;
+                case 游戏对象类型.物品:
+                    return obj.ObjectType == 游戏对象类型.玩家;
+                case 游戏对象类型.陷阱:
+                    return obj.ObjectType == 游戏对象类型.玩家
+                        || obj.ObjectType == 游戏对象类型.宠物;
             }
 
             return false;
@@ -315,7 +315,7 @@ namespace GameServer.Maps
         public GameObjectRelationship GetRelationship(MapObject obj)
         {
             if (this == obj)
-                return GameObjectRelationship.ItSelf;
+                return GameObjectRelationship.自身;
 
             if (obj is TrapObject neightborTrapObject)
                 obj = neightborTrapObject.TrapSource;
@@ -323,16 +323,16 @@ namespace GameServer.Maps
             if (this is GuardObject)
             {
                 if (obj is MonsterObject || obj is PetObject || obj is PlayerObject)
-                    return GameObjectRelationship.Hostility;
+                    return GameObjectRelationship.敌对;
             }
             else if (this is PlayerObject playerObject)
             {
                 if (obj is MonsterObject)
-                    return GameObjectRelationship.Hostility;
+                    return GameObjectRelationship.敌对;
                 else if (obj is GuardObject)
                     return playerObject.AttackMode == AttackMode.全体 && CurrentMap.MapId != 80
-                        ? GameObjectRelationship.Hostility
-                        : GameObjectRelationship.Friendly;
+                        ? GameObjectRelationship.敌对
+                        : GameObjectRelationship.友方;
                 else if (obj is PlayerObject neightborPlayerObject)
                     return playerObject.AttackMode == AttackMode.和平
                         || (
@@ -356,44 +356,44 @@ namespace GameServer.Maps
                             )
                         )
                         || (
-                            playerObject.AttackMode == AttackMode.Hostility && (
+                            playerObject.AttackMode == AttackMode.敌对 && (
                                 playerObject.Guild == null
                                 || neightborPlayerObject == null
                                 || !playerObject.Guild.Hostility行会.ContainsKey(neightborPlayerObject.Guild)
                             )
                         )
-                        ? GameObjectRelationship.Friendly
-                        : GameObjectRelationship.Hostility;
+                        ? GameObjectRelationship.友方
+                        : GameObjectRelationship.敌对;
                 else if (obj is PetObject petObject)
                     return (petObject.PlayerOwner == this && playerObject.AttackMode != AttackMode.全体)
                         || (playerObject.AttackMode == AttackMode.和平)
                         || (playerObject.AttackMode == AttackMode.行会 && playerObject.Guild != null && petObject.PlayerOwner.Guild != null && (playerObject.Guild == petObject.PlayerOwner.Guild || playerObject.Guild.结盟行会.ContainsKey(petObject.PlayerOwner.Guild)))
                         || (playerObject.AttackMode == AttackMode.组队 && playerObject.Team != null && petObject.PlayerOwner.Team != null && playerObject.Team == petObject.PlayerOwner.Team)
                         || (playerObject.AttackMode == AttackMode.善恶 && !petObject.PlayerOwner.红名玩家 && !petObject.PlayerOwner.灰名玩家)
-                        || (playerObject.AttackMode != AttackMode.Hostility && (
+                        || (playerObject.AttackMode != AttackMode.敌对 && (
                             playerObject.Guild == null
                             || petObject.PlayerOwner.Guild == null
                             || !playerObject.Guild.Hostility行会.ContainsKey(petObject.PlayerOwner.Guild)
                         ))
-                        ? GameObjectRelationship.Friendly
+                        ? GameObjectRelationship.友方
                         : petObject.PlayerOwner == this
-                            ? GameObjectRelationship.Friendly | GameObjectRelationship.Hostility
-                            : GameObjectRelationship.Hostility;
+                            ? GameObjectRelationship.友方 | GameObjectRelationship.敌对
+                            : GameObjectRelationship.敌对;
 
             }
             else if (this is PetObject petObject)
                 return petObject.PlayerOwner != obj
                     ? petObject.PlayerOwner.GetRelationship(obj)
-                    : GameObjectRelationship.Friendly;
+                    : GameObjectRelationship.友方;
             else if (this is TrapObject trapObject)
                 return trapObject.TrapSource.GetRelationship(obj);
             else if (obj is not MonsterObject)
-                return GameObjectRelationship.Hostility;
+                return GameObjectRelationship.敌对;
 
-            return GameObjectRelationship.Friendly;
+            return GameObjectRelationship.友方;
         }
 
-        public bool IsSpecificType(MapObject obj, SpecifyTargetType targetType)
+        public bool IsSpecificType(MapObject obj, 指定目标类型 targetType)
         {
             if (obj is TrapObject trapObject)
                 obj = trapObject.TrapSource;
@@ -402,20 +402,20 @@ namespace GameServer.Maps
 
             if (this is MonsterObject monsterObject)
             {
-                return targetType == SpecifyTargetType.None
-                    || (targetType & SpecifyTargetType.LowLevelTarget) == SpecifyTargetType.LowLevelTarget && CurrentLevel < obj.CurrentLevel
-                    || (targetType & SpecifyTargetType.AllMonsters) == SpecifyTargetType.AllMonsters
-                    || (targetType & SpecifyTargetType.LowLevelMonster) == SpecifyTargetType.LowLevelMonster && CurrentLevel < obj.CurrentLevel
-                    || ((targetType & SpecifyTargetType.LowBloodMonster) == SpecifyTargetType.LowBloodMonster && (float)this.CurrentHP / (float)this[GameObjectStats.最大体力] < 0.4f)
-                    || ((targetType & SpecifyTargetType.Normal) == SpecifyTargetType.Normal && monsterObject.Category == MonsterLevelType.Normal)
-                    || ((targetType & SpecifyTargetType.Undead) == SpecifyTargetType.Undead && monsterObject.怪物种族 == MonsterRaceType.Undead)
-                    || ((targetType & SpecifyTargetType.ZergCreature) == SpecifyTargetType.ZergCreature && monsterObject.怪物种族 == MonsterRaceType.ZergCreature)
-                    || ((targetType & SpecifyTargetType.WomaMonster) == SpecifyTargetType.WomaMonster && monsterObject.怪物种族 == MonsterRaceType.WomaMonster)
-                    || ((targetType & SpecifyTargetType.PigMonster) == SpecifyTargetType.PigMonster && monsterObject.怪物种族 == MonsterRaceType.PigMonster)
-                    || ((targetType & SpecifyTargetType.ZumaMonster) == SpecifyTargetType.ZumaMonster && monsterObject.怪物种族 == MonsterRaceType.ZumaMonster)
-                    || ((targetType & SpecifyTargetType.DragonMonster) == SpecifyTargetType.DragonMonster && monsterObject.怪物种族 == MonsterRaceType.DragonMonster)
-                    || ((targetType & SpecifyTargetType.EliteMonsters) == SpecifyTargetType.EliteMonsters && (monsterObject.Category == MonsterLevelType.Elite || monsterObject.Category == MonsterLevelType.Boss))
-                    || (((targetType & SpecifyTargetType.Backstab) == SpecifyTargetType.Backstab) && (
+                return targetType == 指定目标类型.无
+                    || (targetType & 指定目标类型.低级目标) == 指定目标类型.低级目标 && CurrentLevel < obj.CurrentLevel
+                    || (targetType & 指定目标类型.所有怪物) == 指定目标类型.所有怪物
+                    || (targetType & 指定目标类型.低级怪物) == 指定目标类型.低级怪物 && CurrentLevel < obj.CurrentLevel
+                    || ((targetType & 指定目标类型.低血怪物) == 指定目标类型.低血怪物 && (float)this.CurrentHP / (float)this[GameObjectStats.最大体力] < 0.4f)
+                    || ((targetType & 指定目标类型.普通怪物) == 指定目标类型.普通怪物 && monsterObject.Category == MonsterLevelType.普通怪物)
+                    || ((targetType & 指定目标类型.不死生物) == 指定目标类型.不死生物 && monsterObject.怪物种族 == MonsterRaceType.不死生物)
+                    || ((targetType & 指定目标类型.虫族生物) == 指定目标类型.虫族生物 && monsterObject.怪物种族 == MonsterRaceType.虫族生物)
+                    || ((targetType & 指定目标类型.沃玛怪物) == 指定目标类型.沃玛怪物 && monsterObject.怪物种族 == MonsterRaceType.沃玛怪物)
+                    || ((targetType & 指定目标类型.猪类怪物) == 指定目标类型.猪类怪物 && monsterObject.怪物种族 == MonsterRaceType.猪类怪物)
+                    || ((targetType & 指定目标类型.祖玛怪物) == 指定目标类型.祖玛怪物 && monsterObject.怪物种族 == MonsterRaceType.祖玛怪物)
+                    || ((targetType & 指定目标类型.魔龙怪物) == 指定目标类型.魔龙怪物 && monsterObject.怪物种族 == MonsterRaceType.魔龙怪物)
+                    || ((targetType & 指定目标类型.精英怪物) == 指定目标类型.精英怪物 && (monsterObject.Category == MonsterLevelType.精英干将 || monsterObject.Category == MonsterLevelType.头目首领))
+                    || (((targetType & 指定目标类型.背刺目标) == 指定目标类型.背刺目标) && (
                             (CurrentDirection == GameDirection.上方 && (targetDirection == GameDirection.左上 || targetDirection == GameDirection.上方 || targetDirection == GameDirection.右上))
                             || (CurrentDirection == GameDirection.左上 && (targetDirection == GameDirection.左方 || targetDirection == GameDirection.左上 || targetDirection == GameDirection.上方))
                             || (CurrentDirection == GameDirection.左方 && (targetDirection == GameDirection.左方 || targetDirection == GameDirection.左上 || targetDirection == GameDirection.左下))
@@ -429,9 +429,9 @@ namespace GameServer.Maps
             }
             else if (this is GuardObject)
             {
-                return targetType == SpecifyTargetType.None
-                    || ((targetType & SpecifyTargetType.LowLevelTarget) == SpecifyTargetType.LowLevelTarget && CurrentLevel < obj.CurrentLevel)
-                    || (((targetType & SpecifyTargetType.Backstab) == SpecifyTargetType.Backstab) && (
+                return targetType == 指定目标类型.无
+                    || ((targetType & 指定目标类型.低级目标) == 指定目标类型.低级目标 && CurrentLevel < obj.CurrentLevel)
+                    || (((targetType & 指定目标类型.背刺目标) == 指定目标类型.背刺目标) && (
                        (CurrentDirection == GameDirection.上方 && (targetDirection == GameDirection.左上 || targetDirection == GameDirection.上方 || targetDirection == GameDirection.右上))
                             || (CurrentDirection == GameDirection.左上 && (targetDirection == GameDirection.左方 || targetDirection == GameDirection.左上 || targetDirection == GameDirection.上方))
                             || (CurrentDirection == GameDirection.左方 && (targetDirection == GameDirection.左方 || targetDirection == GameDirection.左上 || targetDirection == GameDirection.左下))
@@ -444,12 +444,12 @@ namespace GameServer.Maps
             }
             else if (this is PetObject petObject)
             {
-                return targetType == SpecifyTargetType.None
-                    || ((targetType & SpecifyTargetType.LowLevelTarget) == SpecifyTargetType.LowLevelTarget && this.CurrentLevel < obj.CurrentLevel)
-                    || ((targetType & SpecifyTargetType.Undead) == SpecifyTargetType.Undead && petObject.宠物种族 == MonsterRaceType.Undead)
-                    || ((targetType & SpecifyTargetType.ZergCreature) == SpecifyTargetType.ZergCreature && petObject.宠物种族 == MonsterRaceType.ZergCreature)
-                    || ((targetType & SpecifyTargetType.AllPets) == SpecifyTargetType.AllPets)
-                    || (((targetType & SpecifyTargetType.Backstab) == SpecifyTargetType.Backstab) && (
+                return targetType == 指定目标类型.无
+                    || ((targetType & 指定目标类型.低级目标) == 指定目标类型.低级目标 && this.CurrentLevel < obj.CurrentLevel)
+                    || ((targetType & 指定目标类型.不死生物) == 指定目标类型.不死生物 && petObject.宠物种族 == MonsterRaceType.不死生物)
+                    || ((targetType & 指定目标类型.虫族生物) == 指定目标类型.虫族生物 && petObject.宠物种族 == MonsterRaceType.虫族生物)
+                    || ((targetType & 指定目标类型.所有宠物) == 指定目标类型.所有宠物)
+                    || (((targetType & 指定目标类型.背刺目标) == 指定目标类型.背刺目标) && (
                      (CurrentDirection == GameDirection.上方 && (targetDirection == GameDirection.左上 || targetDirection == GameDirection.上方 || targetDirection == GameDirection.右上))
                             || (CurrentDirection == GameDirection.左上 && (targetDirection == GameDirection.左方 || targetDirection == GameDirection.左上 || targetDirection == GameDirection.上方))
                             || (CurrentDirection == GameDirection.左方 && (targetDirection == GameDirection.左方 || targetDirection == GameDirection.左上 || targetDirection == GameDirection.左下))
@@ -462,10 +462,10 @@ namespace GameServer.Maps
             }
             else if (this is PlayerObject playerObject)
             {
-                return targetType == SpecifyTargetType.None
-                || ((targetType & SpecifyTargetType.LowLevelTarget) == SpecifyTargetType.LowLevelTarget && this.CurrentLevel < obj.CurrentLevel)
-                    || ((targetType & SpecifyTargetType.ShieldMage) == SpecifyTargetType.ShieldMage && playerObject.CharRole == GameObjectRace.法师 && playerObject.Buffs.ContainsKey(25350))
-                    || (((targetType & SpecifyTargetType.Backstab) == SpecifyTargetType.Backstab) && (
+                return targetType == 指定目标类型.无
+                || ((targetType & 指定目标类型.低级目标) == 指定目标类型.低级目标 && this.CurrentLevel < obj.CurrentLevel)
+                    || ((targetType & 指定目标类型.带盾法师) == 指定目标类型.带盾法师 && playerObject.CharRole == GameObjectRace.法师 && playerObject.Buffs.ContainsKey(25350))
+                    || (((targetType & 指定目标类型.背刺目标) == 指定目标类型.背刺目标) && (
                      (CurrentDirection == GameDirection.上方 && (targetDirection == GameDirection.左上 || targetDirection == GameDirection.上方 || targetDirection == GameDirection.右上))
                             || (CurrentDirection == GameDirection.左上 && (targetDirection == GameDirection.左方 || targetDirection == GameDirection.左上 || targetDirection == GameDirection.上方))
                             || (CurrentDirection == GameDirection.左方 && (targetDirection == GameDirection.左方 || targetDirection == GameDirection.左上 || targetDirection == GameDirection.左下))
@@ -502,7 +502,7 @@ namespace GameServer.Maps
                 || (
                     this is MonsterObject monsterObject
                     && monsterObject.CanBeDrivenBySkills
-                    && obj.GetRelationship(this) == GameObjectRelationship.Hostility
+                    && obj.GetRelationship(this) == GameObjectRelationship.敌对
                 );
         }
 
@@ -908,7 +908,7 @@ namespace GameServer.Maps
         }
 
 
-        public void ProcessSkillHit(SkillInstance skill, C_01_CalculateHitTarget info)
+        public void ProcessSkillHit(SkillInstance skill, C_01_计算命中目标 info)
         {
             MapObject obj = skill.CasterObject is TrapObject trap
                 ? trap.TrapSource
@@ -920,19 +920,19 @@ namespace GameServer.Maps
             if (this != obj && !Neighbors.Contains(obj))
                 return;
 
-            if (skill.Hits.Count >= info.HitsLimit)
+            if (skill.Hits.Count >= info.限定命中数量)
                 return;
 
-            if ((info.LimitedTargetRelationship & obj.GetRelationship(this)) == 0)
+            if ((info.限定目标关系 & obj.GetRelationship(this)) == 0)
                 return;
 
-            if ((info.LimitedTargetType & ObjectType) == 0)
+            if ((info.限定目标类型 & ObjectType) == 0)
                 return;
 
-            if (!IsSpecificType(skill.CasterObject, info.QualifySpecificType))
+            if (!IsSpecificType(skill.CasterObject, info.限定特定类型))
                 return;
 
-            if ((info.LimitedTargetRelationship & GameObjectRelationship.Hostility) != 0)
+            if ((info.限定目标关系 & GameObjectRelationship.敌对) != 0)
             {
                 if (CheckStatus(GameObjectState.无敌状态))
                     return;
@@ -959,12 +959,12 @@ namespace GameServer.Maps
             int num3 = 0;
             float num4 = 0f;
 
-            switch (info.SkillEvasion)
+            switch (info.技能闪避方式)
             {
-                case SkillEvasionType.SkillCannotBeEvaded:
+                case 技能闪避类型.技能无法闪避:
                     num = 1;
                     break;
-                case SkillEvasionType.CanBePhsyicallyEvaded:
+                case 技能闪避类型.可被物理闪避:
                     num3 = this[GameObjectStats.物理敏捷];
                     num = obj[GameObjectStats.物理准确];
                     if (this is MonsterObject)
@@ -973,7 +973,7 @@ namespace GameServer.Maps
                         num4 += this[GameObjectStats.怪物闪避] / 10000f;
                     }
                     break;
-                case SkillEvasionType.CanBeMagicEvaded:
+                case 技能闪避类型.可被魔法闪避:
                     num4 = this[GameObjectStats.魔法闪避] / 10000f;
                     if (this is MonsterObject)
                     {
@@ -981,10 +981,10 @@ namespace GameServer.Maps
                         num4 += this[GameObjectStats.怪物闪避] / 10000f;
                     }
                     break;
-                case SkillEvasionType.CanBePoisonEvaded:
+                case 技能闪避类型.可被中毒闪避:
                     num4 = this[GameObjectStats.中毒躲避] / 10000f;
                     break;
-                case SkillEvasionType.NonMonstersCanEvaded:
+                case 技能闪避类型.非怪物可闪避:
                     if (this is MonsterObject)
                         num = 1;
                     else
@@ -997,42 +997,42 @@ namespace GameServer.Maps
 
             var value = new HitDetail(this)
             {
-                Feedback = ComputingClass.IsHit(num, num3, num2, num4) ? info.SkillHitFeedback : SkillHitFeedback.Miss
+                Feedback = ComputingClass.IsHit(num, num3, num2, num4) ? info.技能命中反馈 : 技能命中反馈.闪避
             };
 
             skill.Hits.Add(this.ObjectId, value);
         }
 
 
-        public void 被动受伤时处理(SkillInstance 技能, C_02_CalculateTargetDamage 参数, HitDetail 详情, float 伤害系数)
+        public void 被动受伤时处理(SkillInstance 技能, C_02_计算目标伤害 参数, HitDetail 详情, float 伤害系数)
         {
             TrapObject TrapObject = 技能.CasterObject as TrapObject;
             MapObject MapObject = (TrapObject != null) ? TrapObject.TrapSource : 技能.CasterObject;
             if (this.Died)
             {
-                详情.Feedback = SkillHitFeedback.丢失;
+                详情.Feedback = 技能命中反馈.丢失;
             }
             else if (!this.Neighbors.Contains(MapObject))
             {
-                详情.Feedback = SkillHitFeedback.丢失;
+                详情.Feedback = 技能命中反馈.丢失;
             }
-            else if ((MapObject.GetRelationship(this) & GameObjectRelationship.Hostility) == (GameObjectRelationship)0)
+            else if ((MapObject.GetRelationship(this) & GameObjectRelationship.敌对) == (GameObjectRelationship)0)
             {
-                详情.Feedback = SkillHitFeedback.丢失;
+                详情.Feedback = 技能命中反馈.丢失;
             }
             else
             {
                 MonsterObject MonsterObject = this as MonsterObject;
                 if (MonsterObject != null && (MonsterObject.MonsterId == 8618 || MonsterObject.MonsterId == 8621) && this.GetDistance(MapObject) >= 4)
                 {
-                    详情.Feedback = SkillHitFeedback.丢失;
+                    详情.Feedback = 技能命中反馈.丢失;
                 }
             }
-            if ((详情.Feedback & SkillHitFeedback.免疫) == SkillHitFeedback.正常 && (详情.Feedback & SkillHitFeedback.丢失) == SkillHitFeedback.正常)
+            if ((详情.Feedback & 技能命中反馈.免疫) == 技能命中反馈.正常 && (详情.Feedback & 技能命中反馈.丢失) == 技能命中反馈.正常)
             {
-                if ((详情.Feedback & SkillHitFeedback.Miss) == SkillHitFeedback.正常)
+                if ((详情.Feedback & 技能命中反馈.闪避) == 技能命中反馈.正常)
                 {
-                    if (参数.技能斩杀类型 != SpecifyTargetType.None && ComputingClass.CheckProbability(参数.技能斩杀概率) && this.IsSpecificType(MapObject, 参数.技能斩杀类型))
+                    if (参数.技能斩杀类型 != 指定目标类型.无 && ComputingClass.CheckProbability(参数.技能斩杀概率) && this.IsSpecificType(MapObject, 参数.技能斩杀类型))
                     {
                         详情.Damage = this.CurrentHP;
                     }
@@ -1052,7 +1052,7 @@ namespace GameServer.Maps
                         }
                         int num5 = 0;
                         float num6 = 0f;
-                        if (参数.技能增伤类型 != SpecifyTargetType.None && this.IsSpecificType(MapObject, 参数.技能增伤类型))
+                        if (参数.技能增伤类型 != 指定目标类型.无 && this.IsSpecificType(MapObject, 参数.技能增伤类型))
                         {
                             num5 = 参数.技能增伤基数;
                             num6 = 参数.技能增伤系数;
@@ -1364,7 +1364,7 @@ namespace GameServer.Maps
                 }
                 this.TimeoutTime = MainProcess.CurrentTime.AddSeconds(10.0);
                 MapObject.TimeoutTime = MainProcess.CurrentTime.AddSeconds(10.0);
-                if ((详情.Feedback & SkillHitFeedback.Miss) == SkillHitFeedback.正常)
+                if ((详情.Feedback & 技能命中反馈.闪避) == 技能命中反馈.正常)
                 {
                     foreach (BuffData BuffData3 in this.Buffs.Values.ToList<BuffData>())
                     {
@@ -1396,7 +1396,7 @@ namespace GameServer.Maps
                         {
                             PlayerObject.扣除护盾时间(详情.Damage);
                         }
-                        if (PlayerObject.GetRelationship(MapObject) == GameObjectRelationship.Hostility)
+                        if (PlayerObject.GetRelationship(MapObject) == GameObjectRelationship.敌对)
                         {
                             foreach (PetObject PetObject in PlayerObject.Pets.ToList<PetObject>())
                             {
@@ -1439,7 +1439,7 @@ namespace GameServer.Maps
                         PetObject PetObject3 = this as PetObject;
                         if (PetObject3 != null)
                         {
-                            if (MapObject != PetObject3.PlayerOwner && PetObject3.GetRelationship(MapObject) == GameObjectRelationship.Hostility)
+                            if (MapObject != PetObject3.PlayerOwner && PetObject3.GetRelationship(MapObject) == GameObjectRelationship.敌对)
                             {
                                 PlayerObject 宠物主人 = PetObject3.PlayerOwner;
                                 foreach (PetObject PetObject4 in ((宠物主人 != null) ? 宠物主人.Pets.ToList<PetObject>() : null))
@@ -1462,7 +1462,7 @@ namespace GameServer.Maps
                         else
                         {
                             GuardObject GuardInstance = this as GuardObject;
-                            if (GuardInstance != null && GuardInstance.GetRelationship(MapObject) == GameObjectRelationship.Hostility)
+                            if (GuardInstance != null && GuardInstance.GetRelationship(MapObject) == GameObjectRelationship.敌对)
                             {
                                 GuardInstance.HateObject.添加仇恨(MapObject, default(DateTime), 0);
                             }
@@ -1472,7 +1472,7 @@ namespace GameServer.Maps
                 PlayerObject PlayerObject4 = MapObject as PlayerObject;
                 if (PlayerObject4 != null)
                 {
-                    if (PlayerObject4.GetRelationship(this) == GameObjectRelationship.Hostility && !this.CheckStatus(GameObjectState.隐身状态 | GameObjectState.潜行状态))
+                    if (PlayerObject4.GetRelationship(this) == GameObjectRelationship.敌对 && !this.CheckStatus(GameObjectState.隐身状态 | GameObjectState.潜行状态))
                     {
                         foreach (PetObject PetObject5 in PlayerObject4.Pets.ToList<PetObject>())
                         {
@@ -1492,7 +1492,7 @@ namespace GameServer.Maps
                 }
                 if ((this.CurrentHP = Math.Max(0, this.CurrentHP - 详情.Damage)) == 0)
                 {
-                    详情.Feedback |= SkillHitFeedback.死亡;
+                    详情.Feedback |= 技能命中反馈.死亡;
                     this.Dies(MapObject, true);
                 }
                 return;
@@ -1531,7 +1531,7 @@ namespace GameServer.Maps
         }
 
 
-        public void 被动回复时处理(SkillInstance 技能, C_05_CalculateTargetReply 参数)
+        public void 被动回复时处理(SkillInstance 技能, C_05_计算目标回复 参数)
         {
             if (!this.Died)
             {
@@ -1547,18 +1547,18 @@ namespace GameServer.Maps
                     int? num = (体力回复次数 != null) ? new int?(体力回复次数.Length) : null;
                     int SkillLevel = (int)技能.SkillLevel;
                     int num2 = (num.GetValueOrDefault() > SkillLevel & num != null) ? 参数.体力回复次数[(int)技能.SkillLevel] : 0;
-                    byte[] 体力回复基数 = 参数.PhysicalRecoveryBase;
+                    byte[] 体力回复基数 = 参数.体力回复基数;
                     num = ((体力回复基数 != null) ? new int?(体力回复基数.Length) : null);
                     SkillLevel = (int)技能.SkillLevel;
-                    int num3 = (int)((num.GetValueOrDefault() > SkillLevel & num != null) ? 参数.PhysicalRecoveryBase[(int)技能.SkillLevel] : 0);
-                    float[] Taoism叠加次数 = 参数.Taoism叠加次数;
-                    num = ((Taoism叠加次数 != null) ? new int?(Taoism叠加次数.Length) : null);
+                    int num3 = (int)((num.GetValueOrDefault() > SkillLevel & num != null) ? 参数.体力回复基数[(int)技能.SkillLevel] : 0);
+                    float[] 道术叠加次数 = 参数.道术叠加次数;
+                    num = ((道术叠加次数 != null) ? new int?(道术叠加次数.Length) : null);
                     SkillLevel = (int)技能.SkillLevel;
-                    float num4 = (num.GetValueOrDefault() > SkillLevel & num != null) ? 参数.Taoism叠加次数[(int)技能.SkillLevel] : 0f;
-                    float[] Taoism叠加基数 = 参数.Taoism叠加基数;
-                    num = ((Taoism叠加基数 != null) ? new int?(Taoism叠加基数.Length) : null);
+                    float num4 = (num.GetValueOrDefault() > SkillLevel & num != null) ? 参数.道术叠加次数[(int)技能.SkillLevel] : 0f;
+                    float[] 道术叠加基数 = 参数.道术叠加基数;
+                    num = ((道术叠加基数 != null) ? new int?(道术叠加基数.Length) : null);
                     SkillLevel = (int)技能.SkillLevel;
-                    float num5 = (num.GetValueOrDefault() > SkillLevel & num != null) ? 参数.Taoism叠加基数[(int)技能.SkillLevel] : 0f;
+                    float num5 = (num.GetValueOrDefault() > SkillLevel & num != null) ? 参数.道术叠加基数[(int)技能.SkillLevel] : 0f;
                     int[] 立即回复基数 = 参数.立即回复基数;
                     num = ((立即回复基数 != null) ? new int?(立即回复基数.Length) : null);
                     SkillLevel = (int)技能.SkillLevel;
@@ -1677,7 +1677,7 @@ namespace GameServer.Maps
                                             predicate = delegate (MapObject O)
                                           {
                                               TrapObject TrapObject = O as TrapObject;
-                                              return TrapObject != null && TrapObject.陷阱GroupId != 0 && TrapObject.陷阱GroupId == 陷阱模板.GroupId;
+                                              return TrapObject != null && TrapObject.陷阱GroupId != 0 && TrapObject.陷阱GroupId == 陷阱模板.分组编号;
                                           };
                                         }
                                         if (source.FirstOrDefault(predicate) == null)
@@ -1724,7 +1724,7 @@ namespace GameServer.Maps
                                         predicate2 = delegate (MapObject O)
                                        {
                                            TrapObject TrapObject = O as TrapObject;
-                                           return TrapObject != null && TrapObject.陷阱GroupId != 0 && TrapObject.陷阱GroupId == 陷阱模板.GroupId;
+                                           return TrapObject != null && TrapObject.陷阱GroupId != 0 && TrapObject.陷阱GroupId == 陷阱模板.分组编号;
                                        };
                                     }
                                     if (source2.FirstOrDefault(predicate2) == null)
@@ -1943,15 +1943,15 @@ namespace GameServer.Maps
             {
                 if (this is PlayerObject PlayerObject)
                 {
-                    GameObjectType 对象类型 = 对象.ObjectType;
-                    if (对象类型 <= GameObjectType.NPC)
+                    游戏对象类型 对象类型 = 对象.ObjectType;
+                    if (对象类型 <= 游戏对象类型.Npcc)
                     {
                         switch (对象类型)
                         {
-                            case GameObjectType.Player:
-                            case GameObjectType.Monster:
+                            case 游戏对象类型.玩家:
+                            case 游戏对象类型.怪物:
                                 break;
-                            case GameObjectType.Pet:
+                            case 游戏对象类型.宠物:
                                 PlayerObject.ActiveConnection.SendPacket(new ObjectCharacterStopPacket
                                 {
                                     对象编号 = 对象.ObjectId,
@@ -1980,10 +1980,10 @@ namespace GameServer.Maps
                                     对象编号 = 对象.ObjectId
                                 });
                                 goto IL_356;
-                            case (GameObjectType)3:
+                            case (游戏对象类型)3:
                                 goto IL_356;
                             default:
-                                if (对象类型 != GameObjectType.NPC)
+                                if (对象类型 != 游戏对象类型.Npcc)
                                 {
                                     goto IL_356;
                                 }
@@ -2014,9 +2014,9 @@ namespace GameServer.Maps
                             MaxHP = 对象[GameObjectStats.最大体力]
                         });
                     }
-                    else if (对象类型 != GameObjectType.Item)
+                    else if (对象类型 != 游戏对象类型.物品)
                     {
-                        if (对象类型 == GameObjectType.Trap)
+                        if (对象类型 == 游戏对象类型.陷阱)
                         {
                             PlayerObject.ActiveConnection.SendPacket(new TrapComesIntoViewPacket
                             {
@@ -2096,15 +2096,15 @@ namespace GameServer.Maps
 
                 if (this is PlayerObject PlayerObject3)
                 {
-                    GameObjectType 对象类型 = 对象.ObjectType;
-                    if (对象类型 <= GameObjectType.NPC)
+                    游戏对象类型 对象类型 = 对象.ObjectType;
+                    if (对象类型 <= 游戏对象类型.Npcc)
                     {
                         switch (对象类型)
                         {
-                            case GameObjectType.Player:
-                            case GameObjectType.Monster:
+                            case 游戏对象类型.玩家:
+                            case 游戏对象类型.怪物:
                                 break;
-                            case GameObjectType.Pet:
+                            case 游戏对象类型.宠物:
                                 PlayerObject3.ActiveConnection.SendPacket(new ObjectCharacterStopPacket
                                 {
                                     对象编号 = 对象.ObjectId,
@@ -2133,10 +2133,10 @@ namespace GameServer.Maps
                                     对象编号 = 对象.ObjectId
                                 });
                                 goto IL_866;
-                            case (GameObjectType)3:
+                            case (游戏对象类型)3:
                                 goto IL_866;
                             default:
-                                if (对象类型 != GameObjectType.NPC)
+                                if (对象类型 != 游戏对象类型.Npcc)
                                 {
                                     goto IL_866;
                                 }
@@ -2167,9 +2167,9 @@ namespace GameServer.Maps
                             MaxHP = 对象[GameObjectStats.最大体力]
                         });
                     }
-                    else if (对象类型 != GameObjectType.Item)
+                    else if (对象类型 != 游戏对象类型.物品)
                     {
-                        if (对象类型 == GameObjectType.Trap)
+                        if (对象类型 == 游戏对象类型.陷阱)
                         {
                             PlayerObject3.ActiveConnection.SendPacket(new TrapComesIntoViewPacket
                             {
@@ -2189,7 +2189,7 @@ namespace GameServer.Maps
                                 Direction = (ushort)对象.CurrentDirection,
                                 Position = 对象.CurrentPosition,
                                 Altitude = 对象.CurrentAltitude,
-                                NPCTemplateId = chestObject.Template.Id,
+                                NPCTemplateId = chestObject.Template.宝箱编号,
                             });
                             chestObject.ActivateObject();
                         }
@@ -2396,7 +2396,7 @@ namespace GameServer.Maps
                 this.NeighborsSneak.Add(对象);
             }
             PlayerObject PlayerObject = this as PlayerObject;
-            if (PlayerObject != null && (this.GetRelationship(对象) == GameObjectRelationship.Hostility || 对象.GetRelationship(this) == GameObjectRelationship.Hostility))
+            if (PlayerObject != null && (this.GetRelationship(对象) == GameObjectRelationship.敌对 || 对象.GetRelationship(this) == GameObjectRelationship.敌对))
             {
                 this.NeighborsSneak.Add(对象);
                 PlayerObject.ActiveConnection.SendPacket(new ObjectOutOfViewPacket

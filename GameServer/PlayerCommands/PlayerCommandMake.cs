@@ -31,7 +31,7 @@ namespace GameServer.PlayerCommands
                 return;
             }
 
-            if (itemTemplate.MaxDura == 0)
+            if (itemTemplate.物品持久 == 0)
             {
                 Player.SendMessage("This item can not be maked");
                 return;

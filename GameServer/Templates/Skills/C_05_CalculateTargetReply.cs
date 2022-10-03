@@ -3,10 +3,10 @@
 namespace GameServer.Templates
 {
 	
-	public sealed class C_05_CalculateTargetReply : SkillTask
+	public sealed class C_05_计算目标回复 : SkillTask  //C_05_CalculateTargetReply
 	{
 		
-		public C_05_CalculateTargetReply()
+		public C_05_计算目标回复()   //C_05_CalculateTargetReply
 		{
 			
 			
@@ -16,13 +16,13 @@ namespace GameServer.Templates
 		public int[] 体力回复次数;
 
 		
-		public float[] Taoism叠加次数;
+		public float[] 道术叠加次数;  //Taoism叠加次数
 
 		
-		public byte[] PhysicalRecoveryBase;
+		public byte[] 体力回复基数;  //PhysicalRecoveryBase
 
 		
-		public float[] Taoism叠加基数;
+		public float[] 道术叠加基数;  //Taoism叠加基数
 
 		
 		public int[] 立即回复基数;
@@ -31,9 +31,9 @@ namespace GameServer.Templates
 		public float[] 立即回复系数;
 
 		
-		public bool GainSkillExp;
+		public bool 增加技能经验; //GainSkillExp
 
 		
-		public ushort ExpSkillId;
+		public ushort 经验技能编号;  //ExpSkillId
 	}
 }

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 namespace GameServer.Templates
 {
 	
-	public sealed class C_04_CalculateTargetTemptation : SkillTask
+	public sealed class C_04_计算目标诱惑 : SkillTask  //C_04_CalculateTargetTemptation
 	{
 		
-		public C_04_CalculateTargetTemptation()
+		public C_04_计算目标诱惑()   //C_04_CalculateTargetTemptation
 		{
 			
 			
@@ -17,7 +17,7 @@ namespace GameServer.Templates
 		public bool 检查铭文技能;
 
 		
-		public int 检查Id;
+		public int 检查铭文编号;  //检查Id
 
 		
 		public ushort 瘫痪状态编号;

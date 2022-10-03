@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace GameServer.Templates
 {
 
-    public static class Serializer
+    public static class Serializer  //序列化类
     {
         static Serializer()
         {
