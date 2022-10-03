@@ -1,6 +1,0 @@
-{
-  "Name": "玛法通驿",
-  "GuardNumber": 7119,
-  "Level": 99,
-  "RangeHate": 8
-}

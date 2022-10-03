@@ -1,4 +1,0 @@
-{
-  "Id": 674000000,
-  "Content": "Guild presidents who want to compete for the city lord of Sabuk can sign up here, or view the guilds that have already signed up. After successful registration, they can participate in the siege battle one day later.<#SO:1>Sign up for Sabuk Siege<#SO/><#SO:2>View Registered Guilds<#SO/>"
-}

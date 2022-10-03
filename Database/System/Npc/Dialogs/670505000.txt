@@ -1,4 +1,0 @@
-{
-  "Id": 670505000,
-  "Content": "Do you want me to throw such a magical weapon on the ground? Clean up your bag and come back to me!"
-}

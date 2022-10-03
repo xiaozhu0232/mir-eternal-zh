@@ -1,4 +1,0 @@
-{
-  "Id": 612606000,
-  "Content": "The equipment has been reforged successfully! The equipment has acquired new attributes `~<#SO:1>Continue Reforge<#SO/><#SO:2>Leave<#SO/>"
-}

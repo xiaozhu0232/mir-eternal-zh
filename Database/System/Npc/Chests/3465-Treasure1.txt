@@ -1,5 +1,0 @@
-{
-  "Id": 3465,
-  "Name": "Treasure1",
-  "Items": [
-  {"ItemName": "ChestScroll"}]}

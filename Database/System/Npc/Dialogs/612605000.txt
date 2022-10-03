@@ -1,4 +1,0 @@
-{
-  "Id": 612605000,
-  "Content": "Get ready `~ and [`~] Come find me with ten thousand Gold coins!"
-}

@@ -1,4 +1,0 @@
-{
-  "Id": 648200000,
-  "Content": "The day gate is finished!"
-}

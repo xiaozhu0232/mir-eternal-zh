@@ -1,4 +1,0 @@
-{
-  "Id": 627402000,
-  "Content": "You have already received your reward today"
-}

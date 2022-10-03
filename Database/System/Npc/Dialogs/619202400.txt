@@ -1,4 +1,0 @@
-{
-  "Id": 619202400,
-  "Content": "You haven't punched a hole in your equipment yet!"
-}

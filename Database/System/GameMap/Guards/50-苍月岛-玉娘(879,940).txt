@@ -1,8 +1,0 @@
-{
-  "GuardNumber": 6680,
-  "FromMapId": 50,
-  "FromMapName": "PaleMoonIsland",
-  "FromCoords": "879, 940",
-  "Direction": "右下",
-  "RegionName": "PaleMoonIsland-Jade Lady(879,940)"
-}

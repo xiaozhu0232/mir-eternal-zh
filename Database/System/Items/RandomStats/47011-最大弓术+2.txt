@@ -1,7 +1,0 @@
-{
-  "Stat": "MaxBC",
-  "Value": 2,
-  "StatId": 47011,
-  "CombatBonus": 20,
-  "StatDescription": "最大弓术+2"
-}

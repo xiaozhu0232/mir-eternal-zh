@@ -1,8 +1,0 @@
-{
-  "GuardNumber": 6693,
-  "FromMapId": 147,
-  "FromMapName": "AlliedProvince",
-  "FromCoords": "832, 544",
-  "Direction": "左下",
-  "RegionName": "AlliedProvince-Qi Yun Gong(832,544)"
-}

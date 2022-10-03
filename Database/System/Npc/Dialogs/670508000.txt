@@ -1,4 +1,0 @@
-{
-  "Id": 670508000,
-  "Content": "It was fine just now, why did it suddenly crack? Now it's troublesome!<br>Try To Repair[`~]个[RepairOil] and [`~] 10,000 Gold is enough, hurry up and prepare!Ten thousand gold coins is enough!<#SO:1>I have it here<#SO/><#SO:2>I'm going to collect<#SO/><#SO:3>Forget it, I don't want it<#SO/>"
-}

@@ -1,4 +1,0 @@
-{
-  "Id": 636100000,
-  "Content": "Are you lost?<#SO:1>Back To Entrance<#SO/>\r"
-}

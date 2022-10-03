@@ -1,7 +1,0 @@
-{
-  "Stat": "MinMCDef",
-  "Value": 3,
-  "StatId": 9021,
-  "CombatBonus": 30,
-  "StatDescription": "最小魔防+3"
-}

@@ -1,4 +1,0 @@
-{
-  "Id": 674001000,
-  "Content": "Registration needs to deduct 1 million Gold and 1 ZumaStone. Please confirm whether to register?<#SO:1>Register<#SO/>"
-}

@@ -1,4 +1,0 @@
-{
-  "Id": 627400000,
-  "Content": "Sabuk Guild members can collect rewards from me every day, don't forget<#SO:1>Receive Daily Rewards<#SO/>"
-}

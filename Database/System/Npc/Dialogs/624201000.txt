@@ -1,4 +1,0 @@
-{
-  "Id": 624201000,
-  "Content": "Please form a team before entering, it is too dangerous!"
-}

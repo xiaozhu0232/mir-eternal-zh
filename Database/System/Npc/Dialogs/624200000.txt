@@ -1,4 +1,0 @@
-{
-  "Id": 624200000,
-  "Content": "The guards guarding the Demon Slaying Hall are surrounded by a sudden army of monsters and are in urgent need of rescue. Can you lend a helping hand?<#SO:1>Enter Slaughter Hall<#SO/>"
-}

@@ -1,7 +1,0 @@
-{
-  "Stat": "MaxDC",
-  "Value": 2,
-  "StatId": 2011,
-  "CombatBonus": 20,
-  "StatDescription": "MaxDC+2"
-}

@@ -1,4 +1,0 @@
-{
-  "Id": 619202200,
-  "Content": "Bring enough[`~] engravings and[`~] Gold and talk to me again.\r"
-}

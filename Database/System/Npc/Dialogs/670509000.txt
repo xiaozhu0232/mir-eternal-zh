@@ -1,4 +1,0 @@
-{
-  "Id": 670509000,
-  "Content": "Repair oil is indeed very rare, young man, let's look for it!"
-}

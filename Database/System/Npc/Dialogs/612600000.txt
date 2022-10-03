@@ -1,4 +1,0 @@
-{
-  "Id": 612600000,
-  "Content": "Reforging equipment can make your equipment more powerful in combat!<#SO:1>Reforge Weapons<#SO/><#SO:2>Reforge Armor<#SO/><#SO:3>Reforge Accessories<#SO/>"
-}

@@ -1,6 +1,0 @@
-{
-  "Name": "碧橙",
-  "GuardNumber": 6192,
-  "Level": 99,
-  "RangeHate": 8
-}

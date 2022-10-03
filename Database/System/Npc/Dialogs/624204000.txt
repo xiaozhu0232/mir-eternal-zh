@@ -1,4 +1,0 @@
-{
-  "Id": 624204000,
-  "Content": "Cost per person[`~] 10,000 Gold coins, there are members in the team who do not have enough."
-}

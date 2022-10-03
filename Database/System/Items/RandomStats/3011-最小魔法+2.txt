@@ -1,7 +1,0 @@
-{
-  "Stat": "MinMC",
-  "Value": 2,
-  "StatId": 3011,
-  "CombatBonus": 20,
-  "StatDescription": "最小魔法+2"
-}

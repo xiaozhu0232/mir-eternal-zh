@@ -1,4 +1,0 @@
-{
-  "Id": 479502000,
-  "Content": "You can only enter battle experience arena once a day, cannot re-enter after death."
-}

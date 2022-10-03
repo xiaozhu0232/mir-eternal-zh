@@ -1,4 +1,0 @@
-{
-  "Id": 612601000,
-  "Content": "Which part do you want to reforge?<#SO:1>Armor<#SO/><#SO:2>Helmet<#SO/><#SO:3>Belt<#SO/><#SO:4>Boots<#SO/><#SO:5>Shoulders<#SO/><#SO:6>Bracelet<#SO/><#SO:7>Cloak<#SO/>"
-}

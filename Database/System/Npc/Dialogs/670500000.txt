@@ -1,4 +1,0 @@
-{
-  "Id": 670500000,
-  "Content": "Upgrading weapons is a skill, er, as for what skill... it can only be understood and cannot be described in words.<#SO:1>Weapon Upgrade<#SO/><#SO:2>Retrieve Weapon(Wait 2 Hours)<#SO/><#SO:3>Quick Retrieval(Cost 100,000 Gold)<#SO/>"
-}

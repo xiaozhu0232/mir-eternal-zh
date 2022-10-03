@@ -1,6 +1,0 @@
-{
-  "Name": "沙城传送阵",
-  "GuardNumber": 6123,
-  "Level": 99,
-  "RangeHate": 8
-}

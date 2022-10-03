@@ -1,4 +1,0 @@
-{
-  "Id": 619202100,
-  "Content": "Only the equipment you have equiped can be engraved!\r"
-}

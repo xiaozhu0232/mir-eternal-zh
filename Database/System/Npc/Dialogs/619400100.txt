@@ -1,4 +1,0 @@
-{
-  "Id": 619400100,
-  "Content": "You don't have enough spirit stones, [`~]Come find me when you have more!"
-}

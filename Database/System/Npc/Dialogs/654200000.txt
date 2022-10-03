@@ -1,4 +1,0 @@
-{
-  "Id": 654200000,
-  "Content": "<#UI:Shop>Exchange Shop<#UI/>"
-}

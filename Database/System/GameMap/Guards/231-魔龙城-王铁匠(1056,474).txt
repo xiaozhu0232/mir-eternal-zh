@@ -1,8 +1,0 @@
-{
-  "GuardNumber": 6672,
-  "FromMapId": 231,
-  "FromMapName": "MagicDragonCity",
-  "FromCoords": "1056, 474",
-  "Direction": "右下",
-  "RegionName": "MagicDragonCity-KingBlacksmith(1056,474)"
-}

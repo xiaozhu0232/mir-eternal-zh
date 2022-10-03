@@ -1,4 +1,0 @@
-{
-  "Id": 624205000,
-  "Content": "Some members of the team have entered the Slaughter Hall already today"
-}

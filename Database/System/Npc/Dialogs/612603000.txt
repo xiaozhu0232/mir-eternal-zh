@@ -1,4 +1,0 @@
-{
-  "Id": 612603000,
-  "Content": "You can only reforge the equipment that you have equiped!"
-}

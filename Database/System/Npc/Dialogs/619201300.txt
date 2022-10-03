@@ -1,4 +1,0 @@
-{
-  "Id": 619201300,
-  "Content": "Only the master can build the three hole equipment, sadly he passed away.\r"
-}

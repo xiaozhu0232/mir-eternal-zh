@@ -1,4 +1,0 @@
-{
-  "Id": 711903000,
-  "Content": "Select the location you would like to teleport.<#SO:1>Mines(2500 Gold)<#SO/><#SO:2>Death Canyon(3500 Gold)<#SO/><#SO:3>Secret Passage(3500 Gold)<#SO/><#SO:4>Woma Temple(4500 Gold)<#SO/><#SO:5>Zuma Temple(5500 Gold)<#SO/><#SO:6>Hell Cave(7500Gold)<#SO/>"
-}

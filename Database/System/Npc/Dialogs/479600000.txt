@@ -1,4 +1,0 @@
-{
-  "Id": 479600000,
-  "Content": "Looks like you have enter already, try again next time.<#SO:1>Leave Arena<#SO/>"
-}

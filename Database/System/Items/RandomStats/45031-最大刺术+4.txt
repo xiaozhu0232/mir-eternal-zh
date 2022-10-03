@@ -1,7 +1,0 @@
-{
-  "Stat": "MaxNC",
-  "Value": 4,
-  "StatId": 45031,
-  "CombatBonus": 40,
-  "StatDescription": "最大刺术+4"
-}

@@ -1,4 +1,0 @@
-{
-  "Id": 619201000,
-  "Content": "Which piece of gear do you want to punch?<#SO:1>Helmet<#SO/><#SO:2>Armor<#SO/><#SO:3>Boots<#SO/><#SO:4>Bracelet<#SO/><#SO:5>Belt<#SO/><#SO:6>Shoulders<#SO/><#SO:7>Cloak<#SO/><#SO:8>Pendant<#SO/>\r"
-}

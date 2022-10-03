@@ -1,7 +1,0 @@
-{
-  "Stat": "MaxMCDef",
-  "Value": 1,
-  "StatId": 10001,
-  "CombatBonus": 10,
-  "StatDescription": "最大魔防+1"
-}

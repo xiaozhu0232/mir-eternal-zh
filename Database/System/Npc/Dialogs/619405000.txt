@@ -1,4 +1,0 @@
-{
-  "Id": 619405000,
-  "Content": "What level of Spirit Stones do you want to synthesize? <#SO:1>Orange and Yellow Spirit Stone Level 2<#SO/> <#SO:2>Orange and Yellow Spirit Stone Level 3<#SO/>"
-}

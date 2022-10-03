@@ -1,4 +1,0 @@
-{
-  "Id": 612300000,
-  "Content": "The chat forum has been successfully opened.<#SO:1>Enter Palace<#SO/>"
-}

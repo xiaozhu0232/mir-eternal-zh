@@ -1,4 +1,0 @@
-{
-  "Id": 625200000,
-  "Content": "Killing powerful monsters can get you a special token, which can quickly improve their cultivation. Young heroes, why not try it?<#SO:1>Turn In Slaughter Order<#SO/>"
-}

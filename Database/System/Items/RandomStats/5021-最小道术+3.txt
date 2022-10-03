@@ -1,7 +1,0 @@
-{
-  "Stat": "MinSC",
-  "Value": 3,
-  "StatId": 5021,
-  "CombatBonus": 30,
-  "StatDescription": "最小道术+3"
-}

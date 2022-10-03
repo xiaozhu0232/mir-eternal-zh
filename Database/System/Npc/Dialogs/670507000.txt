@@ -1,4 +1,0 @@
-{
-  "Id": 670507000,
-  "Content": "I have already tried the knife for you, young man, can you still take advantage of it?"
-}

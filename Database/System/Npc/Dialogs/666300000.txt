@@ -1,4 +1,0 @@
-{
-  "Id": 666300000,
-  "Content": "<#UI:Shop>Pharmacy<#UI/>"
-}

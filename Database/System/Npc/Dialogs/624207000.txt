@@ -1,4 +1,0 @@
-{
-  "Id": 624207000,
-  "Content": "You need atleast 4 members to enter."
-}

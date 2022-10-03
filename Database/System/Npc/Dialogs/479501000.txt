@@ -1,4 +1,0 @@
-{
-  "Id": 479501000,
-  "Content": "The arena is only open between ???, come back later."
-}

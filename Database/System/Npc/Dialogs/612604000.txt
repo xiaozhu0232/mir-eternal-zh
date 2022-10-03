@@ -1,4 +1,0 @@
-{
-  "Id": 612604000,
-  "Content": "The current selected equipment is [`~], Are you sure you want to reforge?<#SO:1>Reforge<#SO/><#SO:2>Cancel<#SO/>"
-}

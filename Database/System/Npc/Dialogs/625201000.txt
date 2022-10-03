@@ -1,4 +1,0 @@
-{
-  "Id": 625201000,
-  "Content": "Killing powerful monsters can get you the slaughtering order."
-}

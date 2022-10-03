@@ -1,4 +1,0 @@
-{
-  "Id": 711900000,
-  "Content": "Where would you like to travel?<#SO:1>Town Teleport<#SO/><#SO:2>Island Teleport<#SO/><#SO:3>Cave Teleport<#SO/>"
-}

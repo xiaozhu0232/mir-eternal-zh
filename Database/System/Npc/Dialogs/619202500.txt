@@ -1,4 +1,0 @@
-{
-  "Id": 619202500,
-  "Content": "The color of the current equipment is[`~]<br>Continue engraving will overwrite the current color, do you need to continue?<#SO:1>Continue Engraving<#SO/><#SO:2>Leave<#SO/>"
-}

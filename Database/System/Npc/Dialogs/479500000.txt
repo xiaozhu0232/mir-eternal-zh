@@ -1,4 +1,0 @@
-{
-  "Id": 479500000,
-  "Content": "Martial arts field can help improve your skill, try it out!<#SO:1>Enter Arena<#SO/>"
-}

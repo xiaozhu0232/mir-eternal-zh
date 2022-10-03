@@ -1,4 +1,0 @@
-{
-  "Id": 711900001,
-  "Content": "You are not high enough to teleport to this location.[`~]."
-}

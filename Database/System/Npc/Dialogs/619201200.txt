@@ -1,4 +1,0 @@
-{
-  "Id": 619201200,
-  "Content": "You do not have enough Punch stones in your bag![`~] come back to me when you have enough.\r"
-}

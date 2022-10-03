@@ -1,4 +1,0 @@
-{
-  "Id": 671400000,
-  "Content": "Come to me and try the most mysterious thing on the continent!<#UI:SoulEmbed>Spirit Stone Inlay<#UI/>"
-}

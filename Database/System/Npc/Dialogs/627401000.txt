@@ -1,4 +1,0 @@
-{
-  "Id": 627401000,
-  "Content": "You are not a member of the Sabuk guild"
-}

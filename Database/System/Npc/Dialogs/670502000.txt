@@ -1,4 +1,0 @@
-{
-  "Id": 670502000,
-  "Content": "Do you know the rules? Can we start?<#UI:UpgradeCurEquippedWepn>Confirm Upgrade<#UI/><#SO:1>Not Yet<#SO/>"
-}

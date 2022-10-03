@@ -1,4 +1,0 @@
-{
-  "Id": 711902000,
-  "Content": "Select the location you would like to teleport.<#SO:1>Woma Forest(2500 Gold)<#SO/><#SO:2>Jungle Maze(6500 Gold)<#SO/><#SO:3>RedMoon Valley(9500 Gold)<#SO/>"
-}

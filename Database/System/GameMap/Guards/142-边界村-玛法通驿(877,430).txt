@@ -1,8 +1,0 @@
-{
-  "GuardNumber": 7119,
-  "FromMapId": 142,
-  "FromMapName": "BorderVillage",
-  "FromCoords": "877, 430",
-  "Direction": "右方",
-  "RegionName": "BorderVillage-Maffatone Post(877,430)"
-}

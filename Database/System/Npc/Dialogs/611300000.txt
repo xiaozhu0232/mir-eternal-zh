@@ -1,4 +1,0 @@
-{
-  "Id": 611300000,
-  "Content": "You do not want to stay longer? I send you back.<#SO:1>Confirm<#SO/>\r"
-}

@@ -1,7 +1,0 @@
-{
-  "Name": "高经验点",
-  "GuardNumber": 6121,
-  "Level": 99,
-  "Nothingness": true,
-  "RangeHate": 8
-}

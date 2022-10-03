@@ -1,4 +1,0 @@
-{
-  "Id": 669200000,
-  "Content": "The most important duty as a city lord is to protect the town.<#UI:GuildCreate>Create a Guild<#UI/><#UI:GuildView>View Guild<#UI/>"
-}

@@ -1,4 +1,0 @@
-{
-  "Id": 677100000,
-  "Content": "Engraving ancient magic on your weapons is what I do best.<#UI:OpenWeaponSkill>Normal Inscription Refinement<#UI/><#UI:WeaponSkillRplc>Advanced Inscription Refinement<#UI/><#UI:OpenWeaponSkillRplcRarity>Inscription Replacement Refinement<#UI/>"
-}

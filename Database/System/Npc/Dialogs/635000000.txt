@@ -1,4 +1,0 @@
-{
-  "Id": 635000000,
-  "Content": "The Unknown Dark Hall may be the most terrifying place in the entire continent, young heroes must be careful!<#SO:1>Enter<#SO/>"
-}
